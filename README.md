@@ -24,6 +24,7 @@ The project covers:
 
 - Microservice decomposition by business capability.
 - OAuth2 and OpenID Connect based security with Keycloak and RBAC.
+- Identity orchestration for user registration with compensation logic.
 - Synchronous service-to-service communication over HTTP.
 - Asynchronous communication through Apache Kafka.
 - At most once, at least once, and exactly once or effectively exactly once message delivery semantics.
@@ -39,6 +40,7 @@ The project covers:
 
 The application supports the following high-level capabilities:
 
+- User registration and identity orchestration.
 - User profile management.
 - Real estate listing creation and management.
 - Listing media upload and processing.
@@ -68,12 +70,12 @@ The following concerns are intentionally outside the core scope:
 The platform has four business roles. Roles are managed in Keycloak and propagated to backend services through JWT
 access tokens.
 
-| Role             | Description                                                                                   |
-|------------------|-----------------------------------------------------------------------------------------------|
-| `ROLE_ADMIN`     | Has administrative access to users, system settings, dictionaries, and moderation operations. |
-| `ROLE_MODERATOR` | Reviews listings, handles complaints, approves or rejects listings.                           |
-| `ROLE_LANDLORD`  | Creates listings, uploads media, submits listings for moderation, manages rental requests.    |
-| `ROLE_TENANT`    | Searches listings, saves listings, creates rental requests, communicates with landlords.      |
+| Role        | Description                                                                                   |
+|-------------|-----------------------------------------------------------------------------------------------|
+| `ADMIN`     | Has administrative access to users, system settings, dictionaries, and moderation operations. |
+| `MODERATOR` | Reviews listings, handles complaints, approves or rejects listings.                           |
+| `LANDLORD`  | Creates listings, uploads media, submits listings for moderation, manages rental requests.    |
+| `TENANT`    | Searches listings, saves listings, creates rental requests, communicates with landlords.      |
 
 ## Architecture Principles
 
@@ -91,12 +93,22 @@ the Search Service owns only a denormalized read model.
 
 ### API Gateway
 
-All external requests go through the API Gateway. Backend services are not exposed directly to external clients.
+All external requests go through the API Gateway. Backend services are not exposed directly to external clients. The API
+Gateway is responsible for routing, edge-level JWT validation, token relay, rate limiting, and cross-cutting HTTP
+concerns.
+
+The API Gateway must not contain registration orchestration, Keycloak Admin API calls, compensation logic, or user
+domain creation logic. Those responsibilities belong to the Identity API.
 
 ### Identity Provider Separation
 
 Authentication and identity management are delegated to Keycloak. Business services consume validated JWT tokens and
 enforce authorization rules locally.
+
+### Identity Orchestration
+
+User registration is handled by the Identity API. It creates users in Keycloak, assigns allowed roles, creates the
+corresponding domain profile through Profile Service, and performs compensating actions if one of these steps fails.
 
 ### Event-Driven Read Models
 
@@ -111,82 +123,454 @@ Relational services use JOOQ for SQL access. JPA and Hibernate are intentionally
 ```mermaid
 flowchart LR
     P[Postman] --> G[API Gateway<br/>Spring Cloud Gateway]
-    G --> KC[Keycloak<br/>OAuth2 / OIDC]
+    G --> ID[Identity API<br/>Registration Orchestrator]
     G --> PS[Profile Service]
     G --> LS[Listing Service]
     G --> MS[Media Service]
     G --> SS[Search Service]
     G --> RS[Rental Request Service]
     G --> MOD[Moderation Service]
+    ID --> KC[Keycloak<br/>OAuth2 / OIDC]
+    ID --> PS
+    G -. OIDC Discovery / JWKS .-> KC
+    PS -. OIDC Discovery / JWKS .-> KC
+    LS -. OIDC Discovery / JWKS .-> KC
+    MS -. OIDC Discovery / JWKS .-> KC
+    SS -. OIDC Discovery / JWKS .-> KC
+    RS -. OIDC Discovery / JWKS .-> KC
+    MOD -. OIDC Discovery / JWKS .-> KC
     KC --> KCDB[(PostgreSQL<br/>keycloak_db)]
+    ID --> IDDB[(PostgreSQL<br/>identity_db)]
     PS --> PDB[(PostgreSQL<br/>profile_db)]
     LS --> LDB[(PostgreSQL<br/>listing_db)]
     RS --> RDB[(PostgreSQL<br/>rental_db)]
     MOD --> MDB[(PostgreSQL<br/>moderation_db)]
-    MS --> MMDB[(Mongo<br/>media_db)]
+    MS --> MMDB[(MongoDB<br/>media_db)]
     MS --> MINIO[(MinIO / S3)]
     SS --> SMDB[(OpenSearch<br/>search_db)]
-    LS <--> K[(Apache Kafka)]
+    ID <--> K[(Apache Kafka)]
+    LS <--> K
     MOD <--> K
     RS <--> K
     MS <--> K
     SS <--> K
     NOTIF[Notification Service] <--> K
     AN[Analytics Service] <--> K
-    NOTIF --> NDB[(Mongo<br/>notification_db)]
+    NOTIF --> NDB[(MongoDB<br/>notification_db)]
     AN --> ADB[(ClickHouse<br/>analytics_db)]
 ```
 
 ## Microservices
 
-| Service                | Technology                    | Storage       | Responsibility                                                  |
-|------------------------|-------------------------------|---------------|-----------------------------------------------------------------|
-| API Gateway            | Spring Cloud Gateway, WebFlux | None          | External entry point, request routing, JWT validation.          |
-| Keycloak               | Keycloak                      | PostgreSQL    | OAuth2 / OIDC Identity Provider, user, clients, roles.          |
-| Profile Service        | Spring MVC + Virtual Threads  | PostgreSQL    | User profiles, landlords and tenant profile data, favorites.    |
-| Listing Service        | Spring MVC + Virtual Threads  | PostgreSQL    | Listings, listing details, locations, lifecycle status.         |
-| Media Service          | Spring WebFlux                | Mongo + MinIO | Media metadata, file upload, processing jobs.                   |
-| Moderation Service     | Spring MVC + Virtual Threads  | PostgreSQL    | Moderation cases, desicions, complaints, rules.                 |
-| Search Service         | Spring WebFlux                | OpenSearch    | Search read model, saved searches, recent searches.             |
-| Rental Request Service | Spring MVC + Virtual Threads  | PostgreSQL    | Rental requests, request messages, viewings, rental agreements. |
-| Notification Service   | Spring WebFlux                | Mongo         | Notification templates, messages, user preferences.             |
-| Analytics Service      | Spring WebFlux                | ClickHouse    | Listing views, daily statistics, event-based analytics.         |
+| Service                | Technology                    | Storage            | Responsibility                                                                                                           |
+|------------------------|-------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------|
+| API Gateway            | Spring Cloud Gateway, WebFlux | None               | External entry point, request routing, JWT validation, token relay.                                                      |
+| Identity API           | Spring MVC + Virtual Threads  | PostgreSQL         | Registration orchestration, Keycloak Admin API integration, Profile Service orchestration, compensation and idempotency. |
+| Keycloak               | Keycloak                      | PostgreSQL         | OAuth2/OIDC Identity Provider, users, clients, roles, sessions.                                                          |
+| Profile Service        | Spring MVC + Virtual Threads  | PostgreSQL         | User profiles, landlord and tenant profile data, favorites.                                                              |
+| Listing Service        | Spring MVC + Virtual Threads  | PostgreSQL         | Listings, listing details, locations, lifecycle status.                                                                  |
+| Media Service          | Spring WebFlux                | MongoDB + MinIO/S3 | Media metadata, file upload, processing jobs.                                                                            |
+| Moderation Service     | Spring MVC + Virtual Threads  | PostgreSQL         | Moderation cases, decisions, complaints, rules.                                                                          |
+| Search Service         | Spring WebFlux                | OpenSearch         | Search read model, saved searches, recent searches.                                                                      |
+| Rental Request Service | Spring MVC + Virtual Threads  | PostgreSQL         | Rental requests, request messages, viewings, rental agreements.                                                          |
+| Notification Service   | Spring WebFlux                | MongoDB            | Notification templates, messages, user preferences.                                                                      |
+| Analytics Service      | Spring WebFlux                | ClickHouse         | Listing views, daily statistics, event-based analytics.                                                                  |
 
 ## Security Architecture
 
-Keycloak acts as the Identity Provider. Backend services act as OAuth2 Resource Servers.
+Keycloak acts as the OAuth2/OIDC Identity Provider. API Gateway and every backend microservice are configured as OAuth2
+Resource Servers.
+
+The core security rule is explicit:
+
+```text
+Services do not call Keycloak on every request to validate JWT tokens.
+```
+
+JWT validation is performed locally by API Gateway and by every business microservice using Keycloak public keys loaded
+from the JWKS endpoint. Keycloak is contacted only for OIDC discovery, JWKS loading or refresh, key rotation, Admin API
+operations, token issuance, refresh token exchange, and service-to-service client credentials flows.
+
+### Gateway and Service Responsibilities
+
+| Component              | Responsibility                                                                                                         |
+|------------------------|------------------------------------------------------------------------------------------------------------------------|
+| API Gateway            | Edge-level JWT validation, routing, token relay, coarse-grained authorization, rate limiting.                          |
+| Identity API           | Registration orchestration, Keycloak Admin API integration, profile creation orchestration, compensation, idempotency. |
+| Keycloak               | User credentials, sessions, realm roles, clients, token issuance, refresh token validation.                            |
+| Business microservices | Local JWT validation, role checks, ownership checks, domain-specific authorization.                                    |
+| Profile Service        | Domain profile data, not credentials.                                                                                  |
+
+### JWT Validation Model
 
 ```mermaid
 sequenceDiagram
-    participant U as Postman
-    participant KC as Keycloak
+    participant C as Postman
     participant G as API Gateway
+    participant K as Keycloak
     participant S as Backend Service
-    U ->> KC: Request access token
-    KC -->> U: JWT access token
-    U ->> G: API request with Authorization Bearer token
-    G ->> G: Validate JWT issuer, signature, expiration, audience
-    G ->> S: Forward request with JWT
-    S ->> S: Validate JWT and authorize by role/scope
+    C ->> G: API request with Authorization: Bearer JWT
+
+    alt First request or empty JWKS cache
+        G ->> K: GET /.well-known/openid-configuration
+        K -->> G: issuer, jwks_uri, token_endpoint
+        G ->> K: GET /protocol/openid-connect/certs
+        K -->> G: JWKS public keys
+    end
+
+    G ->> G: Validate JWT signature locally
+    G ->> G: Check exp, iss, aud, roles
+    G ->> S: Forward request with Bearer JWT
+
+    alt First request or empty JWKS cache in service
+        S ->> K: GET /.well-known/openid-configuration
+        K -->> S: issuer, jwks_uri
+        S ->> K: GET /protocol/openid-connect/certs
+        K -->> S: JWKS public keys
+    end
+
+    S ->> S: Validate JWT signature locally
+    S ->> S: Check roles, scopes, ownership and domain rules
     S -->> G: Response
-    G -->> U: Response
+    G -->> C: Response
 ```
+
+After JWKS has been loaded and cached, normal business requests do not involve Keycloak.
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant G as API Gateway
+    participant L as Listing Service
+    participant DB as listing_db
+    C ->> G: POST /api/listings<br/>Authorization: Bearer access_token
+    G ->> G: Validate JWT locally using cached JWKS
+    G ->> G: Apply route-level authorization
+    G ->> L: Forward request with Bearer JWT
+    L ->> L: Validate JWT locally using cached JWKS
+    L ->> L: Extract subject and roles
+    L ->> L: Check LANDLORD role
+    L ->> DB: INSERT listing
+    DB -->> L: OK
+    L -->> G: 201 Created
+    G -->> C: 201 Created
+```
+
+### Token Types
+
+| Token                | Used By                   | Sent To Business Services | Purpose                                            |
+|----------------------|---------------------------|---------------------------|----------------------------------------------------|
+| Access token         | Client, Gateway, services | Yes                       | Authorize API calls.                               |
+| Refresh token        | Client only               | No                        | Obtain a new access token from Keycloak.           |
+| ID token             | Client only               | No                        | OIDC identity information for the client.          |
+| Service access token | Microservices             | Sometimes                 | Machine-to-machine calls using client credentials. |
+
+Refresh tokens must never be sent to Listing Service, Profile Service, Search Service, Moderation Service, Rental
+Request Service, Media Service, Notification Service, or Analytics Service.
+
+### Identity API and Registration Orchestration
+
+The Identity API is a dedicated application service for identity-related use cases. It is not a replacement for Keycloak,
+and it is not the same thing as API Gateway.
+
+It owns:
+
+- User registration orchestration.
+- Keycloak Admin API integration.
+- Role assignment for allowed self-service roles.
+- Profile Service orchestration.
+- Registration idempotency.
+- Compensation logic.
+- Optional login and refresh facade endpoints for a cleaner training API.
+
+It does not own:
+
+- Password storage.
+- User sessions.
+- OAuth2/OIDC protocol implementation.
+- Listing, moderation, search, rental, media, notification, or analytics data.
+
+### Registration Flow
+
+The recommended registration flow creates the user in Keycloak first, then creates the domain profile through Profile
+Service. These operations cannot be wrapped into a single ACID transaction, therefore the flow is implemented as a Saga
+with compensating actions.
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant G as API Gateway
+    participant I as Identity API
+    participant K as Keycloak
+    participant P as Profile Service
+    participant DB as profile_db
+    C ->> G: POST /api/auth/register
+    Note over C, G: Public endpoint, no JWT required
+    G ->> I: Forward registration request
+    I ->> I: Validate request
+    I ->> I: Persist registration_attempt STARTED
+    I ->> K: Create user via Keycloak Admin API
+    Note over I, K: Identity API uses client_credentials
+    K -->> I: keycloak_user_id
+    I ->> K: Assign role TENANT or LANDLORD
+    K -->> I: Role assigned
+    I ->> P: POST /internal/profiles
+    P ->> DB: INSERT user_profiles
+    P ->> DB: INSERT tenant_profiles or landlord_profiles
+    DB -->> P: OK
+    P -->> I: Profile created
+    I ->> I: Mark registration_attempt COMPLETED
+    I -->> G: 201 Created
+    G -->> C: 201 Created
+```
+
+Example request:
+
+```json
+{
+  "email": "tenant@example.com",
+  "password": "StrongPassword123!",
+  "displayName": "John Tenant",
+  "role": "TENANT"
+}
+```
+
+Role assignment policy:
+
+| Requested Role | Self-Service Registration | Recommended Handling                                                     |
+|----------------|---------------------------|--------------------------------------------------------------------------|
+| `TENANT`       | Allowed                   | Assign automatically.                                                    |
+| `LANDLORD`     | Allowed with restrictions | Assign automatically in training; optionally require verification later. |
+| `MODERATOR`    | Not allowed               | Assign manually by administrator.                                        |
+| `ADMIN`        | Not allowed               | Assign manually by administrator.                                        |
+
+### Registration Compensation Flow
+
+If Keycloak user creation succeeds but Profile Service fails, the Identity API must compensate the registration attempt.
+For this project, disabling the Keycloak user is preferred over deleting it because it is safer for auditability.
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant G as API Gateway
+    participant I as Identity API
+    participant K as Keycloak
+    participant P as Profile Service
+    C ->> G: POST /api/auth/register
+    G ->> I: Forward registration request
+    I ->> K: Create user
+    K -->> I: keycloak_user_id
+    I ->> K: Assign role
+    K -->> I: OK
+    I ->> P: Create profile
+    P -->> I: 500 Internal Server Error
+    I ->> K: Disable user
+    K -->> I: User disabled
+    I ->> I: Mark registration_attempt COMPENSATED
+    I -->> G: 503 Registration failed
+    G -->> C: 503 Registration failed
+```
+
+Alternative compensation strategy for a simpler training iteration is to delete the Keycloak user. Disabling is still
+the recommended default because it preserves a trace of the failed registration.
+
+### Idempotent Registration Flow
+
+The registration endpoint should require an `Idempotency-Key` header. This protects the system from duplicate user
+creation when a client retries the same registration request or when a network timeout occurs after Keycloak has already
+created the user.
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant G as API Gateway
+    participant I as Identity API
+    participant K as Keycloak
+    participant P as Profile Service
+    C ->> G: POST /api/auth/register<br/>Idempotency-Key: abc-123
+    G ->> I: Forward request
+    I ->> I: Persist registration_attempt STARTED
+    I ->> K: Create user
+    K -->> I: Network timeout / unknown result
+    I ->> K: Search user by email
+    K -->> I: Existing user found
+    I ->> I: Treat Keycloak user as already created
+    I ->> P: Create profile with keycloak_user_id
+    P -->> I: Profile created
+    I ->> I: Mark registration_attempt COMPLETED
+    I -->> G: 201 Created
+    G -->> C: 201 Created
+```
+
+### Login Flow
+
+For the first training iteration, Postman may talk directly to Keycloak token endpoint. This keeps OAuth2/OIDC behavior
+explicit and avoids custom authentication code.
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant K as Keycloak
+    participant G as API Gateway
+    participant L as Listing Service
+    C ->> K: POST /realms/{realm}/protocol/openid-connect/token
+    Note over C, K: grant_type=password for training<br/>or authorization_code + PKCE
+    K ->> K: Validate credentials
+    K ->> K: Build and sign access token
+    K -->> C: access_token + refresh_token + id_token
+    C ->> G: POST /api/listings<br/>Authorization: Bearer access_token
+    G ->> G: Validate JWT locally
+    G ->> L: Forward request with JWT
+    L ->> L: Validate JWT locally
+    L -->> G: 201 Created
+    G -->> C: 201 Created
+```
+
+An optional training facade can be implemented by Identity API:
+
+```http
+POST /api/auth/login
+POST /api/auth/refresh
+```
+
+In that case, Identity API only proxies the token request to Keycloak. It must not store refresh tokens.
+
+### Refresh Token Flow
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant K as Keycloak
+    C ->> K: POST /realms/{realm}/protocol/openid-connect/token
+    Note over C, K: grant_type=refresh_token<br/>refresh_token=...
+    K ->> K: Validate refresh token
+    K ->> K: Check user session
+    K ->> K: Issue new access token
+    K ->> K: Optionally rotate refresh token
+    K -->> C: new access_token + optional new_refresh_token
+```
+
+If Identity API is used as an auth facade:
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant G as API Gateway
+    participant I as Identity API
+    participant K as Keycloak
+    C ->> G: POST /api/auth/refresh
+    G ->> I: Forward refresh request
+    I ->> K: POST /token<br/>grant_type=refresh_token
+    K -->> I: new access_token + refresh_token
+    I -->> G: Token response
+    G -->> C: Token response
+```
+
+### Service-to-Service Authentication
+
+Two approaches are supported.
+
+#### Token Relay
+
+Use token relay for user-triggered business operations where the downstream service must know the user identity.
+
+```mermaid
+sequenceDiagram
+    participant C as Postman
+    participant G as API Gateway
+    participant R as Rental Request Service
+    participant L as Listing Service
+    C ->> G: POST /api/listings/{listingId}/rental-requests<br/>Bearer user JWT
+    G ->> G: Validate user JWT
+    G ->> R: Forward user JWT
+    R ->> R: Validate user JWT
+    R ->> R: Check TENANT role
+    R ->> L: GET /internal/listings/{listingId}/availability<br/>Bearer user JWT
+    L ->> L: Validate user JWT
+    L -->> R: Listing availability
+    R -->> G: 201 Created
+    G -->> C: 201 Created
+```
+
+#### Client Credentials
+
+Use client credentials for pure machine-to-machine operations, scheduled jobs, internal technical tasks, or calls where
+the service identity is more relevant than the end-user identity.
+
+```mermaid
+sequenceDiagram
+    participant R as Rental Request Service
+    participant K as Keycloak
+    participant L as Listing Service
+    R ->> K: POST /token<br/>grant_type=client_credentials
+    K -->> R: service access_token
+    R ->> L: GET /internal/listings/{listingId}/availability<br/>Bearer service JWT
+    L ->> L: Validate service JWT locally
+    L ->> L: Check scope listing:read-internal
+    L -->> R: Listing availability
+```
+
+Recommended policy:
+
+| Scenario                                      | Recommended Approach                                                             |
+|-----------------------------------------------|----------------------------------------------------------------------------------|
+| User-triggered business operation             | Token relay.                                                                     |
+| Internal technical operation                  | Client credentials.                                                              |
+| Scheduled jobs                                | Client credentials.                                                              |
+| Kafka consumers updating projections          | Prefer event payload; use client credentials only when an HTTP call is required. |
+| Identity API calling Keycloak Admin API       | Client credentials.                                                              |
+| Identity API creating Profile Service profile | Client credentials or a trusted internal endpoint.                               |
 
 ### Authorization Rules
 
-| Endpoint                                               | Allowed Roles                              |
-|--------------------------------------------------------|--------------------------------------------|
-| `GET /api/profile/me`                                  | `ADMIN`, `MODERATOR`, `LANDLORD`, `TENANT` |
-| `PUT /api/profile/me`                                  | `ADMIN`, `MODERATOR`, `LANDLORD`, `TENANT` |
-| `POST /api/listings`                                   | `LANDLORD`                                 |
-| `PATCH /api/listings/{listingId}`                      | Listing owner or `ADMIN`                   |
-| `POST /api/listings/{listingId}/submit-for-moderation` | Listing owner with `LANDLORD` role         |
-| `POST /api/listings/{listingId}/archive`               | Listing owner or `ADMIN`                   |
-| `GET /api/search/listings`                             | Authenticated users                        |
-| `POST /api/listings/{listingId}/rental-requests`       | `TENANT`                                   |
-| `GET /api/moderation/cases`                            | `MODERATOR`, `ADMIN`                       |
-| `POST /api/moderation/cases/{caseId}/decision`         | `MODERATOR`, `ADMIN`                       |
-| `POST /api/moderation/complaints`                      | `TENANT`                                   |
+| Endpoint                                               | Allowed Roles                                                    |
+|--------------------------------------------------------|------------------------------------------------------------------|
+| `POST /api/auth/register`                              | Public endpoint.                                                 |
+| `POST /api/auth/login`                                 | Public endpoint, only if Identity API login facade is enabled.   |
+| `POST /api/auth/refresh`                               | Public endpoint, only if Identity API refresh facade is enabled. |
+| `GET /api/profile/me`                                  | `ADMIN`, `MODERATOR`, `LANDLORD`, `TENANT`                       |
+| `PUT /api/profile/me`                                  | `ADMIN`, `MODERATOR`, `LANDLORD`, `TENANT`                       |
+| `POST /api/listings`                                   | `LANDLORD`                                                       |
+| `PATCH /api/listings/{listingId}`                      | Listing owner or `ADMIN`                                         |
+| `POST /api/listings/{listingId}/submit-for-moderation` | Listing owner with `LANDLORD` role                               |
+| `POST /api/listings/{listingId}/archive`               | Listing owner or `ADMIN`                                         |
+| `GET /api/search/listings`                             | Authenticated users                                              |
+| `POST /api/listings/{listingId}/rental-requests`       | `TENANT`                                                         |
+| `GET /api/moderation/cases`                            | `MODERATOR`, `ADMIN`                                             |
+| `POST /api/moderation/cases/{caseId}/decision`         | `MODERATOR`, `ADMIN`                                             |
+| `POST /api/moderation/complaints`                      | `TENANT`                                                         |
+
+### Example JWT Claims
+
+```json
+{
+  "iss": "http://localhost:8081/realms/estate-booking-platform",
+  "sub": "7f8d0e59-4c32-47cb-83a1-12f3a8c1f111",
+  "aud": "estate-booking-platform",
+  "azp": "postman-client",
+  "exp": 1710000000,
+  "iat": 1709999700,
+  "preferred_username": "tenant@example.com",
+  "email": "tenant@example.com",
+  "realm_access": {
+    "roles": [
+      "TENANT"
+    ]
+  },
+  "scope": "openid profile email"
+}
+```
+
+Services should primarily use:
+
+| Claim                | Purpose                                          |
+|----------------------|--------------------------------------------------|
+| `sub`                | Stable Keycloak user identifier.                 |
+| `realm_access.roles` | Platform role extraction.                        |
+| `iss`                | Trusted issuer validation.                       |
+| `aud`                | Audience validation.                             |
+| `exp`                | Expiration validation.                           |
+| `azp`                | Authorized party/client validation where needed. |
 
 ### Rental Request Creation Flow
 
