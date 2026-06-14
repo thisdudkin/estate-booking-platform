@@ -18,6 +18,10 @@
         <version>4.1.0</version>
     </parent>
 
+    <modules>
+        <module>estate-booking-platform-profile-service</module>
+    </modules>
+
     <properties>
         <!-- Java & Maven properties -->
         <java.version>21</java.version>
@@ -34,6 +38,10 @@
         <maven.failsafe.plugin.version>3.5.6</maven.failsafe.plugin.version>
         <maven.jacoco.plugin.version>0.8.15</maven.jacoco.plugin.version>
         <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
+
+        <!-- Testcontainers properties -->
+        <testcontainers.default.database>POSTGRES</testcontainers.default.database>
+        <testcontainers.jooq.codegen.plugin.version>0.0.4</testcontainers.jooq.codegen.plugin.version>
 
         <!-- Checkstyle properties -->
         <checkstyle.version>13.5.0</checkstyle.version>
@@ -60,7 +68,6 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${project.parent.version}</version>
                 </plugin>
 
                 <plugin>
@@ -221,37 +228,23 @@
                     </executions>
                 </plugin>
 
-                <!-- Maven Checkstyle Plugin: Google Checkstyle -->
+                <!-- Testcontainers JOOQ Codegen Plugin -->
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven.checkstyle.plugin.version}</version>
+                    <groupId>org.testcontainers</groupId>
+                    <artifactId>testcontainers-jooq-codegen-maven-plugin</artifactId>
+                    <version>${testcontainers.jooq.codegen.plugin.version}</version>
                     <dependencies>
                         <dependency>
-                            <groupId>com.puppycrawl.tools</groupId>
-                            <artifactId>checkstyle</artifactId>
-                            <version>${checkstyle.version}</version>
+                            <groupId>org.testcontainers</groupId>
+                            <artifactId>testcontainers-postgresql</artifactId>
+                            <version>${testcontainers.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.postgresql</groupId>
+                            <artifactId>postgresql</artifactId>
+                            <version>${postgresql.version}</version>
                         </dependency>
                     </dependencies>
-                    <configuration>
-                        <configLocation>google_checks.xml</configLocation>
-                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-                        <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
-                        <consoleOutput>true</consoleOutput>
-                        <failOnViolation>true</failOnViolation>
-                        <failsOnError>false</failsOnError>
-                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        <linkXRef>false</linkXRef>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>check-google-style</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
