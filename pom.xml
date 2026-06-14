@@ -235,6 +235,11 @@
                     <version>${testcontainers.jooq.codegen.plugin.version}</version>
                     <dependencies>
                         <dependency>
+                            <groupId>org.jooq</groupId>
+                            <artifactId>jooq-codegen</artifactId>
+                            <version>${jooq.version}</version>
+                        </dependency>
+                        <dependency>
                             <groupId>org.testcontainers</groupId>
                             <artifactId>testcontainers-postgresql</artifactId>
                             <version>${testcontainers.version}</version>
