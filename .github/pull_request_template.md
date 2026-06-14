@@ -12,4 +12,4 @@
 
 ### Issue
 
-- [ID](https://app.clickup.com/t/ID): Task name
+- Close #
