@@ -1,0 +1,27 @@
+spring:
+  application:
+    group: estate-booking-platform
+    name: estate-booking-platform-profile-service
+  threads:
+    virtual:
+      enabled: true
+  web:
+    error:
+      whitelabel:
+        enabled: false
+      include-message: never
+      include-stacktrace: never
+      include-exception: false
+      include-path: always
+  flyway:
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5434/profile_db
+    username: postgres
+    password: postgres
+    hikari:
+      schema: data
+      auto-commit: false
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+  jooq:
+    sql-dialect: postgres

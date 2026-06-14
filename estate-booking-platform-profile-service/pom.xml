@@ -122,8 +122,11 @@
                                 <password>test</password>
                             </database>
                             <flyway>
+                                <defaultSchema>data</defaultSchema>
+                                <createSchemas>true</createSchemas>
+                                <table>flyway_schema_history</table>
                                 <locations>
-                                    filesystem:src/main/resources/db/migration
+                                    filesystem:${project.basedir}/src/main/resources/db/migration
                                 </locations>
                             </flyway>
                             <jooq>
@@ -132,18 +135,44 @@
                                         <name>org.jooq.meta.postgres.PostgresDatabase</name>
                                         <includes>.*</includes>
                                         <excludes>flyway_schema_history</excludes>
-                                        <inputSchema>public</inputSchema>
+                                        <inputSchema>data</inputSchema>
                                     </database>
                                     <generate>
+                                        <!-- Core Jooq persistence model -->
+                                        <records>true</records>
+                                        <tables>true</tables>
+                                        <relations>true</relations>
+                                        <keys>true</keys>
+                                        <indexes>true</indexes>
+                                        <sequences>true</sequences>
+
+                                        <!-- Don't generate competing domain models -->
                                         <pojos>false</pojos>
-                                        <pojosAsJavaRecordClasses>true</pojosAsJavaRecordClasses>
-                                        <fluentSetters>true</fluentSetters>
+                                        <daos>false</daos>
+                                        <interfaces>false</interfaces>
+
+                                        <!-- Prefer explicit mapper layer instead of generated mutable DTOs -->
+                                        <immutablePojos>false</immutablePojos>
+                                        <serializablePojos>false</serializablePojos>
+
+                                        <!-- Java 8+ date/time API -->
                                         <javaTimeTypes>true</javaTimeTypes>
+
+                                        <!-- Useful for Jooq Records only; optional -->
+                                        <fluentSetters>true</fluentSetters>
+
+                                        <!-- Keep generated code leaner -->
+                                        <javadoc>false</javadoc>
+                                        <comments>false</comments>
+                                        <deprecated>false</deprecated>
+
+                                        <!-- Avoid framework annotations leaking into generated persistence code -->
+                                        <springAnnotations>false</springAnnotations>
+                                        <validationAnnotations>false</validationAnnotations>
+                                        <jpaAnnotations>false</jpaAnnotations>
                                     </generate>
                                     <target>
-                                        <packageName>
-                                            io.petproject.estate.booking.platform.profile.infrastructure.jooq
-                                        </packageName>
+                                        <packageName>io.petproject.estate.booking.platform.profile.infrastructure.jooq</packageName>
                                         <directory>target/generated-sources/jooq</directory>
                                     </target>
                                 </generator>
