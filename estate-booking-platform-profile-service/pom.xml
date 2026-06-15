@@ -14,6 +14,17 @@
     </parent>
 
     <dependencies>
+        <!-- Developer Tools -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
+
         <!-- Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -34,16 +45,20 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-flyway</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jooq</artifactId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>datasource-proxy-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- I/O -->
@@ -102,84 +117,6 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers-jooq-codegen-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-jooq-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <database>
-                                <type>${testcontainers.default.database}</type>
-                                <containerImage>postgres:18.4-alpine</containerImage>
-                                <databaseName>profile_db</databaseName>
-                                <username>test</username>
-                                <password>test</password>
-                            </database>
-                            <flyway>
-                                <defaultSchema>data</defaultSchema>
-                                <createSchemas>true</createSchemas>
-                                <table>flyway_schema_history</table>
-                                <locations>
-                                    filesystem:${project.basedir}/src/main/resources/db/migration
-                                </locations>
-                            </flyway>
-                            <jooq>
-                                <generator>
-                                    <database>
-                                        <name>org.jooq.meta.postgres.PostgresDatabase</name>
-                                        <includes>.*</includes>
-                                        <excludes>flyway_schema_history</excludes>
-                                        <inputSchema>data</inputSchema>
-                                    </database>
-                                    <generate>
-                                        <!-- Core Jooq persistence model -->
-                                        <records>true</records>
-                                        <tables>true</tables>
-                                        <relations>true</relations>
-                                        <keys>true</keys>
-                                        <indexes>true</indexes>
-                                        <sequences>true</sequences>
-
-                                        <!-- Don't generate competing domain models -->
-                                        <pojos>false</pojos>
-                                        <daos>false</daos>
-                                        <interfaces>false</interfaces>
-
-                                        <!-- Prefer explicit mapper layer instead of generated mutable DTOs -->
-                                        <immutablePojos>false</immutablePojos>
-                                        <serializablePojos>false</serializablePojos>
-
-                                        <!-- Java 8+ date/time API -->
-                                        <javaTimeTypes>true</javaTimeTypes>
-
-                                        <!-- Useful for Jooq Records only; optional -->
-                                        <fluentSetters>true</fluentSetters>
-
-                                        <!-- Keep generated code leaner -->
-                                        <javadoc>false</javadoc>
-                                        <comments>false</comments>
-                                        <deprecated>false</deprecated>
-
-                                        <!-- Avoid framework annotations leaking into generated persistence code -->
-                                        <springAnnotations>false</springAnnotations>
-                                        <validationAnnotations>false</validationAnnotations>
-                                        <jpaAnnotations>false</jpaAnnotations>
-                                    </generate>
-                                    <target>
-                                        <packageName>io.petproject.estate.booking.platform.profile.infrastructure.jooq</packageName>
-                                        <directory>target/generated-sources/jooq</directory>
-                                    </target>
-                                </generator>
-                            </jooq>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
