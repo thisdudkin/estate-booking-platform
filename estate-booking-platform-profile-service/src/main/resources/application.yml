@@ -10,6 +10,10 @@ spring:
     virtual:
       enabled: true
 
+  # Exclude null fields from responses
+  jackson:
+    default-property-inclusion: non_null
+
   # Datasource Settings
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5434/profile_db}
