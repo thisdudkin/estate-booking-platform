@@ -5,8 +5,6 @@ import io.petproject.estate.booking.platform.profile.entity.enums.UserProfileSta
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,6 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
@@ -21,6 +20,7 @@ import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
 import static lombok.AccessLevel.PROTECTED;
+import static org.hibernate.annotations.UuidGenerator.Style.VERSION_7;
 
 @Entity
 @Table(
@@ -35,8 +35,8 @@ import static lombok.AccessLevel.PROTECTED;
 public class UserProfile extends AuditedEntity {
 
     @Id
+    @UuidGenerator(style = VERSION_7)
     @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false, unique = true, updatable = false)
