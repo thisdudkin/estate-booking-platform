@@ -5,7 +5,7 @@ import io.petproject.estate.booking.platform.profile.entity.enums.VerificationSt
 import java.time.Instant;
 import java.util.UUID;
 
-public record LandingProfileResponse(
+public record LandlordProfileResponse(
     UUID profileId,
     String companyName,
     VerificationStatus verificationStatus,
