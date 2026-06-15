@@ -29,7 +29,6 @@ The project covers:
 - Asynchronous communication through Apache Kafka.
 - At most once, at least once, and exactly once or effectively exactly once message delivery semantics.
 - SQL and NoSQL persistence models
-- JPA Free: JOOQ-based relational data access instead of JPA.
 - Spring MVC with Virtual Threads.
 - Spring WebFlux for reactive I/O-heavy services.
 - Transactional outbox pattern.
@@ -113,10 +112,6 @@ corresponding domain profile through Profile Service, and performs compensating 
 ### Event-Driven Read Models
 
 Read models such as search documents and analytics projections are updated asynchronously through Kafka events.
-
-### No JPA
-
-Relational services use JOOQ for SQL access. JPA and Hibernate are intentionally excluded from this project.
 
 ## High-Level Architecture
 
