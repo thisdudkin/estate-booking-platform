@@ -4,11 +4,13 @@ import io.petproject.estate.booking.platform.profile.dto.request.CreateUserProfi
 import io.petproject.estate.booking.platform.profile.dto.request.SyncIdentityProfileRequest;
 import io.petproject.estate.booking.platform.profile.dto.response.UserProfileResponse;
 import io.petproject.estate.booking.platform.profile.entity.UserProfile;
+import io.petproject.estate.booking.platform.profile.exception.UserProfileAlreadyExistsException;
 import io.petproject.estate.booking.platform.profile.exception.UserProfileNotFoundException;
 import io.petproject.estate.booking.platform.profile.mapper.UserProfileMapper;
 import io.petproject.estate.booking.platform.profile.repository.UserProfileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,14 @@ public class UserProfileService {
     @Transactional
     public UserProfileResponse createProfile(CreateUserProfileRequest request) {
         UserProfile userProfile = userProfileMapper.toEntity(request);
-        userProfileRepository.save(userProfile);
+        try {
+            userProfileRepository.saveAndFlush(userProfile);
+        } catch (DataIntegrityViolationException e) {
+            throw new UserProfileAlreadyExistsException(
+                "User profile already exists with email [%s] or userId [%s]"
+                    .formatted(userProfile.getEmail(), userProfile.getUserId()), e
+            );
+        }
         log.info("IN - createProfile: userProfile [{}] successfully created", userProfile.getEmail());
         return userProfileMapper.toResponse(userProfile);
     }
@@ -35,7 +44,13 @@ public class UserProfileService {
         UserProfile existingProfile = userProfileRepository.findByUserId(userId)
             .orElseThrow(() -> new UserProfileNotFoundException("User profile not found: " + userId));
         userProfileMapper.syncFromIdentity(request, existingProfile);
-        userProfileRepository.flush();
+        try {
+            userProfileRepository.flush();
+        } catch (DataIntegrityViolationException e) {
+            throw new UserProfileAlreadyExistsException(
+                "User profile already exists with email [%s]"
+                    .formatted(existingProfile.getEmail()), e);
+        }
         log.info("IN - syncProfileIdentity: userProfile [{}] identity is synchronized with identity", existingProfile.getEmail());
         return userProfileMapper.toResponse(existingProfile);
     }

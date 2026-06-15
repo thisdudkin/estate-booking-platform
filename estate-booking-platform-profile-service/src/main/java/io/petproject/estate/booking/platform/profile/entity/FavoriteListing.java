@@ -41,7 +41,7 @@ public class FavoriteListing {
     private FavoriteListingId id;
 
     @MapsId("tenantId")
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "tenant_id", nullable = false)
     @ManyToOne(fetch = LAZY, optional = false)
     private TenantProfile tenant;
 
