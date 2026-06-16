@@ -124,16 +124,7 @@
       }
     ],
     "client": {
-      "identity-api": [
-        {
-          "id": "8355c102-7cc4-41af-901f-c3ab2dc3873d",
-          "name": "uma_protection",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "be9a79e4-62ed-4b65-97ee-8846501b55a8",
-          "attributes": {}
-        }
-      ],
+      "identity-api": [],
       "realm-management": [
         {
           "id": "3d463ba5-57c4-482e-8c31-c02a387a055c",
@@ -350,14 +341,6 @@
       "security-admin-console": [],
       "admin-cli": [],
       "profile-service": [
-        {
-          "id": "fbf73d51-80fc-4f6d-8142-24037faba333",
-          "name": "uma_protection",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "ed42cfad-2163-4b9b-96ab-244c3f3d68d2",
-          "attributes": {}
-        },
         {
           "id": "cadf21de-7feb-443b-8b9d-fa4d57c74172",
           "name": "internal_access",
@@ -583,9 +566,6 @@
         "default-roles-estate-platform"
       ],
       "clientRoles": {
-        "identity-api": [
-          "uma_protection"
-        ],
         "realm-management": [
           "view-users",
           "manage-users",
@@ -912,8 +892,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:8092/*",
-        "https://oauth.pstmn.io/v1/callback"
+        "http://localhost:8092/*"
       ],
       "webOrigins": [
         "http://localhost:8092"
@@ -987,8 +966,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:8091/*",
-        "https://oauth.pstmn.io/v1/callback"
+        "http://localhost:8091/*"
       ],
       "webOrigins": [
         "http://localhost:8091"
@@ -1016,7 +994,7 @@
         "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
+      "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": -1,
       "defaultClientScopes": [
         "web-origins",
