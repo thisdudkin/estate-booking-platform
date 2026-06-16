@@ -1,6 +1,6 @@
 spring:
 
-  # Application Settings
+  # Common Settings
   application:
     group: estate-booking-platform
     name: estate-booking-platform-profile-service
@@ -86,6 +86,39 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${ISSUER_URI:http://localhost:9090/realms/estate-platform}
+
+# Application Settings
+application:
+
+  # Security Settings
+  security:
+    provider: keycloak
+    resource-id: profile-service
+
+    # Public API Settings
+    public-api:
+      allowed-platform-roles:
+        - admin
+        - tenant
+        - landlord
+        - moderator
+
+    # Internal API Settings
+    internal-api:
+      audience-required: true
+      required-permission: internal_access
+      trusted-client-ids:
+        - identity-api
+
+  # Security Providers
+  security-provider:
+    keycloak:
+      roles-claim: roles
+      client-id-claim: client_id
+      authorized-party-claim: azp
+      realm-access-claim: realm_access
+      realm-role-prefix: estate.platform.
+      resource-access-claim: resource_access
 
 # SQL Logging Settings
 decorator:
