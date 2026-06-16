@@ -51,7 +51,7 @@ public class UserProfileService {
                 "User profile already exists with email [%s]"
                     .formatted(existingProfile.getEmail()), e);
         }
-        log.info("IN - syncProfileIdentity: userProfile [{}] identity is synchronized with identity", existingProfile.getEmail());
+        log.info("IN - syncProfileIdentity: userProfile [{}] is synchronized with identity", existingProfile.getEmail());
         return userProfileMapper.toResponse(existingProfile);
     }
 
