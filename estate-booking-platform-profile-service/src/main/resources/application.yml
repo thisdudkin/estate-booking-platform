@@ -76,6 +76,17 @@ spring:
           in_clause_parameter_padding: true
           fail_on_pagination_over_collection_fetch: true
 
+  # Spring Security
+  security:
+
+    # OAuth 2 & OpenID Connect
+    oauth2:
+
+      # OAuth 2 Resource Server Settings
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI:http://localhost:9090/realms/estate-platform}
+
 # SQL Logging Settings
 decorator:
   datasource:
