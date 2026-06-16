@@ -18,6 +18,7 @@ services:
     container_name: keycloak
     command:
       - start-dev
+      - --import-realm
     environment:
       KC_DB: postgres
       KC_DB_URL_HOST: keycloak_postgres
@@ -29,6 +30,8 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "9090:8080"
+    volumes:
+      - ./infrastructure/keycloak/estate-platform-realm-export.json:/opt/keycloak/data/import/estate-platform-realm-export.json
     depends_on:
       - keycloak-postgres
     networks:
