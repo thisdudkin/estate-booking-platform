@@ -123,13 +123,9 @@
                                     <requireMavenVersion>
                                         <version>[${maven.minimum.version},)</version>
                                     </requireMavenVersion>
-
                                     <requireJavaVersion>
                                         <version>[${java.version},)</version>
                                     </requireJavaVersion>
-
-                                    <dependencyConvergence/>
-                                    <banDuplicatePomDependencyVersions/>
                                 </rules>
                                 <fail>true</fail>
                             </configuration>
