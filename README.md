@@ -307,8 +307,9 @@ sequenceDiagram
     I ->> K: Create user via Keycloak Admin API
     Note over I, K: Identity API uses client_credentials
     K -->> I: keycloak_user_id
-    I ->> K: Assign role TENANT or LANDLORD
-    K -->> I: Role assigned
+    I ->> K: Add user to tenants or landlords group
+    Note over I, K: The group grants the corresponding estate.platform.* realm role
+    K -->> I: Group assigned
     I ->> P: POST /internal/profiles
     P ->> DB: INSERT user_profiles
     P ->> DB: INSERT tenant_profiles or landlord_profiles
@@ -320,6 +321,12 @@ sequenceDiagram
 ```
 
 Example request:
+
+```http
+POST /api/auth/register
+Idempotency-Key: 8e65df76-1dd4-4dc6-86d7-55a874dce1cc
+Content-Type: application/json
+```
 
 ```json
 {
@@ -334,8 +341,8 @@ Role assignment policy:
 
 | Requested Role | Self-Service Registration | Recommended Handling                                                     |
 |----------------|---------------------------|--------------------------------------------------------------------------|
-| `TENANT`       | Allowed                   | Assign automatically.                                                    |
-| `LANDLORD`     | Allowed with restrictions | Assign automatically in training; optionally require verification later. |
+| `TENANT`       | Allowed                   | Add to `tenants`; the group grants `estate.platform.tenant`.                |
+| `LANDLORD`     | Allowed with restrictions | Add to `landlords`; the group grants `estate.platform.landlord`.            |
 | `MODERATOR`    | Not allowed               | Assign manually by administrator.                                        |
 | `ADMIN`        | Not allowed               | Assign manually by administrator.                                        |
 
@@ -355,7 +362,7 @@ sequenceDiagram
     G ->> I: Forward registration request
     I ->> K: Create user
     K -->> I: keycloak_user_id
-    I ->> K: Assign role
+    I ->> K: Assign role through group membership
     K -->> I: OK
     I ->> P: Create profile
     P -->> I: 500 Internal Server Error
@@ -539,17 +546,17 @@ Recommended policy:
 
 ```json
 {
-  "iss": "http://localhost:8081/realms/estate-booking-platform",
+  "iss": "http://localhost:9090/realms/estate-platform",
   "sub": "7f8d0e59-4c32-47cb-83a1-12f3a8c1f111",
-  "aud": "estate-booking-platform",
-  "azp": "postman-client",
+  "aud": "profile-service",
+  "azp": "estate-postman",
   "exp": 1710000000,
   "iat": 1709999700,
   "preferred_username": "tenant@example.com",
   "email": "tenant@example.com",
   "realm_access": {
     "roles": [
-      "TENANT"
+      "estate.platform.tenant"
     ]
   },
   "scope": "openid profile email"
@@ -805,6 +812,67 @@ PUT    /api/notification-preferences
 
 The project intentionally keeps schemas simple. Each microservice has no more than five tables or collections, except
 Keycloak, because Keycloak manages its own schema.
+
+## Identity API Data Model
+
+Identity API stores orchestration state, not identity credentials or a second copy of the user profile. Keycloak remains
+the source of truth for credentials, users and platform roles; Profile Service remains the source of truth for business
+profile data. For the training scope, one table is sufficient to make registration resumable, idempotent and auditable.
+
+### `registration_attempts`
+
+```sql
+CREATE TABLE registration_attempts
+(
+    id                uuid PRIMARY KEY,
+    idempotency_key   varchar(128)  NOT NULL UNIQUE,
+    request_hash      varchar(64)   NOT NULL,
+    email             varchar(255)  NOT NULL UNIQUE,
+    requested_role    varchar(32)   NOT NULL CHECK (requested_role IN ('TENANT', 'LANDLORD')),
+    status            varchar(32)   NOT NULL CHECK (status IN (
+                                                      'STARTED',
+                                                      'KEYCLOAK_USER_CREATED',
+                                                      'ROLE_ASSIGNED',
+                                                      'PROFILE_CREATED',
+                                                      'COMPLETED',
+                                                      'COMPENSATION_PENDING',
+                                                      'COMPENSATED',
+                                                      'COMPENSATION_FAILED',
+                                                      'FAILED'
+        )),
+    keycloak_user_id  uuid UNIQUE,
+    profile_id        uuid UNIQUE,
+    error_code        varchar(64),
+    error_message     varchar(1000),
+    retry_count       integer       NOT NULL DEFAULT 0 CHECK (retry_count >= 0),
+    version           bigint        NOT NULL DEFAULT 0,
+    created_at        timestamptz   NOT NULL DEFAULT now(),
+    updated_at        timestamptz   NOT NULL DEFAULT now(),
+    completed_at      timestamptz,
+
+    CONSTRAINT chk_registration_email_normalized CHECK (email = lower(email)),
+    CONSTRAINT chk_registration_request_hash CHECK (request_hash ~ '^[0-9a-f]{64}$')
+);
+
+CREATE INDEX idx_registration_attempts_status_updated_at
+    ON registration_attempts (status, updated_at);
+```
+
+Design rules:
+
+- `idempotency_key` identifies the client request. Reusing it with a different `request_hash` returns a conflict.
+- `request_hash` is a SHA-256 fingerprint of canonical, non-secret registration fields. Passwords and tokens are never
+  persisted, logged or included in the fingerprint.
+- Email is normalized to lowercase before persistence. Its uniqueness prevents two concurrent registration sagas from
+  creating the same identity under different idempotency keys.
+- `status` is the durable Saga checkpoint. A retry continues from the last completed step instead of repeating all remote
+  calls. `COMPENSATION_FAILED` makes a failed Keycloak disable operation visible for an operational retry.
+- `version` is used for optimistic locking, while the unique constraints provide the final concurrency guard.
+- `keycloak_user_id` and `profile_id` are external references only; there are no cross-service foreign keys.
+- Error fields contain stable technical codes and sanitized diagnostics only. Sensitive request data is not stored.
+
+An outbox table is intentionally omitted because the documented Identity API flow does not publish domain events. It can
+be added later if registration events become a real integration contract.
 
 ## Profile Service Data Model
 
@@ -1479,6 +1547,7 @@ A local deployment should include:
 
 ```text
 PostgreSQL for Keycloak
+PostgreSQL for identity_db
 PostgreSQL for profile_db
 PostgreSQL for listing_db
 PostgreSQL for moderation_db
