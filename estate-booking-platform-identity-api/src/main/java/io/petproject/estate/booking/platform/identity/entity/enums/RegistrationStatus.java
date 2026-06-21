@@ -1,0 +1,13 @@
+package io.petproject.estate.booking.platform.identity.entity.enums;
+
+public enum RegistrationStatus {
+    STARTED,
+    KEYCLOAK_USER_CREATED,
+    ROLE_ASSIGNED,
+    PROFILE_CREATED,
+    COMPLETED,
+    COMPENSATION_PENDING,
+    COMPENSATED,
+    COMPENSATION_FAILED,
+    FAILED
+}
