@@ -52,9 +52,25 @@ services:
     networks:
       - estate-platform_net
 
+  identity-postgres:
+    image: postgres:18.4
+    container_name: identity_postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - identity_pg:/var/lib/postgresql
+      - ./infrastructure/db/identity:/docker-entrypoint-initdb.d:ro
+    networks:
+      - estate-platform_net
+
 volumes:
   keycloak_pg:
   profile_pg:
+  identity_pg:
 
 networks:
   estate-platform_net:
