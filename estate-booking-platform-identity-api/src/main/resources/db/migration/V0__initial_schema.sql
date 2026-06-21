@@ -9,7 +9,7 @@ CREATE TABLE registration_attempts
     email           varchar(255) NOT NULL UNIQUE,
     requested_role  varchar(32)  NOT NULL CHECK (requested_role IN ('TENANT', 'LANDLORD')),
     status          varchar(32)  NOT NULL CHECK (status IN ('STARTED',
-                                                            'KEYCLOAK_USER_CREATED',
+                                                            'USER_CREATED',
                                                             'PROFILE_CREATED',
                                                             'COMPLETED',
                                                             'COMPENSATION_PENDING',

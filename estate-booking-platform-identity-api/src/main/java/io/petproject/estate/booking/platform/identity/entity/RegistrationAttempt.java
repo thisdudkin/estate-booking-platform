@@ -64,7 +64,7 @@ public class RegistrationAttempt {
     private RegistrationStatus status;
 
     @Column(unique = true)
-    private UUID keycloakUserId;
+    private UUID userId;
 
     @Column(unique = true)
     private UUID profileId;
