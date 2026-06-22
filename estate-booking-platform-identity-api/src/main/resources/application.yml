@@ -1,6 +1,3 @@
-server:
-  port: ${SERVER_PORT:8092}
-
 spring:
 
   # Common Settings
@@ -91,19 +88,25 @@ spring:
           keycloak:
             provider: keycloak
             client-id: ${KEYCLOAK_CLIENT_ID:identity-api}
-            client-secret: ${KEYCLOAK_CLIENT_SECRET:mVAb3FeSTvsb1jfGsUPjB5U6kIk13ghi}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:ktws9PlKYm0r68NJDXp0hcWL1j9wBSR4}
             authorization-grant-type: client_credentials
         provider:
           keycloak:
             token-uri: ${KEYCLOAK_TOKEN_URI:http://localhost:9090/realms/estate-platform/protocol/openid-connect/token}
 
-      # OAuth 2 Resource Server Settings
-      resourceserver:
-        jwt:
-          issuer-uri: ${ISSUER_URI:http://localhost:9090/realms/estate-platform}
+  # OpenFeign Settings
+  cloud:
+    openfeign:
+      oauth2:
+        enabled: true
+        client-registration-id: keycloak
 
 # Application Settings
 application:
+
+  # Identity Provider Settings
+  identity-provider:
+    type: ${IDENTITY_PROVIDER:keycloak}
 
   # Registration Settings
   registration:
@@ -123,8 +126,32 @@ application:
     keycloak:
       server-url: ${KEYCLOAK_SERVER_URL:http://localhost:9090}
       realm: ${KEYCLOAK_REALM:estate-platform}
-      client-id: ${KEYCLOAK_CLIENT_ID:identity-api}
-      client-secret: ${KEYCLOAK_CLIENT_SECRET:identity-api-secret}
+      client-id: ${spring.security.oauth2.client.registration.keycloak.client-id}
+      client-secret: ${spring.security.oauth2.client.registration.keycloak.client-secret}
+
+# Resilience4j Settings
+resilience4j:
+  retry:
+    instances:
+      profile-service:
+        max-attempts: ${PROFILE_SERVICE_RETRY_MAX_ATTEMPTS:3}
+        wait-duration: ${PROFILE_SERVICE_RETRY_WAIT_DURATION:250ms}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        ignore-exceptions:
+          - io.petproject.estate.booking.platform.identity.exception.ProfileServiceIntegrationException
+
+  circuitbreaker:
+    instances:
+      profile-service:
+        sliding-window-type: count_based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+        ignore-exceptions:
+          - io.petproject.estate.booking.platform.identity.exception.ProfileServiceIntegrationException
 
 # SQL Logging Settings
 decorator:
