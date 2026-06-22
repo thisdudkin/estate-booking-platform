@@ -4,6 +4,7 @@ import io.petproject.estate.booking.platform.profile.dto.request.CreateUserProfi
 import io.petproject.estate.booking.platform.profile.dto.request.SyncIdentityProfileRequest;
 import io.petproject.estate.booking.platform.profile.dto.response.UserProfileResponse;
 import io.petproject.estate.booking.platform.profile.service.UserProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +28,7 @@ public class InternalUserProfileRestController {
     private final UserProfileService userProfileService;
 
     @PostMapping
-    public ResponseEntity<UserProfileResponse> createProfile(@RequestBody CreateUserProfileRequest request) {
+    public ResponseEntity<UserProfileResponse> createProfile(@Valid @RequestBody CreateUserProfileRequest request) {
         UserProfileResponse response = userProfileService.createProfile(request);
         return ResponseEntity.status(CREATED).body(response);
     }
