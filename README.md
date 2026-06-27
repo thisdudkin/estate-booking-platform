@@ -1,6 +1,6 @@
 # Estate Booking Platform
 
-[![Maven Build](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/maven.yml/badge.svg)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/maven.yml)
+[![Repository CI](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/ci.yml)
 
 Estate Booking Platform is an educational distributed-system blueprint for a real estate rental marketplace. It is
 intentionally smaller than a production marketplace, but it is designed with the same architectural discipline: clear

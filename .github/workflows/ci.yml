@@ -1,0 +1,127 @@
+name: Repository CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-checks:
+    name: Repository checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -d '' files < <(find . -path ./.git -prune -o -name '*.json' -print0)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No JSON files found."
+            exit 0
+          fi
+
+          for file in "${files[@]}"; do
+            python -m json.tool "$file" >/dev/null
+          done
+          printf 'Validated %s JSON file(s).\n' "${#files[@]}"
+
+      - name: Validate Docker Compose configuration
+        run: docker compose -f compose.yaml config --quiet
+
+      - name: Check local Markdown links
+        shell: python
+        run: |
+          import pathlib
+          import re
+          import sys
+          from urllib.parse import unquote, urlparse
+
+          root = pathlib.Path.cwd()
+          markdown_files = [
+              path
+              for path in root.rglob("*.md")
+              if ".git" not in path.parts
+          ]
+          link_pattern = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
+          missing = []
+
+          for markdown_file in markdown_files:
+              text = markdown_file.read_text(encoding="utf-8")
+              for match in link_pattern.finditer(text):
+                  target = match.group(1).strip()
+                  if not target or target.startswith(("#", "mailto:", "http://", "https://")):
+                      continue
+
+                  target = target.split("#", 1)[0].strip()
+                  parsed = urlparse(target)
+                  if parsed.scheme:
+                      continue
+
+                  target_path = pathlib.Path(unquote(parsed.path))
+                  candidate = (
+                      root / target_path
+                      if target_path.is_absolute()
+                      else markdown_file.parent / target_path
+                  ).resolve()
+
+                  try:
+                      candidate.relative_to(root)
+                  except ValueError:
+                      missing.append((markdown_file, target))
+                      continue
+
+                  if not candidate.exists():
+                      missing.append((markdown_file, target))
+
+          if missing:
+              for markdown_file, target in missing:
+                  print(f"{markdown_file.relative_to(root)}: missing local link target: {target}")
+              sys.exit(1)
+
+          print(f"Checked local links in {len(markdown_files)} Markdown file(s).")
+
+  docker-builds:
+    name: Dockerfile builds
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build every Dockerfile
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -d '' dockerfiles < <(find . -path ./.git -prune -o -name Dockerfile -print0)
+          if [ "${#dockerfiles[@]}" -eq 0 ]; then
+            echo "No Dockerfiles found yet. Skipping image builds."
+            exit 0
+          fi
+
+          for dockerfile in "${dockerfiles[@]}"; do
+            context_dir="$(dirname "$dockerfile")"
+            safe_context="$(echo "${context_dir#./}" | tr '/_.' '-' | tr -cd '[:alnum:]-' | tr '[:upper:]' '[:lower:]')"
+            if [ -z "$safe_context" ]; then
+              safe_context="root"
+            fi
+
+            image_name="estate-booking-platform-$safe_context"
+            echo "Building $dockerfile with context $context_dir"
+            docker build --file "$dockerfile" --tag "$image_name:ci" "$context_dir"
+          done
