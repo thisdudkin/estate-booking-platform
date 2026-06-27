@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2629pt" height="664pt" viewBox="0.00 0.00 2629.00 664.00">
+<g id="graph0" class="graph" transform="scale(2.77778 2.77778) rotate(0) translate(4 235)">
+<title>ListingLifecycle</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-235 942.56,-235 942.56,4 -4,4"/>
+<!-- Start -->
+<g id="node1" class="node">
+<title>Start</title>
+<ellipse fill="none" stroke="black" cx="18" cy="-40" rx="18" ry="18"/>
+</g>
+<!-- Draft -->
+<g id="node2" class="node">
+<title>Draft</title>
+<polygon fill="none" stroke="black" points="164.9,-58 103,-58 103,-22 164.9,-22 164.9,-58"/>
+<text xml:space="preserve" text-anchor="middle" x="133.95" y="-35.8" font-family="Times,serif" font-size="14.00">DRAFT</text>
+</g>
+<!-- Start&#45;&gt;Draft -->
+<g id="edge1" class="edge">
+<title>Start-&gt;Draft</title>
+<path fill="none" stroke="black" d="M36.37,-40C36.37,-40 91.04,-40 91.04,-40"/>
+<polygon fill="black" stroke="black" points="91.04,-43.5 101.04,-40 91.04,-36.5 91.04,-43.5"/>
+</g>
+<!-- Waiting -->
+<g id="node3" class="node">
+<title>Waiting</title>
+<polygon fill="none" stroke="black" points="481.77,-103 269.01,-103 269.01,-67 481.77,-67 481.77,-103"/>
+<text xml:space="preserve" text-anchor="middle" x="375.39" y="-80.8" font-family="Times,serif" font-size="14.00">WAITING_FOR_MODERATION</text>
+</g>
+<!-- Draft&#45;&gt;Waiting -->
+<g id="edge2" class="edge">
+<title>Draft-&gt;Waiting</title>
+<path fill="none" stroke="black" d="M133.56,-58.3C133.56,-70.76 133.56,-85 133.56,-85 133.56,-85 257.11,-85 257.11,-85"/>
+<polygon fill="black" stroke="black" points="257.11,-88.5 267.11,-85 257.11,-81.5 257.11,-88.5"/>
+<text xml:space="preserve" text-anchor="middle" x="216.96" y="-87.2" font-family="Times,serif" font-size="14.00">submit</text>
+</g>
+<!-- Published -->
+<g id="node4" class="node">
+<title>Published</title>
+<polygon fill="none" stroke="black" points="685.87,-171 592.86,-171 592.86,-135 685.87,-135 685.87,-171"/>
+<text xml:space="preserve" text-anchor="middle" x="639.37" y="-148.8" font-family="Times,serif" font-size="14.00">PUBLISHED</text>
+</g>
+<!-- Waiting&#45;&gt;Published -->
+<g id="edge3" class="edge">
+<title>Waiting-&gt;Published</title>
+<path fill="none" stroke="black" d="M482.05,-99C547.39,-99 618.56,-99 618.56,-99 618.56,-99 618.56,-123.2 618.56,-123.2"/>
+<polygon fill="black" stroke="black" points="615.06,-123.2 618.56,-133.2 622.06,-123.2 615.06,-123.2"/>
+<text xml:space="preserve" text-anchor="middle" x="537.32" y="-157.2" font-family="Times,serif" font-size="14.00">approve</text>
+</g>
+<!-- Rejected -->
+<g id="node5" class="node">
+<title>Rejected</title>
+<polygon fill="none" stroke="black" points="681.59,-52 597.15,-52 597.15,-16 681.59,-16 681.59,-52"/>
+<text xml:space="preserve" text-anchor="middle" x="639.37" y="-29.8" font-family="Times,serif" font-size="14.00">REJECTED</text>
+</g>
+<!-- Waiting&#45;&gt;Rejected -->
+<g id="edge4" class="edge">
+<title>Waiting-&gt;Rejected</title>
+<path fill="none" stroke="black" d="M482.08,-76.33C555.4,-76.33 639.56,-76.33 639.56,-76.33 639.56,-76.33 639.56,-63.71 639.56,-63.71"/>
+<polygon fill="black" stroke="black" points="643.06,-63.71 639.56,-53.71 636.06,-63.71 643.06,-63.71"/>
+<text xml:space="preserve" text-anchor="middle" x="537.32" y="-85.2" font-family="Times,serif" font-size="14.00">reject</text>
+</g>
+<!-- Blocked -->
+<g id="node6" class="node">
+<title>Blocked</title>
+<polygon fill="none" stroke="black" points="935.45,-231 853.34,-231 853.34,-195 935.45,-195 935.45,-231"/>
+<text xml:space="preserve" text-anchor="middle" x="894.4" y="-208.8" font-family="Times,serif" font-size="14.00">BLOCKED</text>
+</g>
+<!-- Published&#45;&gt;Blocked -->
+<g id="edge7" class="edge">
+<title>Published-&gt;Blocked</title>
+<path fill="none" stroke="black" d="M686.16,-153C756.3,-153 880.56,-153 880.56,-153 880.56,-153 880.56,-183.16 880.56,-183.16"/>
+<polygon fill="black" stroke="black" points="877.06,-183.16 880.56,-193.16 884.06,-183.16 877.06,-183.16"/>
+<text xml:space="preserve" text-anchor="middle" x="768.05" y="-201.2" font-family="Times,serif" font-size="14.00">moderation block</text>
+</g>
+<!-- Archived -->
+<g id="node7" class="node">
+<title>Archived</title>
+<polygon fill="none" stroke="black" points="938.56,-95 850.23,-95 850.23,-59 938.56,-59 938.56,-95"/>
+<text xml:space="preserve" text-anchor="middle" x="894.4" y="-72.8" font-family="Times,serif" font-size="14.00">ARCHIVED</text>
+</g>
+<!-- Published&#45;&gt;Archived -->
+<g id="edge6" class="edge">
+<title>Published-&gt;Archived</title>
+<path fill="none" stroke="black" d="M660.56,-134.6C660.56,-114.66 660.56,-85.67 660.56,-85.67 660.56,-85.67 838.35,-85.67 838.35,-85.67"/>
+<polygon fill="black" stroke="black" points="838.35,-89.17 848.35,-85.67 838.35,-82.17 838.35,-89.17"/>
+<text xml:space="preserve" text-anchor="middle" x="768.05" y="-113.2" font-family="Times,serif" font-size="14.00">archive</text>
+</g>
+<!-- Rejected&#45;&gt;Draft -->
+<g id="edge5" class="edge">
+<title>Rejected-&gt;Draft</title>
+<path fill="none" stroke="black" d="M596.71,-37C596.71,-37 176.78,-37 176.78,-37"/>
+<polygon fill="black" stroke="black" points="176.78,-33.5 166.78,-37 176.78,-40.5 176.78,-33.5"/>
+<text xml:space="preserve" text-anchor="middle" x="375.39" y="-4.2" font-family="Times,serif" font-size="14.00">edit</text>
+</g>
+<!-- Blocked&#45;&gt;Archived -->
+<g id="edge8" class="edge">
+<title>Blocked-&gt;Archived</title>
+<path fill="none" stroke="black" d="M908.56,-194.66C908.56,-194.66 908.56,-107 908.56,-107"/>
+<polygon fill="black" stroke="black" points="912.06,-107 908.56,-97 905.06,-107 912.06,-107"/>
+</g>
+</g>
+</svg>
