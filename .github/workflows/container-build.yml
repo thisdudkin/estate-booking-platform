@@ -1,0 +1,46 @@
+name: Container Build
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+concurrency:
+  group: container-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Docker build / ${{ matrix.image.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - name: auth-event-listener-spi
+            context: keycloak/auth-event-listener-spi
+            dockerfile: keycloak/auth-event-listener-spi/Dockerfile
+          - name: profile-service
+            context: profile-service
+            dockerfile: profile-service/Dockerfile
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build image
+        uses: ./.github/actions/docker-build-publish
+        with:
+          image-name: ghcr.io/${{ github.repository }}/${{ matrix.image.name }}
+          context: ${{ matrix.image.context }}
+          dockerfile: ${{ matrix.image.dockerfile }}
+          push: "false"

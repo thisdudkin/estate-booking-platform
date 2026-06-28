@@ -1,0 +1,57 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:00"
+      timezone: Europe/Minsk
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+
+  - package-ecosystem: maven
+    directory: /profile-service
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:15"
+      timezone: Europe/Minsk
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build
+
+  - package-ecosystem: maven
+    directory: /keycloak/auth-event-listener-spi
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:30"
+      timezone: Europe/Minsk
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build
+
+  - package-ecosystem: docker
+    directory: /profile-service
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:45"
+      timezone: Europe/Minsk
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build
+
+  - package-ecosystem: docker
+    directory: /keycloak/auth-event-listener-spi
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Europe/Minsk
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build
