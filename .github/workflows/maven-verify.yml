@@ -1,0 +1,63 @@
+name: Maven Verify
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: maven-verify-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MAVEN_CLI_OPTS: --batch-mode --no-transfer-progress
+
+jobs:
+  verify:
+    name: Maven verify / ${{ matrix.module.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - name: auth-event-listener-spi
+            path: keycloak/auth-event-listener-spi
+            java-version: "21"
+          - name: profile-service
+            path: profile-service
+            java-version: "25"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java and Maven
+        uses: ./.github/actions/setup-java-maven
+        with:
+          java-version: ${{ matrix.module.java-version }}
+          cache-dependency-path: ${{ matrix.module.path }}/pom.xml
+
+      - name: Verify Maven module
+        working-directory: ${{ matrix.module.path }}
+        run: mvn ${{ env.MAVEN_CLI_OPTS }} clean verify
+
+      - name: Upload Maven test and coverage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ matrix.module.name }}
+          path: |
+            ${{ matrix.module.path }}/target/surefire-reports/**
+            ${{ matrix.module.path }}/target/failsafe-reports/**
+            ${{ matrix.module.path }}/target/site/jacoco/**
+            ${{ matrix.module.path }}/target/site/jacoco-it/**
+          if-no-files-found: ignore
+          retention-days: 14

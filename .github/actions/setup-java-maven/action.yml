@@ -1,0 +1,28 @@
+name: Setup Java and Maven
+description: Install a pinned Temurin JDK and configure Maven dependency caching.
+
+inputs:
+  java-version:
+    description: JDK version used by the Maven module.
+    required: true
+  cache-dependency-path:
+    description: One or more Maven files used as the dependency cache key.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Temurin JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: ${{ inputs.java-version }}
+        cache: maven
+        cache-dependency-path: ${{ inputs.cache-dependency-path }}
+
+    - name: Show Java and Maven versions
+      shell: bash
+      run: |
+        set -euo pipefail
+        java -version
+        mvn --version

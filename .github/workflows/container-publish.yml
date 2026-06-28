@@ -1,0 +1,48 @@
+name: Container Publish
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: container-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish / ${{ matrix.image.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - name: auth-event-listener-spi
+            context: keycloak/auth-event-listener-spi
+            dockerfile: keycloak/auth-event-listener-spi/Dockerfile
+          - name: profile-service
+            context: profile-service
+            dockerfile: profile-service/Dockerfile
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and publish image
+        uses: ./.github/actions/docker-build-publish
+        with:
+          image-name: ghcr.io/${{ github.repository }}/${{ matrix.image.name }}
+          context: ${{ matrix.image.context }}
+          dockerfile: ${{ matrix.image.dockerfile }}
+          push: "true"
+          registry-password: ${{ secrets.GITHUB_TOKEN }}
