@@ -1,6 +1,10 @@
 # Estate Booking Platform
 
-[![Repository CI](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/ci.yml)
+[![Repository Checks](https://img.shields.io/github/actions/workflow/status/thisdudkin/estate-booking-platform/repository-checks.yml?branch=main&label=repository%20checks&logo=githubactions&logoColor=white)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/repository-checks.yml)
+[![Maven Verify](https://img.shields.io/github/actions/workflow/status/thisdudkin/estate-booking-platform/maven-verify.yml?branch=main&label=maven%20verify&logo=apachemaven&logoColor=white)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/maven-verify.yml)
+[![SonarCloud Analysis](https://img.shields.io/github/actions/workflow/status/thisdudkin/estate-booking-platform/sonarcloud-analysis.yml?branch=main&label=sonarcloud&logo=sonarcloud&logoColor=white)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/sonarcloud-analysis.yml)
+[![Container Build](https://img.shields.io/github/actions/workflow/status/thisdudkin/estate-booking-platform/container-build.yml?branch=main&label=container%20build&logo=docker&logoColor=white)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/container-build.yml)
+[![Container Publish](https://img.shields.io/github/actions/workflow/status/thisdudkin/estate-booking-platform/container-publish.yml?branch=main&label=ghcr%20publish&logo=github&logoColor=white)](https://github.com/thisdudkin/estate-booking-platform/actions/workflows/container-publish.yml)
 
 Estate Booking Platform is an educational distributed-system blueprint for a real estate rental marketplace. It is
 intentionally smaller than a production marketplace, but it is designed with the same architectural discipline: clear
