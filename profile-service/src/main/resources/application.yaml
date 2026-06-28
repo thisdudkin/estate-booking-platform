@@ -1,0 +1,48 @@
+spring:
+
+  # Common Settings
+  application:
+    name: profile-service
+
+  # Virtual Threads Settings
+  threads:
+    virtual:
+      enabled: true
+
+  # Jackson Settings
+  jackson:
+    default-property-inclusion: non_null
+
+  # Datasource Settings
+  datasource:
+
+    # Hikari Settings
+    hikari:
+      schema: data
+      minimum-idle: 32
+      auto-commit: false
+      max-lifetime: 600000
+      maximum-pool-size: 32
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+
+    # Connection Settings
+    url: jdbc:postgresql://localhost:5435/identity_db
+    username: postgres
+    password: postgres
+
+  # Flyway Settings
+  flyway:
+    default-schema: data
+
+  # Security Settings
+  security:
+
+    # OAuth 2.0 Settings
+    oauth2:
+
+      # Resource Server Settings
+      resourceserver:
+
+        # JWT Settings
+        jwt:
+          issuer-uri: http://localhost:8080/realms/estate-booking-platform
