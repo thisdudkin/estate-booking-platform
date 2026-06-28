@@ -24,6 +24,7 @@ The `images` directory stores SVG diagrams referenced by the main project docume
 ## Maintenance Notes
 
 - Keep diagrams in SVG format so they render clearly in GitHub and remain easy to review in pull requests.
+- Regenerate ER diagrams with `diagrams/generate_er_svgs.py` after changing service schemas or visual styling.
 - When a new diagram is added to `images`, add it to the diagram index above and reference it from `README.md` when it
   supports a core architectural topic.
 - Avoid storing exported duplicates unless they serve a specific publishing target.

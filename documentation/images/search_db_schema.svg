@@ -1,1 +1,111 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" data-diagram-type="CLASS" style="width:1221px;height:1375px;background:#FFFFFF;" width="1221.4583px" height="1375.8333px" viewBox="0 0 1221 1375" zoomAndPan="magnify" preserveAspectRatio="none" contentStyleType="text/css"><?plantuml 1.2026.7beta3?><defs/><g><!--class listing_search_documents--><g class="entity" data-qualified-name="listing_search_documents" id="ent0001" data-source-line="4"><rect x="18.9583" y="18.9583" width="553.2987" height="820.752" fill="#F1F1F1" style="stroke:#181818;stroke-width:1.3542;" rx="6.7708" ry="6.7708"/><text x="50.5657" y="67.6951" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="490.084" font-family="sans-serif">listing_search_documents</text><line x1="21.6667" y1="90.179" x2="569.5487" y2="90.179" style="stroke:#181818;stroke-width:1.3542;"/><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="127.1436" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="136.2075" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="287.4298" font-family="sans-serif">listing_id : uuid</text><line x1="21.6667" y1="155.9831" x2="569.5487" y2="155.9831" style="stroke:#181818;stroke-width:2.7083;"/><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="192.9476" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="202.0115" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="417.1389" font-family="sans-serif">listing_version : bigint</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="237.085" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="246.1489" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="186.51" font-family="sans-serif">title : text</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="281.2223" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="290.2863" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="267.157" font-family="sans-serif">city : keyword</text><text x="73.125" y="334.4236" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="329.5306" font-family="sans-serif">district : keyword</text><text x="73.125" y="378.561" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="373.5754" font-family="sans-serif">location : geo_point</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="413.6344" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="422.6984" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="465.2753" font-family="sans-serif">property_type : keyword</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="457.7718" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="466.8357" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="383.2953" font-family="sans-serif">deal_type : keyword</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="501.9092" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="510.9731" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="445.9837" font-family="sans-serif">price_amount : decimal</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="546.0465" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="555.1105" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="478.4943" font-family="sans-serif">price_currency : keyword</text><text x="73.125" y="599.2478" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="291.2992" font-family="sans-serif">rooms : integer</text><text x="73.125" y="643.3852" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="377.4078" font-family="sans-serif">total_area : decimal</text><text x="73.125" y="687.5226" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="284.3565" font-family="sans-serif">media : nested</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="722.596" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="731.66" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="314.9786" font-family="sans-serif">status : keyword</text><text x="73.125" y="775.7973" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="482.8821" font-family="sans-serif">published_at : timestamp</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="48.75" cy="810.8708" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="73.125" y="819.9347" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="456.1294" font-family="sans-serif">updated_at : timestamp</text></g><!--class saved_searches--><g class="entity" data-qualified-name="saved_searches" id="ent0002" data-source-line="24"><rect x="666.8729" y="261.7063" width="514.1416" height="335.2409" fill="#F1F1F1" style="stroke:#181818;stroke-width:1.3542;" rx="6.7708" ry="6.7708"/><text x="773.1195" y="310.443" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="301.6486" font-family="sans-serif">saved_searches</text><line x1="669.5813" y1="332.927" x2="1178.3062" y2="332.927" style="stroke:#181818;stroke-width:1.3542;"/><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="696.6646" cy="369.8915" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="721.0396" y="378.9554" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="431.6724" font-family="sans-serif">saved_search_id : uuid</text><line x1="669.5813" y1="398.731" x2="1178.3062" y2="398.731" style="stroke:#181818;stroke-width:2.7083;"/><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="696.6646" cy="435.6955" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="721.0396" y="444.7594" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="437.0229" font-family="sans-serif">tenant_profile_id : uuid</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="696.6646" cy="479.8329" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="721.0396" y="488.8968" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="219.9093" font-family="sans-serif">name : text</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="696.6646" cy="523.9702" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="721.0396" y="533.0342" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="222.3531" font-family="sans-serif">filters : json</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="696.6646" cy="568.1076" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="721.0396" y="577.1715" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="443.725" font-family="sans-serif">created_at : timestamp</text></g><!--class projection_offsets--><g class="entity" data-qualified-name="projection_offsets" id="ent0003" data-source-line="33"><rect x="32.3375" y="1002.2188" width="526.546" height="335.2409" fill="#F1F1F1" style="stroke:#181818;stroke-width:1.3542;" rx="6.7708" ry="6.7708"/><text x="127.235" y="1050.9555" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="336.7511" font-family="sans-serif">projection_offsets</text><line x1="35.0458" y1="1073.4395" x2="556.1752" y2="1073.4395" style="stroke:#181818;stroke-width:1.3542;"/><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="62.1292" cy="1110.404" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="86.5042" y="1119.4679" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="455.2407" font-family="sans-serif">topic_partition : varchar</text><line x1="35.0458" y1="1139.2435" x2="556.1752" y2="1139.2435" style="stroke:#181818;stroke-width:2.7083;"/><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="62.1292" cy="1176.208" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="86.5042" y="1185.2719" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="275.3587" font-family="sans-serif">topic : varchar</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="62.1292" cy="1220.3454" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="86.5042" y="1229.4093" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="333.5482" font-family="sans-serif">partition : integer</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="62.1292" cy="1264.4827" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="86.5042" y="1273.5467" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="252.8271" font-family="sans-serif">offset : bigint</text><g data-visibility-modifier="IE_MANDATORY"><ellipse cx="62.1292" cy="1308.6201" rx="8.125" ry="8.125" fill="#000000" style="stroke:#000000;stroke-width:2.7083;"/></g><text x="86.5042" y="1317.684" fill="#000000" font-size="37.9167" lengthAdjust="spacing" textLength="456.1294" font-family="sans-serif">updated_at : timestamp</text></g><?plantuml-src VLBBRW8n3BplLqGzheHKzT03FnEPn2o6pKE9Gxkg-kzr22qR0RtEs3CJJ_A9V8G4Jjb8wktzTJYGHMKecHc70JqJB-fbfipa9vqHaZbe6qnnmkKN1Laz8zNNeDJuHvDLMrKAMK4tcuuwOyeKlF0xciZpXHJd6GLY_6o0gL6sweJBHqXLnSfw8iCTE0S3tCGc33g6NxsOGiJ4Y-ObOhSoAeimFyAZoAC65uglBXODEPXNb2afeJTzhXI2ouA8CqwO1E70OW09eLDnQAaY7ZDZSymCN78d5yjE3dL0gw66O78o3YvUvakqmFVKzwsx36VXMpdO6kkXQqzhy55PZ1uyQpdZdcRi9aRbmNLToGXBgG8TS_2jFddz_qb5-eYcbgV3Vf_n-h_kuMjY3f6CbkyhwwtnSmqFQHMwZdI4DBTQk5KqgYRUVy9dv_q1?></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="868" height="686" viewBox="0 0 868 686" role="img" aria-labelledby="title desc">
+<title>Search Service Database Schema</title>
+<desc>Entity relationship diagram for Search Service Database Schema.</desc>
+<defs>
+<filter id="shadow" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity=".10"/></filter>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="18" y="18" width="832" height="650" rx="18" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="40" y="56" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Search Service Database Schema</text>
+<g filter="url(#shadow)">
+<rect x="80" y="90" width="260" height="506" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<rect x="80" y="90" width="260" height="44" rx="10" fill="#ca8a04"/>
+<path d="M 80 124 H 340 V 134 H 80 Z" fill="#ca8a04"/>
+<text x="98" y="119" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">listing_search_documents</text>
+<rect x="94" y="138" width="232" height="24" rx="6" fill="#fefce8"/>
+<text x="104" y="156" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#ca8a04">PK</text>
+<text x="136" y="156" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">listing_id</text>
+<text x="322" y="156" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">uuid</text>
+<rect x="94" y="166" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="184" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">listing_version</text>
+<text x="322" y="184" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">bigint</text>
+<rect x="94" y="194" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="212" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">title</text>
+<text x="322" y="212" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">text</text>
+<rect x="94" y="222" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="240" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">city</text>
+<text x="322" y="240" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">keyword</text>
+<rect x="94" y="250" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="268" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">district</text>
+<text x="322" y="268" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">keyword</text>
+<rect x="94" y="278" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="296" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">location</text>
+<text x="322" y="296" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">geo_point</text>
+<rect x="94" y="306" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="324" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">property_type</text>
+<text x="322" y="324" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">keyword</text>
+<rect x="94" y="334" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="352" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">deal_type</text>
+<text x="322" y="352" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">keyword</text>
+<rect x="94" y="362" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="380" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">price_amount</text>
+<text x="322" y="380" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">decimal</text>
+<rect x="94" y="390" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="408" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">price_currency</text>
+<text x="322" y="408" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">keyword</text>
+<rect x="94" y="418" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="436" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">rooms</text>
+<text x="322" y="436" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">integer</text>
+<rect x="94" y="446" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="464" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">total_area</text>
+<text x="322" y="464" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">decimal</text>
+<rect x="94" y="474" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="492" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">media</text>
+<text x="322" y="492" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">nested</text>
+<rect x="94" y="502" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="520" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">status</text>
+<text x="322" y="520" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">keyword</text>
+<rect x="94" y="530" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="548" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">published_at</text>
+<text x="322" y="548" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">timestamp</text>
+<rect x="94" y="558" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="136" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">updated_at</text>
+<text x="322" y="576" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">timestamp</text>
+</g>
+<g filter="url(#shadow)">
+<rect x="560" y="150" width="260" height="198" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<rect x="560" y="150" width="260" height="44" rx="10" fill="#ca8a04"/>
+<path d="M 560 184 H 820 V 194 H 560 Z" fill="#ca8a04"/>
+<text x="578" y="179" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">saved_searches</text>
+<rect x="574" y="198" width="232" height="24" rx="6" fill="#fefce8"/>
+<text x="584" y="216" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#ca8a04">PK</text>
+<text x="616" y="216" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">saved_search_id</text>
+<text x="802" y="216" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">uuid</text>
+<rect x="574" y="226" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="584" y="244" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#ca8a04">FK</text>
+<text x="616" y="244" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">tenant_profile_id</text>
+<text x="802" y="244" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">uuid</text>
+<rect x="574" y="254" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="272" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">name</text>
+<text x="802" y="272" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">text</text>
+<rect x="574" y="282" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="300" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">filters</text>
+<text x="802" y="300" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">json</text>
+<rect x="574" y="310" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="328" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">created_at</text>
+<text x="802" y="328" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">timestamp</text>
+</g>
+<g filter="url(#shadow)">
+<rect x="560" y="440" width="260" height="198" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<rect x="560" y="440" width="260" height="44" rx="10" fill="#ca8a04"/>
+<path d="M 560 474 H 820 V 484 H 560 Z" fill="#ca8a04"/>
+<text x="578" y="469" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">projection_offsets</text>
+<rect x="574" y="488" width="232" height="24" rx="6" fill="#fefce8"/>
+<text x="584" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#ca8a04">PK</text>
+<text x="616" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">topic_partition</text>
+<text x="802" y="506" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">varchar</text>
+<rect x="574" y="516" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="534" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">topic</text>
+<text x="802" y="534" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">varchar</text>
+<rect x="574" y="544" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="562" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">partition</text>
+<text x="802" y="562" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">integer</text>
+<rect x="574" y="572" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="590" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">offset</text>
+<text x="802" y="590" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">bigint</text>
+<rect x="574" y="600" width="232" height="24" rx="6" fill="#ffffff"/>
+<text x="616" y="618" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f172a">updated_at</text>
+<text x="802" y="618" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">timestamp</text>
+</g>
+</svg>
