@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Keycloak Settings -->
-        <jackson.version>2.19.0</jackson.version>
+        <jackson.version>2.22.0</jackson.version>
         <keycloak.version>26.6.4</keycloak.version>
         <kafka.clients.version>4.3.1</kafka.clients.version>
     </properties>
