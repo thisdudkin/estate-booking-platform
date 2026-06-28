@@ -232,12 +232,12 @@
               "realm-management": [
                 "manage-identity-providers",
                 "manage-users",
-                "view-users",
-                "manage-realm",
                 "manage-clients",
-                "view-clients",
-                "query-clients",
+                "manage-realm",
+                "view-users",
                 "impersonation",
+                "query-clients",
+                "view-clients",
                 "create-client",
                 "view-authorization",
                 "view-realm",
@@ -700,7 +700,8 @@
       "protocol": "openid-connect",
       "attributes": {
         "realm_client": "false",
-        "client.use.lightweight.access.token.enabled": "true"
+        "client.use.lightweight.access.token.enabled": "true",
+        "post.logout.redirect.uris": "+"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
@@ -755,6 +756,7 @@
         "backchannel.logout.session.required": "true",
         "standard.token.exchange.enabled": "false",
         "oauth2.jwt.authorization.grant.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -812,6 +814,7 @@
         "backchannel.logout.session.required": "true",
         "oauth2.jwt.authorization.grant.enabled": "false",
         "standard.token.exchange.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -856,7 +859,8 @@
       "frontchannelLogout": false,
       "protocol": "openid-connect",
       "attributes": {
-        "realm_client": "true"
+        "realm_client": "true",
+        "post.logout.redirect.uris": "+"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
@@ -911,6 +915,7 @@
         "backchannel.logout.session.required": "true",
         "oauth2.jwt.authorization.grant.enabled": "false",
         "standard.token.exchange.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -968,6 +973,7 @@
         "backchannel.logout.session.required": "true",
         "oauth2.jwt.authorization.grant.enabled": "false",
         "standard.token.exchange.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -1025,6 +1031,7 @@
         "backchannel.logout.session.required": "true",
         "standard.token.exchange.enabled": "false",
         "oauth2.jwt.authorization.grant.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -1082,6 +1089,7 @@
         "backchannel.logout.session.required": "true",
         "standard.token.exchange.enabled": "false",
         "oauth2.jwt.authorization.grant.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -1135,16 +1143,17 @@
       "protocol": "openid-connect",
       "attributes": {
         "logout.confirmation.enabled": "false",
-        "realm_client": "false",
-        "oidc.ciba.grant.enabled": "false",
-        "backchannel.logout.session.required": "true",
         "oauth2.jwt.authorization.grant.enabled": "false",
         "standard.token.exchange.enabled": "false",
         "frontchannel.logout.session.required": "true",
-        "display.on.consent.screen": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
-        "pkce.code.challenge.method": "S256",
         "backchannel.logout.revoke.offline.tokens": "false",
+        "realm_client": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "display.on.consent.screen": "false",
+        "pkce.code.challenge.method": "S256",
         "dpop.bound.access.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
@@ -1202,6 +1211,7 @@
         "oauth2.jwt.authorization.grant.enabled": "false",
         "standard.token.exchange.enabled": "false",
         "frontchannel.logout.session.required": "true",
+        "post.logout.redirect.uris": "+",
         "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
@@ -1247,7 +1257,8 @@
       "frontchannelLogout": false,
       "protocol": "openid-connect",
       "attributes": {
-        "realm_client": "true"
+        "realm_client": "true",
+        "post.logout.redirect.uris": "+"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
@@ -1302,6 +1313,7 @@
         "backchannel.logout.session.required": "true",
         "standard.token.exchange.enabled": "false",
         "oauth2.jwt.authorization.grant.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -1359,6 +1371,7 @@
         "backchannel.logout.session.required": "true",
         "standard.token.exchange.enabled": "false",
         "oauth2.jwt.authorization.grant.enabled": "false",
+        "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "dpop.bound.access.tokens": "false"
@@ -1551,8 +1564,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "AUTH_TIME",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "auth_time",
             "jsonType.label": "long"
@@ -1595,6 +1609,7 @@
           "config": {
             "introspection.token.claim": "true",
             "multivalued": "true",
+            "userinfo.token.claim": "true",
             "user.attribute": "foo",
             "id.token.claim": "true",
             "access.token.claim": "true",
@@ -1622,8 +1637,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientHost",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientHost",
             "jsonType.label": "String"
@@ -1637,8 +1653,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "client_id",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "client_id",
             "jsonType.label": "String"
@@ -1652,8 +1669,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientAddress",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientAddress",
             "jsonType.label": "String"
@@ -2043,7 +2061,8 @@
           "config": {
             "id.token.claim": "true",
             "introspection.token.claim": "true",
-            "access.token.claim": "true"
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
           }
         }
       ]
@@ -2076,12 +2095,13 @@
           "protocolMapper": "oidc-organization-membership-mapper",
           "consentRequired": false,
           "config": {
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "organization",
-            "jsonType.label": "String",
-            "multivalued": "true"
+            "jsonType.label": "String"
           }
         }
       ]
@@ -2159,10 +2179,15 @@
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
   "smtpServer": {},
+  "loginTheme": "",
+  "accountTheme": "",
+  "adminTheme": "",
+  "emailTheme": "",
   "eventsEnabled": true,
   "eventsExpiration": 604800,
   "eventsListeners": [
-    "jboss-logging"
+    "jboss-logging",
+    "registration-event-listener"
   ],
   "enabledEventTypes": [
     "UPDATE_CONSENT_ERROR",
@@ -2175,8 +2200,8 @@
     "IMPERSONATE",
     "LOGIN",
     "CLIENT_INITIATED_ACCOUNT_LINKING",
-    "USER_DISABLED_BY_PERMANENT_LOCKOUT",
     "OAUTH2_EXTENSION_GRANT",
+    "USER_DISABLED_BY_PERMANENT_LOCKOUT",
     "VERIFIABLE_CREDENTIAL_REQUEST",
     "REMOVE_CREDENTIAL_ERROR",
     "TOKEN_EXCHANGE",
@@ -2185,34 +2210,34 @@
     "VERIFIABLE_CREDENTIAL_OFFER_REQUEST_ERROR",
     "IDENTITY_PROVIDER_LINK_ACCOUNT",
     "USER_DISABLED_BY_TEMPORARY_LOCKOUT",
-    "UPDATE_PASSWORD",
     "DELETE_ACCOUNT",
+    "UPDATE_PASSWORD",
     "IDENTITY_PROVIDER_FIRST_LOGIN",
     "VERIFY_EMAIL",
     "CLIENT_LOGIN_ERROR",
     "RESTART_AUTHENTICATION_ERROR",
-    "REMOVE_FEDERATED_IDENTITY_ERROR",
     "EXECUTE_ACTIONS",
+    "REMOVE_FEDERATED_IDENTITY_ERROR",
     "TOKEN_EXCHANGE_ERROR",
     "VERIFIABLE_CREDENTIAL_PRE_AUTHORIZED_GRANT",
     "FEDERATED_IDENTITY_OVERRIDE_LINK",
     "SEND_IDENTITY_PROVIDER_LINK_ERROR",
     "VERIFIABLE_CREDENTIAL_CREATE_OFFER",
-    "VERIFIABLE_CREDENTIAL_PRE_AUTHORIZED_GRANT_ERROR",
     "JWT_AUTHORIZATION_GRANT_ERROR",
+    "VERIFIABLE_CREDENTIAL_PRE_AUTHORIZED_GRANT_ERROR",
     "EXECUTE_ACTION_TOKEN_ERROR",
-    "SEND_VERIFY_EMAIL",
     "OAUTH2_EXTENSION_GRANT_ERROR",
+    "SEND_VERIFY_EMAIL",
     "EXECUTE_ACTIONS_ERROR",
     "OAUTH2_DEVICE_CODE_TO_TOKEN",
     "OAUTH2_DEVICE_VERIFY_USER_CODE_ERROR",
     "REVOKE_GRANT_ERROR",
     "UPDATE_EMAIL_ERROR",
-    "UPDATE_PROFILE",
     "INVITE_ORG_ERROR",
+    "UPDATE_PROFILE",
     "VERIFIABLE_CREDENTIAL_REQUEST_ERROR",
-    "SEND_VERIFY_EMAIL_ERROR",
     "SEND_IDENTITY_PROVIDER_LINK",
+    "SEND_VERIFY_EMAIL_ERROR",
     "CLIENT_INITIATED_ACCOUNT_LINKING_ERROR",
     "OAUTH2_DEVICE_AUTH_ERROR",
     "REMOVE_TOTP_ERROR",
@@ -2233,14 +2258,14 @@
     "CODE_TO_TOKEN_ERROR",
     "OAUTH2_DEVICE_CODE_TO_TOKEN_ERROR",
     "UPDATE_PROFILE_ERROR",
-    "UPDATE_PASSWORD_ERROR",
     "OAUTH2_DEVICE_VERIFY_USER_CODE",
+    "UPDATE_PASSWORD_ERROR",
     "IDENTITY_PROVIDER_LOGIN",
-    "LOGOUT",
     "AUTHREQID_TO_TOKEN",
+    "LOGOUT",
     "CLIENT_REGISTER",
-    "FEDERATED_IDENTITY_LINK_ERROR",
     "CLIENT_DELETE",
+    "FEDERATED_IDENTITY_LINK_ERROR",
     "CLIENT_DELETE_ERROR",
     "PERMISSION_TOKEN",
     "UPDATE_CREDENTIAL_ERROR",
@@ -2252,20 +2277,20 @@
     "FEDERATED_IDENTITY_OVERRIDE_LINK_ERROR",
     "UPDATE_EMAIL",
     "REGISTER_ERROR",
-    "LOGOUT_ERROR",
     "EXECUTE_ACTION_TOKEN",
+    "LOGOUT_ERROR",
     "CLIENT_UPDATE_ERROR",
     "AUTHREQID_TO_TOKEN_ERROR",
-    "FEDERATED_IDENTITY_LINK",
     "CLIENT_REGISTER_ERROR",
+    "FEDERATED_IDENTITY_LINK",
     "INVITE_ORG",
     "IDENTITY_PROVIDER_LOGIN_ERROR",
     "RESET_PASSWORD",
     "REMOVE_CREDENTIAL",
     "UPDATE_CONSENT",
     "SEND_RESET_PASSWORD_ERROR",
-    "IDENTITY_PROVIDER_POST_LOGIN_ERROR",
     "CUSTOM_REQUIRED_ACTION_ERROR",
+    "IDENTITY_PROVIDER_POST_LOGIN_ERROR",
     "CODE_TO_TOKEN",
     "IDENTITY_PROVIDER_FIRST_LOGIN_ERROR"
   ],
@@ -2291,14 +2316,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-address-mapper",
-            "oidc-usermodel-property-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "saml-user-attribute-mapper",
             "saml-user-property-mapper",
-            "saml-role-list-mapper",
             "oidc-full-name-mapper",
-            "oidc-sha256-pairwise-sub-mapper"
+            "oidc-address-mapper",
+            "saml-role-list-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-usermodel-property-mapper",
+            "saml-user-attribute-mapper"
           ]
         }
       },
@@ -2353,14 +2378,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
+            "saml-role-list-mapper",
+            "oidc-address-mapper",
+            "saml-user-property-mapper",
             "oidc-sha256-pairwise-sub-mapper",
             "oidc-full-name-mapper",
             "oidc-usermodel-property-mapper",
             "oidc-usermodel-attribute-mapper",
-            "saml-role-list-mapper",
-            "saml-user-property-mapper",
-            "saml-user-attribute-mapper",
-            "oidc-address-mapper"
+            "saml-user-attribute-mapper"
           ]
         }
       },
@@ -3295,8 +3320,8 @@
   "attributes": {
     "cibaBackchannelTokenDeliveryMode": "poll",
     "cibaAuthRequestedUserHint": "login_hint",
-    "oauth2DevicePollingInterval": "5",
     "clientOfflineSessionMaxLifespan": "0",
+    "oauth2DevicePollingInterval": "5",
     "clientSessionIdleTimeout": "0",
     "clientOfflineSessionIdleTimeout": "0",
     "cibaInterval": "5",
@@ -3305,7 +3330,8 @@
     "oauth2DeviceCodeLifespan": "600",
     "parRequestUriLifespan": "60",
     "clientSessionMaxLifespan": "0",
-    "scimApiEnabled": "false"
+    "scimApiEnabled": "false",
+    "darkMode": "false"
   },
   "keycloakVersion": "26.6.4",
   "userManagedAccessAllowed": false,
