@@ -54,7 +54,7 @@ jobs:
         run: mvn ${{ env.MAVEN_CLI_OPTS }} clean verify
 
       - name: Run SonarCloud scan
-        uses: SonarSource/sonarqube-scan-action@v6
+        uses: SonarSource/sonarqube-scan-action@v8
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
