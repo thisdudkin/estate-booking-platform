@@ -22,7 +22,7 @@ serious backend system:
 - Decomposing a domain into bounded contexts.
 - Delegating authentication to an identity provider.
 - Keeping business profiles separate from credentials and sessions.
-- Designing registration as an identity-provider-owned flow with asynchronous profile provisioning.
+- Designing registration through an application BFF without leaking identity-provider details into business services.
 - Applying database-per-service ownership.
 - Combining synchronous APIs with asynchronous events.
 - Building read models for search and analytics.
@@ -56,18 +56,21 @@ Out of scope for the educational version:
 
 ## System Context
 
-![System Context](documentation/images/system_context.svg)
+The API Gateway is the public entry point for business APIs. Keycloak owns authentication, credentials, sessions, and
+token issuance. Identity Service is the application-facing BFF for registration and profile bootstrap. Business services
+own business data. Kafka is used for propagation, projections, and decoupled side effects rather than for every
+interaction.
 
-The API Gateway is the public entry point for business APIs. Keycloak owns authentication and user self-registration.
-Business services own business data. Kafka is used for propagation, projections, and decoupled side effects rather than
-for every interaction.
+### Container Diagram
+
+![System Container](documentation/images/system.svg)
 
 ## Architectural Principles
 
 ### Business Capability First
 
 Services are split by ownership of business decisions, not by technical layers. Listing Service owns listing lifecycle
-decisions. Profile Service owns user-facing business identity. Search Service owns query-optimized documents, not
+decisions. Profile Service owns user-facing business profiles. Search Service owns query-optimized documents, not
 canonical listing state.
 
 ### Database per Service
@@ -77,15 +80,17 @@ service, but it must not create cross-service foreign keys or read another servi
 
 ### Keycloak Is the Identity Provider
 
-Keycloak owns credentials, sessions, token issuance, realm roles, clients, self-registration, and identity-provider
-protocol concerns. Application services validate JWTs locally and enforce business authorization rules in their own
-context.
+Keycloak owns credentials, sessions, token issuance, realm roles, clients, and identity-provider protocol concerns.
+Identity Service may call Keycloak Admin API as a trusted backend client during registration, but public clients must
+not
+receive Keycloak administration privileges. Application services validate JWTs locally and enforce business
+authorization rules in their own context.
 
 ### Profiles Are Business Data, Not Credentials
 
-Profile Service exists because the marketplace needs a domain representation of a user that is different from the
-identity-provider account. Keycloak answers "Can this subject authenticate and what roles does it have?" Profile Service
-answers "Who is this participant in the marketplace and what business attributes are attached to them?"
+Profile Service exists because the marketplace needs domain representations of a user that are different from the
+identity-provider account. Keycloak answers "Can this subject authenticate?" Profile Service answers "Which marketplace
+profiles does this subject have, and what business attributes are attached to them?"
 
 ### Integration Must Be Explicit
 
@@ -99,19 +104,19 @@ points for verification, auditing, preferences, media processing, and event publ
 
 ## Service Map
 
-| Service                         | Main Responsibility                                                           | Storage            | Notes                                            |
-|---------------------------------|-------------------------------------------------------------------------------|--------------------|--------------------------------------------------|
-| API Gateway                     | External routing, token relay, edge validation, coarse rate limits            | None               | Does not orchestrate business workflows.         |
-| Keycloak                        | Credentials, sessions, clients, realm roles, tokens                           | PostgreSQL         | External identity provider.                      |
-| Keycloak Registration Event SPI | Publishes explicit registration events after successful Keycloak registration | None               | Lightweight integration adapter inside Keycloak. |
-| Profile Service                 | User profiles, tenant and landlord extensions, contact data, preferences      | PostgreSQL         | Canonical business representation of users.      |
-| Listing Service                 | Listing aggregate, address, details, lifecycle, publication events            | PostgreSQL         | Source of truth for listings.                    |
-| Media Service                   | Media metadata, upload state, processing jobs                                 | MongoDB + S3/MinIO | Files live in object storage.                    |
-| Search Service                  | Denormalized listing search documents and saved searches                      | OpenSearch         | Projection, not source of truth.                 |
-| Moderation Service              | Moderation cases, decisions, complaints                                       | PostgreSQL         | Owns review process.                             |
-| Rental Request Service          | Requests, messages, viewing appointments                                      | PostgreSQL         | Owns tenant-landlord negotiation flow.           |
-| Notification Service            | Notification preferences, templates, delivery state                           | MongoDB            | Event-driven side effects.                       |
-| Analytics Service               | Event ingestion and analytical aggregates                                     | ClickHouse         | Optional in the first implementation.            |
+| Service                | Main Responsibility                                                        | Storage            | Notes                                             |
+|------------------------|----------------------------------------------------------------------------|--------------------|---------------------------------------------------|
+| API Gateway            | External routing, token relay, edge validation, coarse rate limits         | None               | Does not orchestrate business workflows.          |
+| Keycloak               | Credentials, sessions, clients, realm roles, tokens                        | PostgreSQL         | External identity provider.                       |
+| Identity Service       | Registration BFF, Keycloak orchestration, default tenant profile bootstrap | PostgreSQL         | Owns registration workflow state and idempotency. |
+| Profile Service        | Tenant and landlord business profiles linked to Keycloak user IDs          | PostgreSQL         | Stores business profile data, not credentials.    |
+| Listing Service        | Listing aggregate, address, details, lifecycle, publication events         | PostgreSQL         | Source of truth for listings.                     |
+| Media Service          | Media metadata, upload state, processing jobs                              | MongoDB + S3/MinIO | Files live in object storage.                     |
+| Search Service         | Denormalized listing search documents and saved searches                   | OpenSearch         | Projection, not source of truth.                  |
+| Moderation Service     | Moderation cases, decisions, complaints                                    | PostgreSQL         | Owns review process.                              |
+| Rental Request Service | Requests, messages, viewing appointments                                   | PostgreSQL         | Owns tenant-landlord negotiation flow.            |
+| Notification Service   | Notification preferences, templates, delivery state                        | MongoDB            | Event-driven side effects.                        |
+| Analytics Service      | Event ingestion and analytical aggregates                                  | ClickHouse         | Optional in the first implementation.             |
 
 ## Security Model
 
@@ -130,73 +135,63 @@ Token rules:
 | ID token      |                        No | Client-side OIDC identity information.           |
 | Service token |                 Sometimes | Machine-to-machine calls.                        |
 
-Self-service roles:
+Self-service profile capabilities:
 
-| Role        | Registration Policy                         |
-|-------------|---------------------------------------------|
-| `TENANT`    | Allowed.                                    |
-| `LANDLORD`  | Allowed, with later verification if needed. |
-| `MODERATOR` | Admin-assigned only.                        |
-| `ADMIN`     | Admin-assigned only.                        |
+| Capability       | Policy                                                          |
+|------------------|-----------------------------------------------------------------|
+| Tenant profile   | Created by default during registration.                         |
+| Landlord profile | Created explicitly by the authenticated user when they need it. |
+| `MODERATOR` role | Admin-assigned only.                                            |
+| `ADMIN` role     | Admin-assigned only.                                            |
 
 ## Registration Architecture
 
-Registration should be owned by Keycloak, not by an application-level proxy. The client can use Keycloak
-self-registration directly, while the platform reacts to successful user creation through an explicit registration
-event.
+Registration is exposed through Identity Service, an application BFF. Keycloak still owns credentials, password policy,
+email verification, sessions, and tokens, but public clients do not talk to Keycloak Admin API and do not decide which
+business profile tables should be created.
 
-The recommended integration for this demo is a Keycloak Event Listener SPI that publishes a compact `UserRegistered`
-event to Kafka. Profile Service consumes this event and creates the corresponding business profile idempotently.
-
-![Registration Architecture](documentation/images/registration_architecture.svg)
+Identity Service creates the Keycloak user, then calls Profile Service over `/internal/api/` with a service token
+obtained through OAuth2 Client Credentials. Profile Service creates a tenant profile by default. Later, the same user
+can
+create a landlord profile with the same Keycloak `userId`, so Nikolay can rent an apartment in Ufa and publish an
+apartment in Sochi without creating a second account.
 
 ### Architectural Decision
 
-Use Keycloak self-registration plus a Keycloak Event Listener SPI as the primary registration integration.
+Use Identity Service as the registration BFF and profile bootstrap orchestrator.
 
 This is the best fit for the project because:
 
-- It keeps Keycloak as the only component responsible for registration, credentials, password policy, email
-  verification, required actions, and account lifecycle.
-- It avoids building a thin Identity API that mostly proxies Keycloak and duplicates identity-provider responsibilities.
-- It publishes a deliberate integration event instead of leaking Keycloak database internals into the platform.
-- It keeps Profile Service asynchronous, idempotent, and independent of the registration HTTP request.
-- It is educationally valuable: the project demonstrates identity-provider extension points without introducing a full
-  custom identity facade.
+- It keeps Keycloak responsible for identity-provider concerns: credentials, password policy, email verification,
+  required actions, sessions, and tokens.
+- It removes the Keycloak SPI dependency from the normal application flow.
+- It avoids modeling tenant and landlord as mutually exclusive registration-time roles.
+- It gives the platform a synchronous registration result: either both the Keycloak user and default tenant profile are
+  created, or Identity Service returns a clear provisioning error.
+- It keeps Profile Service focused on business data and protects its internal provisioning endpoints with
+  service-to-service authentication.
 
-### Role Selection During Registration
+### Registration Sequence Diagram
 
-The client must not be allowed to assign arbitrary roles. Self-registration should support only `TENANT` and `LANDLORD`.
+![Registration Sequence](documentation/images/registration_sequence.svg)
 
-A practical demo approach:
+### Registration API Behavior
 
-- Keycloak registration form contains a required `requested_role` field.
-- The field is rendered as a controlled choice: `TENANT` or `LANDLORD`.
-- Keycloak stores the selected value as a user attribute.
-- The SPI accepts only `TENANT` or `LANDLORD`.
-- The SPI assigns the corresponding safe group if it is not already assigned by a controlled Keycloak flow.
-- `MODERATOR` and `ADMIN` are never self-service roles.
-- The event contains the effective role/group after validation, not an untrusted raw client value.
+Recommended behavior:
 
-Practical browser flow:
+1. The client calls `POST /api/identity/register` on Identity Service.
+2. Identity Service validates the command and creates the user in Keycloak through a trusted backend client.
+3. Identity Service obtains a service access token from Keycloak using Grant Type `client_credentials`.
+4. Identity Service calls Profile Service through `/internal/api/profiles/tenant` and sends the service token.
+5. Profile Service validates that the caller is the `identity-service` client and creates the default tenant profile.
+6. The user can authenticate through Keycloak and call business APIs through API Gateway.
+7. If the same user wants to publish apartments, the client calls `POST /api/identity/me/landlord-profile`.
+8. Identity Service calls `/internal/api/profiles/landlord` with the same `keycloakUserId`; Profile Service creates a
+   landlord profile without creating another user account.
 
-1. The user opens the Keycloak registration page.
-2. The user fills in email, username, password, and display name.
-3. The user selects account type: `Tenant` or `Landlord`.
-4. Keycloak creates the user and stores `requested_role=TENANT` or `requested_role=LANDLORD`.
-5. The Registration Event SPI validates the attribute, assigns the safe group, and publishes `UserRegistered`.
-6. Profile Service consumes the event and creates `tenant_profiles` or `landlord_profiles`.
-
-For Postman, the recommended demo workflow is still browser-based registration followed by token retrieval in Postman.
-Native Keycloak self-registration is primarily a browser form flow, not a stable public JSON registration API. In
-Postman:
-
-1. Open the Keycloak registration page in a browser and register the user with account type `Tenant` or `Landlord`.
-2. Request tokens from the Keycloak token endpoint using that user.
-3. Use the returned access token when calling platform APIs through API Gateway.
-
-If a pure Postman-only registration demo is required, add a very small custom Keycloak registration endpoint or use a
-controlled admin-only seed script for test users. Avoid exposing the Keycloak Admin API directly to public clients.
+The registration request must not contain `TENANT`, `LANDLORD`, `ADMIN`, or `MODERATOR` as user-controlled role
+assignments. Tenant is the default marketplace capability. Landlord is an additional business profile that a user may
+create later.
 
 ### Why Profile Service Is Required
 
@@ -207,53 +202,26 @@ provider. That becomes limiting very quickly:
 - Tenant and landlord data evolve independently of authentication.
 - Profile data often needs business validation, auditability, searchability, and lifecycle states.
 - Keycloak should remain replaceable; the domain should not depend on its internal user model.
-- Different roles may require different profile extensions without polluting the identity provider.
+- One Keycloak account can have both tenant and landlord profiles without creating duplicate credentials.
 
-Profile Service therefore acts as the canonical business identity service. It links a domain profile to
-`keycloak_user_id`, but it does not store passwords, refresh tokens, sessions, or authentication secrets.
-
-### Event Contract
-
-```json
-{
-  "eventId": "uuid",
-  "eventType": "UserRegistered",
-  "occurredAt": "2026-06-27T12:00:00Z",
-  "producer": "keycloak-registration-spi",
-  "payload": {
-    "keycloakUserId": "uuid",
-    "email": "tenant@example.com",
-    "displayName": "John Tenant",
-    "role": "TENANT",
-    "emailVerified": false
-  }
-}
-```
-
-Profile Service treats this event as at-least-once delivery. The unique constraint on `keycloak_user_id` makes profile
-creation idempotent.
+Profile Service therefore acts as the canonical business profile service. It links business profiles to
+`user_id`, but it does not store usernames, passwords, refresh tokens, sessions, identity-provider attributes,
+or authentication secrets.
 
 ### Failure Handling
 
-This model is eventually consistent. A user may exist in Keycloak before their business profile is created. Business
-APIs should handle that explicitly:
+Registration is a synchronous orchestration with a small distributed consistency problem: Keycloak and Profile Service
+do not share a database transaction. Identity Service owns the recovery policy:
 
-- If a user calls a business API before profile provisioning finishes, return `409 PROFILE_NOT_READY` or
-  `423 PROFILE_PROVISIONING`.
-- Profile Service consumers must be retryable and idempotent.
-- Failed events should go to a dead-letter topic after bounded retries.
-- Operational tooling can replay `UserRegistered` events or rebuild missing profiles from Keycloak if needed.
-- No password, token, credential, or secret may appear in Kafka events or logs.
+- Calls to Profile Service internal provisioning endpoints must be idempotent by `user_id` and profile type.
+- If Keycloak user creation succeeds but tenant profile creation fails, Identity Service records the failed workflow and
+  retries or compensates by disabling/removing the Keycloak user according to the demo policy.
+- Business APIs should return `409 PROFILE_NOT_READY` only for users whose registration workflow is still recovering.
+- No password, token, credential, or secret may appear in Profile Service payloads, Kafka events, or logs.
 
-## Data Ownership
+## Cross-Service References
 
-### Data Stores Ownership
-
-![Data Stores Ownership Diagram](documentation/images/data_ownership.svg)
-
-### Cross-Service References
-
-![Cross-Service References Diagram](documentation/images/cross_service_reference.svg)
+![Cross-Service References](documentation/images/cross_service_ref.svg)
 
 External identifiers are copied where needed, but they are references, not database-level foreign keys across service
 boundaries.
@@ -265,41 +233,32 @@ future evolution.
 
 ### Profile Service
 
-Profile Service separates the common user profile from role-specific extensions.
+Profile Service stores only marketplace business data. It does not store credentials, usernames, password hashes,
+refresh tokens, sessions, Keycloak attributes, or identity-provider lifecycle data. The only identity-provider reference
+is `user_id`, which is copied from the JWT subject / Keycloak Admin API response and treated as an external
+identifier.
 
-![Profile Service Database Schema](documentation/images/profiles_db_schema.svg)
-
-Profile Service schema rationale:
-
-- `user_profiles` contains attributes common to any marketplace participant.
-- `tenant_profiles` and `landlord_profiles` let role-specific data evolve independently.
-- `keycloak_user_id` preserves the link to authentication without making Keycloak the business data store.
-- `preferences` and `business_metadata` are JSON extension points for a demo; stable frequently queried fields can be
-  promoted to columns later.
-- `favorite_listings.listing_id` is an external reference because Listing Service owns listing data.
-- `processed_identity_events` protects consumers from duplicate Kafka delivery.
+![Profile Service DB Schema](documentation/images/profile_service_db_schema.svg)
 
 ### Listing Service
 
-![Listing Service Database Schema](documentation/images/listing_db_schema.svg)
+![Listing Service DB Schema](documentation/images/listing_service_db_schema.svg)
 
 ### Media Service
 
-![Media Service Database Schema](documentation/images/media_db_schema.svg)
+![Media Service DB Schema](documentation/images/media_service_db_schema.svg)
 
 ### Search Service
 
-![Search Service Database Schema](documentation/images/search_db_schema.svg)
-
-Search documents are disposable projections. They can be rebuilt from Listing, Media, and Moderation events.
+![Search Service DB Schema](documentation/images/search_service_db_schema.svg)
 
 ### Rental Request Service
 
-![Rental Request Service Database Schema](documentation/images/rental_request_db_schema.svg)
+![Rental Request Service DB Schema](documentation/images/rental_request_service_db_schema.svg)
 
 ### Moderation Service
 
-![Moderation Service Database Schema](documentation/images/moderation_db_schema.svg)
+![Moderation Service DB Schema](documentation/images/moderation_service_db_schema.svg)
 
 ## Events
 
@@ -324,21 +283,21 @@ All domain events should use a common envelope.
 
 Recommended first event set:
 
-| Producer                        | Events                                                                                                     |
-|---------------------------------|------------------------------------------------------------------------------------------------------------|
-| Keycloak Registration Event SPI | `UserRegistered`                                                                                           |
-| Listing Service                 | `ListingCreated`, `ListingUpdated`, `ListingSubmittedForModeration`, `ListingPublished`, `ListingArchived` |
-| Media Service                   | `MediaUploaded`, `MediaReady`, `MediaRejected`, `MediaDeleted`                                             |
-| Moderation Service              | `ModerationCaseCreated`, `ListingApproved`, `ListingRejected`, `ComplaintCreated`                          |
-| Rental Request Service          | `RentalRequestCreated`, `RentalRequestAccepted`, `RentalRequestRejected`, `ViewingScheduled`               |
-| Notification Service            | `NotificationCreated`, `NotificationSent`, `NotificationFailed`                                            |
+| Producer               | Events                                                                                                     |
+|------------------------|------------------------------------------------------------------------------------------------------------|
+| Profile Service        | `TenantProfileCreated`, `LandlordProfileCreated`, `ProfileUpdated`                                         |
+| Listing Service        | `ListingCreated`, `ListingUpdated`, `ListingSubmittedForModeration`, `ListingPublished`, `ListingArchived` |
+| Media Service          | `MediaUploaded`, `MediaReady`, `MediaRejected`, `MediaDeleted`                                             |
+| Moderation Service     | `ModerationCaseCreated`, `ListingApproved`, `ListingRejected`, `ComplaintCreated`                          |
+| Rental Request Service | `RentalRequestCreated`, `RentalRequestAccepted`, `RentalRequestRejected`, `ViewingScheduled`               |
+| Notification Service   | `NotificationCreated`, `NotificationSent`, `NotificationFailed`                                            |
 
 SQL-backed services that publish events should use the transactional outbox pattern. Event consumers should be
 idempotent and store processed event identifiers or projection offsets.
 
 ## Listing Lifecycle
 
-![Listing Lifecycle Diagram](documentation/images/listing_lifecycle.svg)
+![Listing Lifecycle](documentation/images/listing_lifecycle.svg)
 
 ## API Surface
 
@@ -346,8 +305,8 @@ Recommended public routes:
 
 | Method  | Route                                     | Service                |
 |---------|-------------------------------------------|------------------------|
-| `POST`  | Keycloak registration endpoint            | Keycloak               |
-| `POST`  | Keycloak token endpoint                   | Keycloak               |
+| `POST`  | `/api/identity/register`                  | Identity Service       |
+| `POST`  | `/api/identity/me/landlord-profile`       | Identity Service       |
 | `GET`   | `/api/profiles/me`                        | Profile Service        |
 | `PATCH` | `/api/profiles/me`                        | Profile Service        |
 | `POST`  | `/api/listings`                           | Listing Service        |
@@ -358,15 +317,27 @@ Recommended public routes:
 | `POST`  | `/api/rental-requests`                    | Rental Request Service |
 | `POST`  | `/api/moderation/listings/{id}/decisions` | Moderation Service     |
 
+Recommended internal routes:
+
+| Method | Route                             | Service         | Caller           |
+|--------|-----------------------------------|-----------------|------------------|
+| `POST` | `/internal/api/profiles/tenant`   | Profile Service | Identity Service |
+| `POST` | `/internal/api/profiles/landlord` | Profile Service | Identity Service |
+
+Internal routes require a service access token issued through Grant Type `client_credentials`. Profile Service must
+verify the token audience/client and reject user access tokens on `/internal/api/`.
+
 ## Reliability Guidelines
 
 - Use timeouts for all synchronous downstream calls.
 - Retry only idempotent operations or operations protected by idempotency keys.
 - Use circuit breakers around critical service-to-service calls.
 - Use optimistic locking on aggregates with user-visible lifecycle transitions.
+- Make Identity Service registration workflows recoverable when Keycloak succeeds but Profile Service is temporarily
+  unavailable.
+- Make Profile Service internal provisioning idempotent by `user_id` and profile type.
 - Use transactional outbox for SQL-to-Kafka publication.
 - Use dead-letter topics for messages that cannot be processed safely.
-- Make Kafka consumers idempotent, especially the `UserRegistered` consumer in Profile Service.
 - Propagate `correlationId` across HTTP headers, logs, and Kafka headers.
 
 ## Testing Strategy
@@ -381,13 +352,15 @@ Recommended public routes:
 
 Critical flows to test first:
 
-- Successful tenant self-registration in Keycloak.
-- Successful landlord self-registration in Keycloak.
+- Successful registration through Identity Service.
+- Keycloak user creation through a trusted backend client.
+- Client Credentials token acquisition by Identity Service.
+- Default tenant profile creation through `/internal/api/profiles/tenant`.
+- Rejection of user access tokens on Profile Service internal endpoints.
+- Idempotent tenant profile creation for duplicate registration retries.
+- Landlord profile creation for an existing user with the same `user_id`.
 - Rejection of self-service `ADMIN` and `MODERATOR` role assignment.
-- `UserRegistered` event publication by the Keycloak SPI.
-- Idempotent profile creation from duplicate `UserRegistered` events.
-- Profile-not-ready response before asynchronous provisioning completes.
-- Dead-letter handling for malformed identity events.
+- Recovery when Keycloak user creation succeeds but Profile Service is temporarily unavailable.
 - Listing publication and search projection update.
 
 ## Observability
@@ -411,7 +384,7 @@ A representative local environment may include:
 
 - PostgreSQL for Keycloak and SQL-backed services.
 - Keycloak.
-- Keycloak Registration Event SPI.
+- Identity Service.
 - Apache Kafka and Kafka UI.
 - MongoDB.
 - OpenSearch.
@@ -426,5 +399,6 @@ production: tenant verification, privacy controls, abuse detection, rate limitin
 backup strategy, and operational runbooks.
 
 That is acceptable for a demo. The important point is that the architecture does not paint the project into a corner.
-Each service owns a coherent part of the domain, each data model has room to evolve, and registration remains firmly
-inside the identity provider while profile provisioning is handled through explicit, idempotent events.
+Each service owns a coherent part of the domain, each data model has room to evolve, and registration keeps credentials
+inside the identity provider while profile provisioning is handled through an explicit, idempotent Identity Service to
+Profile Service workflow.

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1018pt" height="963pt" viewBox="0.00 0.00 1018.00 963.00">
+<g id="graph0" class="graph" transform="scale(2.77778 2.77778) rotate(0) translate(4 342.8)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-342.8 362.36,-342.8 362.36,4 -4,4"/>
+<!-- rental_requests -->
+<g id="node1" class="node">
+<title>rental_requests</title>
+<polygon fill="none" stroke="black" points="98.86,-171.1 98.86,-338.3 259.5,-338.3 259.5,-171.1 98.86,-171.1"/>
+<text xml:space="preserve" text-anchor="middle" x="179.18" y="-321.7" font-family="Times,serif" font-size="14.00">rental_requests</text>
+<polyline fill="none" stroke="black" points="98.86,-313.5 259.5,-313.5"/>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-296.9" font-family="Times,serif" font-size="14.00">id : uuid PK</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-280.1" font-family="Times,serif" font-size="14.00">listing_id : uuid</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-263.3" font-family="Times,serif" font-size="14.00">tenant_profile_id : uuid</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-246.5" font-family="Times,serif" font-size="14.00">landlord_profile_id : uuid</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-229.7" font-family="Times,serif" font-size="14.00">status : varchar(32)</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-212.9" font-family="Times,serif" font-size="14.00">message : text</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-196.1" font-family="Times,serif" font-size="14.00">created_at : timestamptz</text>
+<text xml:space="preserve" text-anchor="start" x="106.86" y="-179.3" font-family="Times,serif" font-size="14.00">updated_at : timestamptz</text>
+</g>
+<!-- rental_messages -->
+<g id="node2" class="node">
+<title>rental_messages</title>
+<polygon fill="none" stroke="black" points="0,-0.5 0,-117.3 170.36,-117.3 170.36,-0.5 0,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="85.18" y="-100.7" font-family="Times,serif" font-size="14.00">rental_messages</text>
+<polyline fill="none" stroke="black" points="0,-92.5 170.36,-92.5"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-75.9" font-family="Times,serif" font-size="14.00">id : uuid PK</text>
+<text xml:space="preserve" text-anchor="start" x="8" y="-59.1" font-family="Times,serif" font-size="14.00">rental_request_id : uuid FK</text>
+<text xml:space="preserve" text-anchor="start" x="8" y="-42.3" font-family="Times,serif" font-size="14.00">sender_profile_id : uuid</text>
+<text xml:space="preserve" text-anchor="start" x="8" y="-25.5" font-family="Times,serif" font-size="14.00">body : text</text>
+<text xml:space="preserve" text-anchor="start" x="8" y="-8.7" font-family="Times,serif" font-size="14.00">created_at : timestamptz</text>
+</g>
+<!-- rental_requests&#45;&gt;rental_messages -->
+<g id="edge1" class="edge">
+<title>rental_requests-&gt;rental_messages</title>
+<path fill="none" stroke="black" d="M138.91,-170.67C131.93,-156.28 124.75,-141.48 118,-127.57"/>
+<polygon fill="black" stroke="black" points="121.35,-126.44 113.83,-118.97 115.05,-129.5 121.35,-126.44"/>
+<text xml:space="preserve" text-anchor="middle" x="139.86" y="-140" font-family="Times,serif" font-size="14.00">1:N</text>
+</g>
+<!-- viewing_appointments -->
+<g id="node3" class="node">
+<title>viewing_appointments</title>
+<polygon fill="none" stroke="black" points="188,-0.5 188,-117.3 358.36,-117.3 358.36,-0.5 188,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="273.18" y="-100.7" font-family="Times,serif" font-size="14.00">viewing_appointments</text>
+<polyline fill="none" stroke="black" points="188,-92.5 358.36,-92.5"/>
+<text xml:space="preserve" text-anchor="start" x="196" y="-75.9" font-family="Times,serif" font-size="14.00">id : uuid PK</text>
+<text xml:space="preserve" text-anchor="start" x="196" y="-59.1" font-family="Times,serif" font-size="14.00">rental_request_id : uuid FK</text>
+<text xml:space="preserve" text-anchor="start" x="196" y="-42.3" font-family="Times,serif" font-size="14.00">scheduled_at : timestamptz</text>
+<text xml:space="preserve" text-anchor="start" x="196" y="-25.5" font-family="Times,serif" font-size="14.00">status : varchar(32)</text>
+<text xml:space="preserve" text-anchor="start" x="196" y="-8.7" font-family="Times,serif" font-size="14.00">created_at : timestamptz</text>
+</g>
+<!-- rental_requests&#45;&gt;viewing_appointments -->
+<g id="edge2" class="edge">
+<title>rental_requests-&gt;viewing_appointments</title>
+<path fill="none" stroke="black" d="M219.45,-170.67C226.43,-156.28 233.61,-141.48 240.36,-127.57"/>
+<polygon fill="black" stroke="black" points="243.31,-129.5 244.53,-118.97 237.01,-126.44 243.31,-129.5"/>
+<text xml:space="preserve" text-anchor="middle" x="245.1" y="-140" font-family="Times,serif" font-size="14.00">1:N</text>
+</g>
+</g>
+</svg>
