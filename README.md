@@ -231,32 +231,25 @@ boundaries.
 The following schemas are intentionally simple. They are suitable for a demo implementation while leaving clear room for
 future evolution.
 
-### Profile Service
-
-Profile Service stores only marketplace business data. It does not store credentials, usernames, password hashes,
-refresh tokens, sessions, Keycloak attributes, or identity-provider lifecycle data. The only identity-provider reference
-is `user_id`, which is copied from the JWT subject / Keycloak Admin API response and treated as an external
-identifier.
-
 ![Profile Service DB Schema](documentation/images/profile_service_db_schema.svg)
 
-### Listing Service
+---
 
 ![Listing Service DB Schema](documentation/images/listing_service_db_schema.svg)
 
-### Media Service
+---
 
 ![Media Service DB Schema](documentation/images/media_service_db_schema.svg)
 
-### Search Service
+---
 
 ![Search Service DB Schema](documentation/images/search_service_db_schema.svg)
 
-### Rental Request Service
+---
 
 ![Rental Request Service DB Schema](documentation/images/rental_request_service_db_schema.svg)
 
-### Moderation Service
+---
 
 ![Moderation Service DB Schema](documentation/images/moderation_service_db_schema.svg)
 
