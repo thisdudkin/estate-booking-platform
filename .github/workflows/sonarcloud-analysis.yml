@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
   workflow_dispatch:
 
@@ -43,16 +42,6 @@ jobs:
         working-directory: profile-service
         run: mvn ${{ env.MAVEN_CLI_OPTS }} clean verify
 
-      - name: Setup Java and Maven for Keycloak SPI
-        uses: ./.github/actions/setup-java-maven
-        with:
-          java-version: "21"
-          cache-dependency-path: keycloak/auth-event-listener-spi/pom.xml
-
-      - name: Build Keycloak SPI
-        working-directory: keycloak/auth-event-listener-spi
-        run: mvn ${{ env.MAVEN_CLI_OPTS }} clean verify
-
       - name: Run SonarCloud scan
         uses: SonarSource/sonarqube-scan-action@v8
         env:
@@ -62,6 +51,6 @@ jobs:
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
             -Dsonar.projectName=estate-booking-platform
-            -Dsonar.sources=profile-service/src/main/java,keycloak/auth-event-listener-spi/src/main/java
-            -Dsonar.java.binaries=profile-service/target/classes,keycloak/auth-event-listener-spi/target/classes
+            -Dsonar.sources=profile-service/src/main/java
+            -Dsonar.java.binaries=profile-service/target/classes
             -Dsonar.coverage.jacoco.xmlReportPaths=profile-service/target/site/jacoco/jacoco.xml,profile-service/target/site/jacoco-it/jacoco.xml

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
   workflow_dispatch:
 
@@ -28,9 +27,6 @@ jobs:
       fail-fast: false
       matrix:
         module:
-          - name: auth-event-listener-spi
-            path: keycloak/auth-event-listener-spi
-            java-version: "21"
           - name: profile-service
             path: profile-service
             java-version: "25"

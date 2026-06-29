@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
     tags:
       - "v*.*.*"
   workflow_dispatch:
@@ -27,9 +26,6 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - name: auth-event-listener-spi
-            context: keycloak/auth-event-listener-spi
-            dockerfile: keycloak/auth-event-listener-spi/Dockerfile
           - name: profile-service
             context: profile-service
             dockerfile: profile-service/Dockerfile

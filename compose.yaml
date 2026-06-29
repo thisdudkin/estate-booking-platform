@@ -18,9 +18,7 @@ services:
       retries: 20
 
   keycloak:
-    build:
-      context: ./keycloak/auth-event-listener-spi
-      dockerfile: Dockerfile
+    image: quay.io/keycloak/keycloak:26.6.4
     container_name: keycloak
     command: start-dev --import-realm
     ports:
@@ -28,14 +26,10 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://keycloak-postgres:5432/keycloak
       KC_DB_USERNAME: keycloak
       KC_DB_PASSWORD: keycloak
-
-      KC_SPI_EVENTS_LISTENER_REGISTRATION_EVENT_LISTENER_BOOTSTRAP_SERVERS: kafka-1:29092,kafka-2:29092,kafka-3:29092
-      KC_SPI_EVENTS_LISTENER_REGISTRATION_EVENT_LISTENER_TOPIC: identity.user-registered.v1
     depends_on:
       keycloak-db:
         condition: service_healthy
