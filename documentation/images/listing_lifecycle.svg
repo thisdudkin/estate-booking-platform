@@ -1,80 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="732pt" height="924pt" viewBox="0.00 0.00 732.00 924.00">
-<g id="graph0" class="graph" transform="scale(2.77778 2.77778) rotate(0) translate(4 328.8)">
-<title>G</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-328.8 259.39,-328.8 259.39,4 -4,4"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="779pt" height="288pt" viewBox="0.00 0.00 779.00 288.00">
+<g id="graph0" class="graph" transform="scale(1.85304 1.85304) rotate(0) translate(4 151.6)">
+<title>ListingLifecycle</title>
 <!-- Draft -->
 <g id="node1" class="node">
 <title>Draft</title>
-<polygon fill="none" stroke="black" points="147.11,-324.8 85.22,-324.8 85.22,-288.8 147.11,-288.8 147.11,-324.8"/>
-<text xml:space="preserve" text-anchor="middle" x="116.17" y="-302.6" font-family="Times,serif" font-size="14.00">DRAFT</text>
+<path fill="#f8fafc" stroke="#334155" d="M42,-94C42,-94 12,-94 12,-94 6,-94 0,-88 0,-82 0,-82 0,-70 0,-70 0,-64 6,-58 12,-58 12,-58 42,-58 42,-58 48,-58 54,-64 54,-70 54,-70 54,-82 54,-82 54,-88 48,-94 42,-94"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-73.3" font-family="Inter" font-size="9.00">DRAFT</text>
 </g>
 <!-- Waiting -->
 <g id="node2" class="node">
 <title>Waiting</title>
-<polygon fill="none" stroke="black" points="171.22,-236 61.11,-236 61.11,-177.6 171.22,-177.6 171.22,-236"/>
-<text xml:space="preserve" text-anchor="middle" x="116.17" y="-219.4" font-family="Times,serif" font-size="14.00">WAITING</text>
-<text xml:space="preserve" text-anchor="middle" x="116.17" y="-202.6" font-family="Times,serif" font-size="14.00">FOR</text>
-<text xml:space="preserve" text-anchor="middle" x="116.17" y="-185.8" font-family="Times,serif" font-size="14.00">MODERATION</text>
+<path fill="#f8fafc" stroke="#334155" d="M167.8,-95.8C167.8,-95.8 119.78,-95.8 119.78,-95.8 113.78,-95.8 107.78,-89.8 107.78,-83.8 107.78,-83.8 107.78,-68.2 107.78,-68.2 107.78,-62.2 113.78,-56.2 119.78,-56.2 119.78,-56.2 167.8,-56.2 167.8,-56.2 173.8,-56.2 179.8,-62.2 179.8,-68.2 179.8,-68.2 179.8,-83.8 179.8,-83.8 179.8,-89.8 173.8,-95.8 167.8,-95.8"/>
+<text xml:space="preserve" text-anchor="middle" x="143.79" y="-84.1" font-family="Inter" font-size="9.00">WAITING</text>
+<text xml:space="preserve" text-anchor="middle" x="143.79" y="-73.3" font-family="Inter" font-size="9.00">FOR</text>
+<text xml:space="preserve" text-anchor="middle" x="143.79" y="-62.5" font-family="Inter" font-size="9.00">MODERATION</text>
 </g>
 <!-- Draft&#45;&gt;Waiting -->
 <g id="edge1" class="edge">
 <title>Draft-&gt;Waiting</title>
-<path fill="none" stroke="black" d="M116.17,-288.73C116.17,-277.31 116.17,-261.78 116.17,-247.38"/>
-<polygon fill="black" stroke="black" points="119.67,-247.69 116.17,-237.69 112.67,-247.69 119.67,-247.69"/>
-<text xml:space="preserve" text-anchor="middle" x="135.22" y="-258.2" font-family="Times,serif" font-size="14.00">submit</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M54.38,-76C54.38,-76 100.43,-76 100.43,-76"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="100.43,-77.93 105.93,-76 100.43,-74.08 100.43,-77.93"/>
+<text xml:space="preserve" text-anchor="middle" x="80.89" y="-78.4" font-family="Inter" font-size="8.00">submit</text>
 </g>
 <!-- Archived -->
 <g id="node5" class="node">
 <title>Archived</title>
-<polygon fill="none" stroke="black" points="88.33,-36 0,-36 0,0 88.33,0 88.33,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="44.17" y="-13.8" font-family="Times,serif" font-size="14.00">ARCHIVED</text>
+<path fill="#f8fafc" stroke="#334155" d="M400.14,-132C400.14,-132 366.13,-132 366.13,-132 360.13,-132 354.13,-126 354.13,-120 354.13,-120 354.13,-108 354.13,-108 354.13,-102 360.13,-96 366.13,-96 366.13,-96 400.14,-96 400.14,-96 406.14,-96 412.14,-102 412.14,-108 412.14,-108 412.14,-120 412.14,-120 412.14,-126 406.14,-132 400.14,-132"/>
+<text xml:space="preserve" text-anchor="middle" x="383.13" y="-111.3" font-family="Inter" font-size="9.00">ARCHIVED</text>
 </g>
 <!-- Draft&#45;&gt;Archived -->
 <g id="edge6" class="edge">
 <title>Draft-&gt;Archived</title>
-<path fill="none" stroke="black" d="M93.45,-288.34C78.78,-275.6 60.86,-256.95 52.17,-236 25.99,-172.96 32.84,-90.55 39.09,-47.7"/>
-<polygon fill="black" stroke="black" points="42.53,-48.38 40.62,-37.96 35.61,-47.3 42.53,-48.38"/>
-<text xml:space="preserve" text-anchor="middle" x="51.49" y="-147" font-family="Times,serif" font-size="14.00">delete</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M27.14,-94.13C27.14,-104.71 27.14,-116 27.14,-116 27.14,-116 346.84,-116 346.84,-116"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="346.84,-117.93 352.34,-116 346.84,-114.08 346.84,-117.93"/>
+<text xml:space="preserve" text-anchor="middle" x="208.68" y="-140.4" font-family="Inter" font-size="8.00">delete</text>
 </g>
 <!-- Published -->
 <g id="node3" class="node">
 <title>Published</title>
-<polygon fill="none" stroke="black" points="149.67,-124.8 56.66,-124.8 56.66,-88.8 149.67,-88.8 149.67,-124.8"/>
-<text xml:space="preserve" text-anchor="middle" x="103.17" y="-102.6" font-family="Times,serif" font-size="14.00">PUBLISHED</text>
+<path fill="#f8fafc" stroke="#334155" d="M286.59,-100C286.59,-100 249.56,-100 249.56,-100 243.56,-100 237.56,-94 237.56,-88 237.56,-88 237.56,-76 237.56,-76 237.56,-70 243.56,-64 249.56,-64 249.56,-64 286.59,-64 286.59,-64 292.59,-64 298.59,-70 298.59,-76 298.59,-76 298.59,-88 298.59,-88 298.59,-94 292.59,-100 286.59,-100"/>
+<text xml:space="preserve" text-anchor="middle" x="268.07" y="-79.3" font-family="Inter" font-size="9.00">PUBLISHED</text>
 </g>
 <!-- Waiting&#45;&gt;Published -->
 <g id="edge2" class="edge">
 <title>Waiting-&gt;Published</title>
-<path fill="none" stroke="black" d="M106.03,-177.27C104.39,-171.49 102.94,-165.41 102.08,-159.6 100.97,-152.21 101.96,-150.27 102.08,-142.8 102.11,-140.75 102.15,-138.63 102.2,-136.49"/>
-<polygon fill="black" stroke="black" points="105.69,-136.85 102.47,-126.76 98.69,-136.66 105.69,-136.85"/>
-<text xml:space="preserve" text-anchor="middle" x="124.62" y="-147" font-family="Times,serif" font-size="14.00">approve</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M180.07,-79.9C180.07,-79.9 230.56,-79.9 230.56,-79.9"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="230.56,-81.83 236.06,-79.9 230.56,-77.98 230.56,-81.83"/>
+<text xml:space="preserve" text-anchor="middle" x="208.68" y="-100.4" font-family="Inter" font-size="8.00">approve</text>
 </g>
 <!-- Rejected -->
 <g id="node4" class="node">
 <title>Rejected</title>
-<polygon fill="none" stroke="black" points="255.39,-124.8 170.94,-124.8 170.94,-88.8 255.39,-88.8 255.39,-124.8"/>
-<text xml:space="preserve" text-anchor="middle" x="213.17" y="-102.6" font-family="Times,serif" font-size="14.00">REJECTED</text>
+<path fill="#f8fafc" stroke="#334155" d="M283.83,-36C283.83,-36 252.32,-36 252.32,-36 246.32,-36 240.32,-30 240.32,-24 240.32,-24 240.32,-12 240.32,-12 240.32,-6 246.32,0 252.32,0 252.32,0 283.83,0 283.83,0 289.83,0 295.83,-6 295.83,-12 295.83,-12 295.83,-24 295.83,-24 295.83,-30 289.83,-36 283.83,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="268.07" y="-15.3" font-family="Inter" font-size="9.00">REJECTED</text>
 </g>
 <!-- Waiting&#45;&gt;Rejected -->
 <g id="edge3" class="edge">
 <title>Waiting-&gt;Rejected</title>
-<path fill="none" stroke="black" d="M138.75,-177.23C148.03,-166.08 159.15,-153.45 170.08,-142.8 173.67,-139.3 177.58,-135.78 181.54,-132.38"/>
-<polygon fill="black" stroke="black" points="183.53,-135.28 188.98,-126.2 179.06,-129.9 183.53,-135.28"/>
-<text xml:space="preserve" text-anchor="middle" x="185.62" y="-147" font-family="Times,serif" font-size="14.00">reject</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M180.09,-60.1C216.8,-60.1 268.14,-60.1 268.14,-60.1 268.14,-60.1 268.14,-42.96 268.14,-42.96"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="270.07,-42.96 268.14,-37.46 266.22,-42.96 270.07,-42.96"/>
+<text xml:space="preserve" text-anchor="middle" x="208.68" y="-60.4" font-family="Inter" font-size="8.00">reject</text>
 </g>
 <!-- Published&#45;&gt;Archived -->
 <g id="edge5" class="edge">
 <title>Published-&gt;Archived</title>
-<path fill="none" stroke="black" d="M91.51,-88.65C83.16,-76.37 71.76,-59.59 62.23,-45.58"/>
-<polygon fill="black" stroke="black" points="65.37,-43.96 56.85,-37.66 59.58,-47.9 65.37,-43.96"/>
-<text xml:space="preserve" text-anchor="middle" x="99.55" y="-58.2" font-family="Times,serif" font-size="14.00">archive</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M298.91,-80C333,-80 383.14,-80 383.14,-80 383.14,-80 383.14,-88.94 383.14,-88.94"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="381.22,-88.94 383.14,-94.44 385.07,-88.94 381.22,-88.94"/>
+<text xml:space="preserve" text-anchor="middle" x="326.36" y="-98.4" font-family="Inter" font-size="8.00">archive</text>
 </g>
 <!-- Rejected&#45;&gt;Draft -->
 <g id="edge4" class="edge">
 <title>Rejected-&gt;Draft</title>
-<path fill="none" stroke="black" d="M211.66,-125.18C208.01,-157.56 195.97,-227.69 158.17,-270.8 155.07,-274.33 151.6,-277.81 148.02,-281.12"/>
-<polygon fill="black" stroke="black" points="145.95,-278.27 140.71,-287.48 150.55,-283.55 145.95,-278.27"/>
-<text xml:space="preserve" text-anchor="middle" x="212.34" y="-202.6" font-family="Times,serif" font-size="14.00">edit</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M239.96,-18C176.41,-18 27.14,-18 27.14,-18 27.14,-18 27.14,-50.79 27.14,-50.79"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="25.22,-50.79 27.14,-56.29 29.07,-50.79 25.22,-50.79"/>
+<text xml:space="preserve" text-anchor="middle" x="143.79" y="-21.4" font-family="Inter" font-size="8.00">edit</text>
 </g>
 </g>
 </svg>

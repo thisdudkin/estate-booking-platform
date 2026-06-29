@@ -1,177 +1,158 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1577pt" height="1929pt" viewBox="0.00 0.00 1577.00 1929.00">
-<g id="graph0" class="graph" transform="scale(2.77778 2.77778) rotate(0) translate(4 690.4)">
-<title>G</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-690.4 563.86,-690.4 563.86,4 -4,4"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080pt" height="299pt" viewBox="0.00 0.00 1080.00 299.00">
+<g id="graph0" class="graph" transform="scale(1.47596 1.47596) rotate(0) translate(4 198.45)">
+<title>CrossServiceReferences</title>
 <!-- Identity -->
 <g id="node1" class="node">
 <title>Identity</title>
-<polygon fill="none" stroke="black" points="344.2,-686.4 284.66,-686.4 284.66,-644.8 344.2,-644.8 344.2,-686.4"/>
-<text xml:space="preserve" text-anchor="middle" x="314.43" y="-669.8" font-family="Times,serif" font-size="14.00">Identity</text>
-<text xml:space="preserve" text-anchor="middle" x="314.43" y="-653" font-family="Times,serif" font-size="14.00">Service</text>
+<path fill="#fdf2f8" stroke="#334155" d="M42,-72.22C42,-72.22 12,-72.22 12,-72.22 6,-72.22 0,-66.22 0,-60.22 0,-60.22 0,-48.23 0,-48.23 0,-42.23 6,-36.23 12,-36.23 12,-36.23 42,-36.23 42,-36.23 48,-36.23 54,-42.23 54,-48.23 54,-48.23 54,-60.22 54,-60.22 54,-66.22 48,-72.22 42,-72.22"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-56.93" font-family="Inter" font-size="9.00">Identity</text>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-46.13" font-family="Inter" font-size="9.00">Service</text>
 </g>
 <!-- Profile -->
 <g id="node2" class="node">
 <title>Profile</title>
-<polygon fill="none" stroke="black" points="343.42,-575.2 285.44,-575.2 285.44,-533.6 343.42,-533.6 343.42,-575.2"/>
-<text xml:space="preserve" text-anchor="middle" x="314.43" y="-558.6" font-family="Times,serif" font-size="14.00">Profile</text>
-<text xml:space="preserve" text-anchor="middle" x="314.43" y="-541.8" font-family="Times,serif" font-size="14.00">Service</text>
+<path fill="#f8fafc" stroke="#334155" d="M174.65,-72.22C174.65,-72.22 144.65,-72.22 144.65,-72.22 138.65,-72.22 132.65,-66.22 132.65,-60.22 132.65,-60.22 132.65,-48.23 132.65,-48.23 132.65,-42.23 138.65,-36.23 144.65,-36.23 144.65,-36.23 174.65,-36.23 174.65,-36.23 180.65,-36.23 186.65,-42.23 186.65,-48.23 186.65,-48.23 186.65,-60.22 186.65,-60.22 186.65,-66.22 180.65,-72.22 174.65,-72.22"/>
+<text xml:space="preserve" text-anchor="middle" x="159.65" y="-56.93" font-family="Inter" font-size="9.00">Profile</text>
+<text xml:space="preserve" text-anchor="middle" x="159.65" y="-46.13" font-family="Inter" font-size="9.00">Service</text>
 </g>
 <!-- Identity&#45;&gt;Profile -->
 <g id="edge1" class="edge">
 <title>Identity-&gt;Profile</title>
-<path fill="none" stroke="black" d="M314.43,-644.32C314.43,-628.23 314.43,-605.45 314.43,-586.98"/>
-<polygon fill="black" stroke="black" points="317.93,-587.09 314.43,-577.09 310.93,-587.09 317.93,-587.09"/>
-<text xml:space="preserve" text-anchor="middle" x="363.8" y="-614.2" font-family="Times,serif" font-size="14.00">/internal/api</text>
-<text xml:space="preserve" text-anchor="middle" x="363.8" y="-597.4" font-family="Times,serif" font-size="14.00">client_credentials</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M54.49,-54.23C54.49,-54.23 124.84,-54.23 124.84,-54.23"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="124.84,-56.33 130.84,-54.23 124.84,-52.13 124.84,-56.33"/>
+<text xml:space="preserve" text-anchor="middle" x="93.33" y="-56.62" font-family="Inter" font-size="8.00">/internal/api</text>
 </g>
 <!-- Listing -->
 <g id="node3" class="node">
 <title>Listing</title>
-<polygon fill="none" stroke="black" points="221.42,-449.9 163.44,-449.9 163.44,-408.3 221.42,-408.3 221.42,-449.9"/>
-<text xml:space="preserve" text-anchor="middle" x="192.43" y="-433.3" font-family="Times,serif" font-size="14.00">Listing</text>
-<text xml:space="preserve" text-anchor="middle" x="192.43" y="-416.5" font-family="Times,serif" font-size="14.00">Service</text>
+<path fill="#f8fafc" stroke="#334155" d="M298.2,-115.22C298.2,-115.22 268.2,-115.22 268.2,-115.22 262.2,-115.22 256.2,-109.22 256.2,-103.22 256.2,-103.22 256.2,-91.22 256.2,-91.22 256.2,-85.22 262.2,-79.22 268.2,-79.22 268.2,-79.22 298.2,-79.22 298.2,-79.22 304.2,-79.22 310.2,-85.22 310.2,-91.22 310.2,-91.22 310.2,-103.22 310.2,-103.22 310.2,-109.22 304.2,-115.22 298.2,-115.22"/>
+<text xml:space="preserve" text-anchor="middle" x="283.2" y="-99.92" font-family="Inter" font-size="9.00">Listing</text>
+<text xml:space="preserve" text-anchor="middle" x="283.2" y="-89.12" font-family="Inter" font-size="9.00">Service</text>
 </g>
 <!-- Profile&#45;&gt;Listing -->
 <g id="edge6" class="edge">
 <title>Profile-&gt;Listing</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M285.41,-533.28C278.24,-527.84 270.76,-521.75 264.28,-515.6 246,-498.26 227.76,-476.5 214.24,-459.27"/>
-<polygon fill="black" stroke="black" points="217.05,-457.18 208.17,-451.42 211.52,-461.47 217.05,-457.18"/>
-<text xml:space="preserve" text-anchor="middle" x="292.85" y="-503" font-family="Times,serif" font-size="14.00">profile ids</text>
-</g>
-<!-- Rental -->
-<g id="node4" class="node">
-<title>Rental</title>
-<polygon fill="none" stroke="black" points="92.98,-324.6 31.88,-324.6 31.88,-266.2 92.98,-266.2 92.98,-324.6"/>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-308" font-family="Times,serif" font-size="14.00">Rental</text>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-291.2" font-family="Times,serif" font-size="14.00">Request</text>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-274.4" font-family="Times,serif" font-size="14.00">Service</text>
-</g>
-<!-- Profile&#45;&gt;Rental -->
-<g id="edge7" class="edge">
-<title>Profile-&gt;Rental</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M285.13,-552.56C238,-549.52 145.76,-536.36 97.28,-480.8 62.48,-440.92 57.81,-377.39 59.05,-336.29"/>
-<polygon fill="black" stroke="black" points="62.54,-336.48 59.5,-326.33 55.55,-336.16 62.54,-336.48"/>
-<text xml:space="preserve" text-anchor="middle" x="125.85" y="-424.9" font-family="Times,serif" font-size="14.00">profile ids</text>
-</g>
-<!-- Kafka -->
-<g id="node7" class="node">
-<title>Kafka</title>
-<path fill="none" stroke="black" d="M333.43,-310.13C333.43,-311.93 321.33,-313.4 306.43,-313.4 291.53,-313.4 279.43,-311.93 279.43,-310.13 279.43,-310.13 279.43,-280.67 279.43,-280.67 279.43,-278.87 291.53,-277.4 306.43,-277.4 321.33,-277.4 333.43,-278.87 333.43,-280.67 333.43,-280.67 333.43,-310.13 333.43,-310.13"/>
-<path fill="none" stroke="black" d="M333.43,-310.13C333.43,-308.32 321.33,-306.85 306.43,-306.85 291.53,-306.85 279.43,-308.32 279.43,-310.13"/>
-<text xml:space="preserve" text-anchor="middle" x="306.43" y="-291.2" font-family="Times,serif" font-size="14.00">Kafka</text>
-</g>
-<!-- Profile&#45;&gt;Kafka -->
-<g id="edge10" class="edge">
-<title>Profile-&gt;Kafka</title>
-<path fill="none" stroke="black" d="M318.82,-533.49C319.9,-527.74 320.89,-521.45 321.43,-515.6 328.46,-439.03 333.45,-418.54 321.43,-342.6 320.48,-336.61 318.88,-330.34 317.08,-324.42"/>
-<polygon fill="black" stroke="black" points="320.44,-323.43 313.93,-315.07 313.8,-325.66 320.44,-323.43"/>
-<text xml:space="preserve" text-anchor="middle" x="369.51" y="-424.9" font-family="Times,serif" font-size="14.00">ProfileCreated</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" stroke-dasharray="5,2" d="M186.97,-63.34C223.23,-63.34 282.73,-63.34 282.73,-63.34 282.73,-63.34 282.73,-71.73 282.73,-71.73"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="280.63,-71.73 282.73,-77.73 284.83,-71.73 280.63,-71.73"/>
+<text xml:space="preserve" text-anchor="middle" x="221.43" y="-84.62" font-family="Inter" font-size="8.00">profile id</text>
 </g>
 <!-- ProfileDB -->
 <g id="node8" class="node">
 <title>ProfileDB</title>
-<path fill="none" stroke="black" d="M559.86,-471.4C559.86,-476.59 531.88,-480.8 497.43,-480.8 462.98,-480.8 435,-476.59 435,-471.4 435,-471.4 435,-386.8 435,-386.8 435,-381.61 462.98,-377.4 497.43,-377.4 531.88,-377.4 559.86,-381.61 559.86,-386.8 559.86,-386.8 559.86,-471.4 559.86,-471.4"/>
-<path fill="none" stroke="black" d="M559.86,-471.4C559.86,-466.21 531.88,-462 497.43,-462 462.98,-462 435,-466.21 435,-471.4"/>
-<text xml:space="preserve" text-anchor="middle" x="497.43" y="-450.1" font-family="Times,serif" font-size="14.00">Profile DB</text>
-<text xml:space="preserve" text-anchor="middle" x="497.43" y="-433.3" font-family="Times,serif" font-size="14.00">user_id</text>
-<text xml:space="preserve" text-anchor="middle" x="497.43" y="-416.5" font-family="Times,serif" font-size="14.00">tenant_profile_id</text>
-<text xml:space="preserve" text-anchor="middle" x="497.43" y="-399.7" font-family="Times,serif" font-size="14.00">landlord_profile_id</text>
+<path fill="#fff7ed" stroke="#334155" d="M310.2,-49.5C310.2,-52.23 298.1,-54.45 283.2,-54.45 268.3,-54.45 256.2,-52.23 256.2,-49.5 256.2,-49.5 256.2,-4.95 256.2,-4.95 256.2,-2.22 268.3,0 283.2,0 298.1,0 310.2,-2.22 310.2,-4.95 310.2,-4.95 310.2,-49.5 310.2,-49.5"/>
+<path fill="none" stroke="#334155" d="M310.2,-49.5C310.2,-46.77 298.1,-44.55 283.2,-44.55 268.3,-44.55 256.2,-46.77 256.2,-49.5"/>
+<text xml:space="preserve" text-anchor="middle" x="283.2" y="-35.32" font-family="Inter" font-size="9.00">Profile DB</text>
+<text xml:space="preserve" text-anchor="middle" x="283.2" y="-24.52" font-family="Inter" font-size="9.00">user_id</text>
+<text xml:space="preserve" text-anchor="middle" x="283.2" y="-13.73" font-family="Inter" font-size="9.00">profile_id</text>
 </g>
 <!-- Profile&#45;&gt;ProfileDB -->
 <g id="edge2" class="edge">
 <title>Profile-&gt;ProfileDB</title>
-<path fill="none" stroke="black" d="M343.83,-533.59C365.8,-518.79 396.81,-497.9 425.22,-478.75"/>
-<polygon fill="black" stroke="black" points="427.14,-481.68 433.48,-473.19 423.23,-475.87 427.14,-481.68"/>
-<text xml:space="preserve" text-anchor="middle" x="409.75" y="-503" font-family="Times,serif" font-size="14.00">owns</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M187.07,-45.34C187.07,-45.34 248.49,-45.34 248.49,-45.34"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="248.49,-47.44 254.49,-45.34 248.49,-43.24 248.49,-47.44"/>
+<text xml:space="preserve" text-anchor="middle" x="221.43" y="-29.62" font-family="Inter" font-size="8.00">owns</text>
+</g>
+<!-- Rental -->
+<g id="node4" class="node">
+<title>Rental</title>
+<path fill="#f8fafc" stroke="#334155" d="M434.18,-184.03C434.18,-184.03 404.18,-184.03 404.18,-184.03 398.18,-184.03 392.18,-178.03 392.18,-172.03 392.18,-172.03 392.18,-156.42 392.18,-156.42 392.18,-150.42 398.18,-144.42 404.18,-144.42 404.18,-144.42 434.18,-144.42 434.18,-144.42 440.18,-144.42 446.18,-150.42 446.18,-156.42 446.18,-156.42 446.18,-172.03 446.18,-172.03 446.18,-178.03 440.18,-184.03 434.18,-184.03"/>
+<text xml:space="preserve" text-anchor="middle" x="419.18" y="-172.32" font-family="Inter" font-size="9.00">Rental</text>
+<text xml:space="preserve" text-anchor="middle" x="419.18" y="-161.52" font-family="Inter" font-size="9.00">Request</text>
+<text xml:space="preserve" text-anchor="middle" x="419.18" y="-150.72" font-family="Inter" font-size="9.00">Service</text>
 </g>
 <!-- Listing&#45;&gt;Rental -->
-<g id="edge8" class="edge">
+<g id="edge7" class="edge">
 <title>Listing-&gt;Rental</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M169.79,-407.84C155.03,-394.41 135.52,-376.23 119.03,-359.4 110.93,-351.13 102.46,-341.99 94.61,-333.29"/>
-<polygon fill="black" stroke="black" points="97.29,-331.04 88.01,-325.92 92.07,-335.7 97.29,-331.04"/>
-<text xml:space="preserve" text-anchor="middle" x="143.73" y="-346.8" font-family="Times,serif" font-size="14.00">listing id</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" stroke-dasharray="5,2" d="M282.73,-115.53C282.73,-135.37 282.73,-164.22 282.73,-164.22 282.73,-164.22 384.53,-164.22 384.53,-164.22"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="384.53,-166.33 390.53,-164.23 384.53,-162.13 384.53,-166.33"/>
+<text xml:space="preserve" text-anchor="middle" x="344.31" y="-154.63" font-family="Inter" font-size="8.00">listing id</text>
+</g>
+<!-- Kafka -->
+<g id="node7" class="node">
+<title>Kafka</title>
+<path fill="#fff7ed" stroke="#334155" d="M446.18,-111.95C446.18,-113.76 434.08,-115.22 419.18,-115.22 404.28,-115.22 392.18,-113.76 392.18,-111.95 392.18,-111.95 392.18,-82.5 392.18,-82.5 392.18,-80.69 404.28,-79.22 419.18,-79.22 434.08,-79.22 446.18,-80.69 446.18,-82.5 446.18,-82.5 446.18,-111.95 446.18,-111.95"/>
+<path fill="none" stroke="#334155" d="M446.18,-111.95C446.18,-110.15 434.08,-108.68 419.18,-108.68 404.28,-108.68 392.18,-110.15 392.18,-111.95"/>
+<text xml:space="preserve" text-anchor="middle" x="419.18" y="-94.53" font-family="Inter" font-size="9.00">Kafka</text>
 </g>
 <!-- Listing&#45;&gt;Kafka -->
-<g id="edge9" class="edge">
+<g id="edge8" class="edge">
 <title>Listing-&gt;Kafka</title>
-<path fill="none" stroke="black" d="M196.42,-408.14C201.01,-389.44 210.12,-361.58 226.53,-342.6 238.03,-329.31 254.34,-318.92 269.23,-311.4"/>
-<polygon fill="black" stroke="black" points="270.34,-314.74 277.87,-307.29 267.34,-308.42 270.34,-314.74"/>
-<text xml:space="preserve" text-anchor="middle" x="273.98" y="-346.8" font-family="Times,serif" font-size="14.00">ListingPublished</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M310.39,-103.22C310.39,-103.22 384.67,-103.22 384.67,-103.22"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="384.67,-105.33 390.67,-103.23 384.67,-101.13 384.67,-105.33"/>
+<text xml:space="preserve" text-anchor="middle" x="344.31" y="-99.62" font-family="Inter" font-size="8.00">events</text>
 </g>
 <!-- ListingDB -->
 <g id="node9" class="node">
 <title>ListingDB</title>
-<path fill="none" stroke="black" d="M235.86,-318.8C235.86,-321.67 207.88,-324 173.43,-324 138.98,-324 111,-321.67 111,-318.8 111,-318.8 111,-272 111,-272 111,-269.13 138.98,-266.8 173.43,-266.8 207.88,-266.8 235.86,-269.13 235.86,-272 235.86,-272 235.86,-318.8 235.86,-318.8"/>
-<path fill="none" stroke="black" d="M235.86,-318.8C235.86,-315.93 207.88,-313.6 173.43,-313.6 138.98,-313.6 111,-315.93 111,-318.8"/>
-<text xml:space="preserve" text-anchor="middle" x="173.43" y="-299.6" font-family="Times,serif" font-size="14.00">Listing DB</text>
-<text xml:space="preserve" text-anchor="middle" x="173.43" y="-282.8" font-family="Times,serif" font-size="14.00">landlord_profile_id</text>
+<path fill="#fff7ed" stroke="#334155" d="M459.93,-50.42C459.93,-52.41 441.66,-54.02 419.18,-54.02 396.69,-54.02 378.43,-52.41 378.43,-50.42 378.43,-50.42 378.43,-18.03 378.43,-18.03 378.43,-16.04 396.69,-14.43 419.18,-14.43 441.66,-14.43 459.93,-16.04 459.93,-18.03 459.93,-18.03 459.93,-50.42 459.93,-50.42"/>
+<path fill="none" stroke="#334155" d="M459.93,-50.42C459.93,-48.44 441.66,-46.82 419.18,-46.82 396.69,-46.82 378.43,-48.44 378.43,-50.42"/>
+<text xml:space="preserve" text-anchor="middle" x="419.18" y="-36.92" font-family="Inter" font-size="9.00">Listing DB</text>
+<text xml:space="preserve" text-anchor="middle" x="419.18" y="-26.12" font-family="Inter" font-size="9.00">landlord_profile_id</text>
 </g>
 <!-- Listing&#45;&gt;ListingDB -->
 <g id="edge3" class="edge">
 <title>Listing-&gt;ListingDB</title>
-<path fill="none" stroke="black" d="M185.52,-407.94C181.24,-394.4 176.14,-376.05 173.87,-359.4 172.84,-351.84 172.34,-343.73 172.16,-335.92"/>
-<polygon fill="black" stroke="black" points="175.66,-335.92 172.1,-325.94 168.66,-335.95 175.66,-335.92"/>
-<text xml:space="preserve" text-anchor="middle" x="188.65" y="-346.8" font-family="Times,serif" font-size="14.00">owns</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M310.68,-91.22C341.05,-91.22 385.73,-91.22 385.73,-91.22 385.73,-91.22 385.73,-60.88 385.73,-60.88"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="387.83,-60.88 385.73,-54.88 383.63,-60.88 387.83,-60.88"/>
+<text xml:space="preserve" text-anchor="middle" x="344.31" y="-36.62" font-family="Inter" font-size="8.00">owns</text>
 </g>
 <!-- RentalDB -->
 <g id="node10" class="node">
 <title>RentalDB</title>
-<path fill="none" stroke="black" d="M124.86,-204C124.86,-209.19 96.88,-213.4 62.43,-213.4 27.98,-213.4 0,-209.19 0,-204 0,-204 0,-119.4 0,-119.4 0,-114.21 27.98,-110 62.43,-110 96.88,-110 124.86,-114.21 124.86,-119.4 124.86,-119.4 124.86,-204 124.86,-204"/>
-<path fill="none" stroke="black" d="M124.86,-204C124.86,-198.81 96.88,-194.6 62.43,-194.6 27.98,-194.6 0,-198.81 0,-204"/>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-182.7" font-family="Times,serif" font-size="14.00">Rental DB</text>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-165.9" font-family="Times,serif" font-size="14.00">tenant_profile_id</text>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-149.1" font-family="Times,serif" font-size="14.00">landlord_profile_id</text>
-<text xml:space="preserve" text-anchor="middle" x="62.43" y="-132.3" font-family="Times,serif" font-size="14.00">listing_id</text>
+<path fill="#fff7ed" stroke="#334155" d="M608.09,-189.5C608.09,-192.23 591.62,-194.45 571.34,-194.45 551.06,-194.45 534.59,-192.23 534.59,-189.5 534.59,-189.5 534.59,-144.95 534.59,-144.95 534.59,-142.22 551.06,-140 571.34,-140 591.62,-140 608.09,-142.22 608.09,-144.95 608.09,-144.95 608.09,-189.5 608.09,-189.5"/>
+<path fill="none" stroke="#334155" d="M608.09,-189.5C608.09,-186.77 591.62,-184.55 571.34,-184.55 551.06,-184.55 534.59,-186.77 534.59,-189.5"/>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-175.32" font-family="Inter" font-size="9.00">Rental DB</text>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-164.52" font-family="Inter" font-size="9.00">tenant_profile_id</text>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-153.72" font-family="Inter" font-size="9.00">listing_id</text>
 </g>
 <!-- Rental&#45;&gt;RentalDB -->
 <g id="edge4" class="edge">
 <title>Rental-&gt;RentalDB</title>
-<path fill="none" stroke="black" d="M62.43,-265.82C62.43,-253.82 62.43,-239.36 62.43,-225.12"/>
-<polygon fill="black" stroke="black" points="65.93,-225.3 62.43,-215.3 58.93,-225.3 65.93,-225.3"/>
-<text xml:space="preserve" text-anchor="middle" x="77.21" y="-235.6" font-family="Times,serif" font-size="14.00">owns</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M446.38,-164.22C446.38,-164.22 527,-164.22 527,-164.22"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="527,-166.33 533,-164.23 527,-162.13 527,-166.33"/>
+<text xml:space="preserve" text-anchor="middle" x="497.26" y="-169.63" font-family="Inter" font-size="8.00">owns</text>
 </g>
 <!-- Search -->
 <g id="node5" class="node">
 <title>Search</title>
-<polygon fill="none" stroke="black" points="380.42,-182.5 322.44,-182.5 322.44,-140.9 380.42,-140.9 380.42,-182.5"/>
-<text xml:space="preserve" text-anchor="middle" x="351.43" y="-165.9" font-family="Times,serif" font-size="14.00">Search</text>
-<text xml:space="preserve" text-anchor="middle" x="351.43" y="-149.1" font-family="Times,serif" font-size="14.00">Service</text>
+<path fill="#f8fafc" stroke="#334155" d="M586.34,-115.22C586.34,-115.22 556.34,-115.22 556.34,-115.22 550.34,-115.22 544.34,-109.22 544.34,-103.22 544.34,-103.22 544.34,-91.22 544.34,-91.22 544.34,-85.22 550.34,-79.22 556.34,-79.22 556.34,-79.22 586.34,-79.22 586.34,-79.22 592.34,-79.22 598.34,-85.22 598.34,-91.22 598.34,-91.22 598.34,-103.22 598.34,-103.22 598.34,-109.22 592.34,-115.22 586.34,-115.22"/>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-99.92" font-family="Inter" font-size="9.00">Search</text>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-89.12" font-family="Inter" font-size="9.00">Service</text>
 </g>
 <!-- SearchIndex -->
 <g id="node11" class="node">
 <title>SearchIndex</title>
-<path fill="none" stroke="black" d="M409.01,-52C409.01,-54.87 383.2,-57.2 351.43,-57.2 319.66,-57.2 293.85,-54.87 293.85,-52 293.85,-52 293.85,-5.2 293.85,-5.2 293.85,-2.33 319.66,0 351.43,0 383.2,0 409.01,-2.33 409.01,-5.2 409.01,-5.2 409.01,-52 409.01,-52"/>
-<path fill="none" stroke="black" d="M409.01,-52C409.01,-49.13 383.2,-46.8 351.43,-46.8 319.66,-46.8 293.85,-49.13 293.85,-52"/>
-<text xml:space="preserve" text-anchor="middle" x="351.43" y="-32.8" font-family="Times,serif" font-size="14.00">Search Index</text>
-<text xml:space="preserve" text-anchor="middle" x="351.43" y="-16" font-family="Times,serif" font-size="14.00">listing documents</text>
+<path fill="#fff7ed" stroke="#334155" d="M723.73,-111.95C723.73,-113.76 710.56,-115.22 694.35,-115.22 678.15,-115.22 664.98,-113.76 664.98,-111.95 664.98,-111.95 664.98,-82.5 664.98,-82.5 664.98,-80.69 678.15,-79.22 694.35,-79.22 710.56,-79.22 723.73,-80.69 723.73,-82.5 723.73,-82.5 723.73,-111.95 723.73,-111.95"/>
+<path fill="none" stroke="#334155" d="M723.73,-111.95C723.73,-110.15 710.56,-108.68 694.35,-108.68 678.15,-108.68 664.98,-110.15 664.98,-111.95"/>
+<text xml:space="preserve" text-anchor="middle" x="694.35" y="-94.53" font-family="Inter" font-size="9.00">Search Index</text>
 </g>
 <!-- Search&#45;&gt;SearchIndex -->
 <g id="edge5" class="edge">
 <title>Search-&gt;SearchIndex</title>
-<path fill="none" stroke="black" d="M351.43,-140.5C351.43,-121.46 351.43,-92.39 351.43,-68.79"/>
-<polygon fill="black" stroke="black" points="354.93,-68.88 351.43,-58.88 347.93,-68.88 354.93,-68.88"/>
-<text xml:space="preserve" text-anchor="middle" x="366.21" y="-79.4" font-family="Times,serif" font-size="14.00">owns</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M598.64,-97.22C598.64,-97.22 657.18,-97.22 657.18,-97.22"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="657.18,-99.33 663.18,-97.23 657.18,-95.13 657.18,-99.33"/>
+<text xml:space="preserve" text-anchor="middle" x="636.53" y="-99.62" font-family="Inter" font-size="8.00">owns</text>
 </g>
 <!-- Notification -->
 <g id="node6" class="node">
 <title>Notification</title>
-<polygon fill="none" stroke="black" points="304.26,-182.5 220.61,-182.5 220.61,-140.9 304.26,-140.9 304.26,-182.5"/>
-<text xml:space="preserve" text-anchor="middle" x="262.43" y="-165.9" font-family="Times,serif" font-size="14.00">Notification</text>
-<text xml:space="preserve" text-anchor="middle" x="262.43" y="-149.1" font-family="Times,serif" font-size="14.00">Service</text>
+<path fill="#f8fafc" stroke="#334155" d="M586.84,-54.23C586.84,-54.23 555.83,-54.23 555.83,-54.23 549.83,-54.23 543.83,-48.23 543.83,-42.23 543.83,-42.23 543.83,-30.22 543.83,-30.22 543.83,-24.23 549.83,-18.23 555.83,-18.23 555.83,-18.23 586.84,-18.23 586.84,-18.23 592.84,-18.23 598.84,-24.23 598.84,-30.23 598.84,-30.23 598.84,-42.23 598.84,-42.23 598.84,-48.23 592.84,-54.23 586.84,-54.23"/>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-38.92" font-family="Inter" font-size="9.00">Notification</text>
+<text xml:space="preserve" text-anchor="middle" x="571.34" y="-28.12" font-family="Inter" font-size="9.00">Service</text>
 </g>
 <!-- Kafka&#45;&gt;Search -->
-<g id="edge11" class="edge">
+<g id="edge9" class="edge">
 <title>Kafka-&gt;Search</title>
-<path fill="none" stroke="black" d="M315.05,-277.11C319.12,-268.54 323.86,-257.97 327.43,-248.2 333.9,-230.49 339.67,-210.18 343.92,-193.81"/>
-<polygon fill="black" stroke="black" points="347.31,-194.69 346.37,-184.14 340.53,-192.97 347.31,-194.69"/>
-<text xml:space="preserve" text-anchor="middle" x="361.3" y="-235.6" font-family="Times,serif" font-size="14.00">projection</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M446.38,-103.22C446.38,-103.22 536.5,-103.22 536.5,-103.22"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="536.5,-105.33 542.5,-103.23 536.5,-101.13 536.5,-105.33"/>
+<text xml:space="preserve" text-anchor="middle" x="497.26" y="-99.62" font-family="Inter" font-size="8.00">projection</text>
 </g>
 <!-- Kafka&#45;&gt;Notification -->
-<g id="edge12" class="edge">
+<g id="edge10" class="edge">
 <title>Kafka-&gt;Notification</title>
-<path fill="none" stroke="black" d="M285.6,-277.73C277.28,-269.77 268.6,-259.52 264.08,-248.2 257.29,-231.23 256.65,-210.81 257.81,-194.18"/>
-<polygon fill="black" stroke="black" points="261.28,-194.64 258.77,-184.35 254.32,-193.96 261.28,-194.64"/>
-<text xml:space="preserve" text-anchor="middle" x="295.75" y="-235.6" font-family="Times,serif" font-size="14.00">side effects</text>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M446.6,-91.22C481.9,-91.22 538.73,-91.22 538.73,-91.22 538.73,-91.22 538.73,-36.13 538.73,-36.13 538.73,-36.13 539.21,-36.13 539.21,-36.13"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="536.18,-38.23 542.18,-36.13 536.18,-34.03 536.18,-38.23"/>
+<text xml:space="preserve" text-anchor="middle" x="497.26" y="-38.62" font-family="Inter" font-size="8.00">commands</text>
 </g>
 </g>
 </svg>
