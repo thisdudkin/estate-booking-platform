@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="582pt" height="480pt" viewBox="0.00 0.00 582.00 480.00">
+<g id="graph0" class="graph" transform="scale(2.06398 2.06398) rotate(0) translate(4 228.56)">
+<title>ListingServiceER</title>
+<!-- listings -->
+<g id="node1" class="node">
+<title>listings</title>
+<path fill="#f8fafc" stroke="#334155" d="M12,-70.9C12,-70.9 87.72,-70.9 87.72,-70.9 93.72,-70.9 99.72,-76.9 99.72,-82.9 99.72,-82.9 99.72,-131.86 99.72,-131.86 99.72,-137.86 93.72,-143.86 87.72,-143.86 87.72,-143.86 12,-143.86 12,-143.86 6,-143.86 0,-137.86 0,-131.86 0,-131.86 0,-82.9 0,-82.9 0,-76.9 6,-70.9 12,-70.9"/>
+<text xml:space="preserve" text-anchor="middle" x="15.16" y="-104.98" font-family="Inter" font-size="8.00">listings</text>
+<polyline fill="none" stroke="#334155" points="30.32,-70.9 30.32,-143.86"/>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-133.78" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-124.18" font-family="Inter" font-size="8.00">landlord_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-114.58" font-family="Inter" font-size="8.00">title</text>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-104.98" font-family="Inter" font-size="8.00">description</text>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-95.38" font-family="Inter" font-size="8.00">status</text>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-85.78" font-family="Inter" font-size="8.00">price_amount</text>
+<text xml:space="preserve" text-anchor="start" x="33.92" y="-76.18" font-family="Inter" font-size="8.00">price_currency</text>
+</g>
+<!-- listing_addresses -->
+<g id="node2" class="node">
+<title>listing_addresses</title>
+<path fill="#f8fafc" stroke="#334155" d="M162.22,-160.7C162.22,-160.7 262.19,-160.7 262.19,-160.7 268.19,-160.7 274.19,-166.7 274.19,-172.7 274.19,-172.7 274.19,-212.06 274.19,-212.06 274.19,-218.06 268.19,-224.06 262.19,-224.06 262.19,-224.06 162.22,-224.06 162.22,-224.06 156.22,-224.06 150.22,-218.06 150.22,-212.06 150.22,-212.06 150.22,-172.7 150.22,-172.7 150.22,-166.7 156.22,-160.7 162.22,-160.7"/>
+<text xml:space="preserve" text-anchor="middle" x="181.15" y="-189.98" font-family="Inter" font-size="8.00">listing_addresses</text>
+<polyline fill="none" stroke="#334155" points="212.08,-160.7 212.08,-224.06"/>
+<text xml:space="preserve" text-anchor="start" x="215.68" y="-213.98" font-family="Inter" font-size="8.00">listing_id PK/FK</text>
+<text xml:space="preserve" text-anchor="start" x="215.68" y="-204.38" font-family="Inter" font-size="8.00">country</text>
+<text xml:space="preserve" text-anchor="start" x="215.68" y="-194.78" font-family="Inter" font-size="8.00">city</text>
+<text xml:space="preserve" text-anchor="start" x="215.68" y="-185.18" font-family="Inter" font-size="8.00">street</text>
+<text xml:space="preserve" text-anchor="start" x="215.68" y="-175.58" font-family="Inter" font-size="8.00">house</text>
+<text xml:space="preserve" text-anchor="start" x="215.68" y="-165.98" font-family="Inter" font-size="8.00">apartment</text>
+</g>
+<!-- listings&#45;&gt;listing_addresses -->
+<g id="edge1" class="edge">
+<title>listings-&gt;listing_addresses</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M99.89,-139.56C147.58,-139.56 212.19,-139.56 212.19,-139.56 212.19,-139.56 212.19,-153.57 212.19,-153.57"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="210.26,-153.57 212.19,-159.07 214.11,-153.57 210.26,-153.57"/>
+<text xml:space="preserve" text-anchor="middle" x="124.97" y="-194.48" font-family="Inter" font-size="7.00">1:1</text>
+</g>
+<!-- listing_details -->
+<g id="node3" class="node">
+<title>listing_details</title>
+<path fill="#f8fafc" stroke="#334155" d="M167.11,-80.5C167.11,-80.5 257.3,-80.5 257.3,-80.5 263.3,-80.5 269.3,-86.5 269.3,-92.5 269.3,-92.5 269.3,-122.26 269.3,-122.26 269.3,-128.26 263.3,-134.26 257.3,-134.26 257.3,-134.26 167.11,-134.26 167.11,-134.26 161.11,-134.26 155.11,-128.26 155.11,-122.26 155.11,-122.26 155.11,-92.5 155.11,-92.5 155.11,-86.5 161.11,-80.5 167.11,-80.5"/>
+<text xml:space="preserve" text-anchor="middle" x="181.15" y="-104.98" font-family="Inter" font-size="8.00">listing_details</text>
+<polyline fill="none" stroke="#334155" points="207.2,-80.5 207.2,-134.26"/>
+<text xml:space="preserve" text-anchor="start" x="210.8" y="-124.18" font-family="Inter" font-size="8.00">listing_id PK/FK</text>
+<text xml:space="preserve" text-anchor="start" x="210.8" y="-114.58" font-family="Inter" font-size="8.00">rooms</text>
+<text xml:space="preserve" text-anchor="start" x="210.8" y="-104.98" font-family="Inter" font-size="8.00">floor</text>
+<text xml:space="preserve" text-anchor="start" x="210.8" y="-95.38" font-family="Inter" font-size="8.00">total_floors</text>
+<text xml:space="preserve" text-anchor="start" x="210.8" y="-85.78" font-family="Inter" font-size="8.00">area_m2</text>
+</g>
+<!-- listings&#45;&gt;listing_details -->
+<g id="edge2" class="edge">
+<title>listings-&gt;listing_details</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M99.9,-107.38C99.9,-107.38 147.81,-107.38 147.81,-107.38"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="147.81,-109.31 153.31,-107.38 147.81,-105.46 147.81,-109.31"/>
+<text xml:space="preserve" text-anchor="middle" x="124.97" y="-109.48" font-family="Inter" font-size="7.00">1:1</text>
+</g>
+<!-- listing_outbox -->
+<g id="node4" class="node">
+<title>listing_outbox</title>
+<path fill="#f8fafc" stroke="#334155" d="M173.24,-0.5C173.24,-0.5 251.18,-0.5 251.18,-0.5 257.18,-0.5 263.18,-6.5 263.18,-12.5 263.18,-12.5 263.18,-42.26 263.18,-42.26 263.18,-48.26 257.18,-54.26 251.18,-54.26 251.18,-54.26 173.24,-54.26 173.24,-54.26 167.24,-54.26 161.24,-48.26 161.24,-42.26 161.24,-42.26 161.24,-12.5 161.24,-12.5 161.24,-6.5 167.24,-0.5 173.24,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="187.95" y="-24.98" font-family="Inter" font-size="8.00">listing_outbox</text>
+<polyline fill="none" stroke="#334155" points="214.66,-0.5 214.66,-54.26"/>
+<text xml:space="preserve" text-anchor="start" x="218.26" y="-44.18" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="218.26" y="-34.58" font-family="Inter" font-size="8.00">aggregate_id</text>
+<text xml:space="preserve" text-anchor="start" x="218.26" y="-24.98" font-family="Inter" font-size="8.00">event_type</text>
+<text xml:space="preserve" text-anchor="start" x="218.26" y="-15.38" font-family="Inter" font-size="8.00">payload</text>
+<text xml:space="preserve" text-anchor="start" x="218.26" y="-5.78" font-family="Inter" font-size="8.00">created_at</text>
+</g>
+<!-- listings&#45;&gt;listing_outbox -->
+<g id="edge3" class="edge">
+<title>listings-&gt;listing_outbox</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M99.89,-75.2C147.58,-75.2 212.19,-75.2 212.19,-75.2 212.19,-75.2 212.19,-61.5 212.19,-61.5"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="214.11,-61.5 212.19,-56 210.26,-61.5 214.11,-61.5"/>
+<text xml:space="preserve" text-anchor="middle" x="124.97" y="-29.48" font-family="Inter" font-size="7.00">1:N</text>
+</g>
+</g>
+</svg>

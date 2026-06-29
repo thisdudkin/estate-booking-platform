@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960pt" height="145pt" viewBox="0.00 0.00 960.00 145.00">
+<g id="graph0" class="graph" transform="scale(2.01029 2.01029) rotate(0) translate(4 68.36)">
+<title>ModerationServiceER</title>
+<!-- moderation_cases -->
+<g id="node1" class="node">
+<title>moderation_cases</title>
+<path fill="#f8fafc" stroke="#334155" d="M178.31,-5.3C178.31,-5.3 262.01,-5.3 262.01,-5.3 268.01,-5.3 274.01,-11.3 274.01,-17.3 274.01,-17.3 274.01,-47.06 274.01,-47.06 274.01,-53.06 268.01,-59.06 262.01,-59.06 262.01,-59.06 178.31,-59.06 178.31,-59.06 172.31,-59.06 166.31,-53.06 166.31,-47.06 166.31,-47.06 166.31,-17.3 166.31,-17.3 166.31,-11.3 172.31,-5.3 178.31,-5.3"/>
+<text xml:space="preserve" text-anchor="middle" x="198.57" y="-29.78" font-family="Inter" font-size="8.00">moderation_cases</text>
+<polyline fill="none" stroke="#334155" points="230.83,-5.3 230.83,-59.06"/>
+<text xml:space="preserve" text-anchor="start" x="234.43" y="-48.98" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="234.43" y="-39.38" font-family="Inter" font-size="8.00">target_type</text>
+<text xml:space="preserve" text-anchor="start" x="234.43" y="-29.78" font-family="Inter" font-size="8.00">target_id</text>
+<text xml:space="preserve" text-anchor="start" x="234.43" y="-20.18" font-family="Inter" font-size="8.00">status</text>
+<text xml:space="preserve" text-anchor="start" x="234.43" y="-10.58" font-family="Inter" font-size="8.00">reason</text>
+</g>
+<!-- moderation_decisions -->
+<g id="node2" class="node">
+<title>moderation_decisions</title>
+<path fill="#f8fafc" stroke="#334155" d="M336.51,-5.3C336.51,-5.3 457.54,-5.3 457.54,-5.3 463.54,-5.3 469.54,-11.3 469.54,-17.3 469.54,-17.3 469.54,-47.06 469.54,-47.06 469.54,-53.06 463.54,-59.06 457.54,-59.06 457.54,-59.06 336.51,-59.06 336.51,-59.06 330.51,-59.06 324.51,-53.06 324.51,-47.06 324.51,-47.06 324.51,-17.3 324.51,-17.3 324.51,-11.3 330.51,-5.3 336.51,-5.3"/>
+<text xml:space="preserve" text-anchor="middle" x="363.21" y="-29.78" font-family="Inter" font-size="8.00">moderation_decisions</text>
+<polyline fill="none" stroke="#334155" points="401.92,-5.3 401.92,-59.06"/>
+<text xml:space="preserve" text-anchor="start" x="405.52" y="-48.98" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="405.52" y="-39.38" font-family="Inter" font-size="8.00">case_id FK</text>
+<text xml:space="preserve" text-anchor="start" x="405.52" y="-29.78" font-family="Inter" font-size="8.00">moderator_user_id</text>
+<text xml:space="preserve" text-anchor="start" x="405.52" y="-20.18" font-family="Inter" font-size="8.00">decision</text>
+<text xml:space="preserve" text-anchor="start" x="405.52" y="-10.58" font-family="Inter" font-size="8.00">comment</text>
+</g>
+<!-- moderation_cases&#45;&gt;moderation_decisions -->
+<g id="edge1" class="edge">
+<title>moderation_cases-&gt;moderation_decisions</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M274.19,-32.18C274.19,-32.18 317.25,-32.18 317.25,-32.18"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="317.25,-34.11 322.75,-32.18 317.25,-30.26 317.25,-34.11"/>
+<text xml:space="preserve" text-anchor="middle" x="299.26" y="-34.28" font-family="Inter" font-size="7.00">1:N</text>
+</g>
+<!-- complaints -->
+<g id="node3" class="node">
+<title>complaints</title>
+<path fill="#f8fafc" stroke="#334155" d="M12,-0.5C12,-0.5 98.37,-0.5 98.37,-0.5 104.37,-0.5 110.37,-6.5 110.37,-12.5 110.37,-12.5 110.37,-51.86 110.37,-51.86 110.37,-57.86 104.37,-63.86 98.37,-63.86 98.37,-63.86 12,-63.86 12,-63.86 6,-63.86 0,-57.86 0,-51.86 0,-51.86 0,-12.5 0,-12.5 0,-6.5 6,-0.5 12,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="21.15" y="-29.78" font-family="Inter" font-size="8.00">complaints</text>
+<polyline fill="none" stroke="#334155" points="42.31,-0.5 42.31,-63.86"/>
+<text xml:space="preserve" text-anchor="start" x="45.91" y="-53.78" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="45.91" y="-44.18" font-family="Inter" font-size="8.00">reporter_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="45.91" y="-34.58" font-family="Inter" font-size="8.00">target_type</text>
+<text xml:space="preserve" text-anchor="start" x="45.91" y="-24.98" font-family="Inter" font-size="8.00">target_id</text>
+<text xml:space="preserve" text-anchor="start" x="45.91" y="-15.38" font-family="Inter" font-size="8.00">reason</text>
+<text xml:space="preserve" text-anchor="start" x="45.91" y="-5.78" font-family="Inter" font-size="8.00">status</text>
+</g>
+<!-- complaints&#45;&gt;moderation_cases -->
+<g id="edge2" class="edge">
+<title>complaints-&gt;moderation_cases</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M110.58,-32.18C110.58,-32.18 159.17,-32.18 159.17,-32.18"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="159.17,-34.11 164.67,-32.18 159.17,-30.26 159.17,-34.11"/>
+<text xml:space="preserve" text-anchor="middle" x="138.34" y="-34.28" font-family="Inter" font-size="7.00">0..1:1</text>
+</g>
+</g>
+</svg>

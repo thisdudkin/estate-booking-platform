@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="584pt" height="360pt" viewBox="0.00 0.00 584.00 360.00">
+<g id="graph0" class="graph" transform="scale(2.23104 2.23104) rotate(0) translate(4 157.36)">
+<title>SearchServiceER</title>
+<!-- listing_documents -->
+<g id="node1" class="node">
+<title>listing_documents</title>
+<path fill="#f8fafc" stroke="#334155" d="M12,-79.9C12,-79.9 123.27,-79.9 123.27,-79.9 129.27,-79.9 135.27,-85.9 135.27,-91.9 135.27,-91.9 135.27,-140.86 135.27,-140.86 135.27,-146.86 129.27,-152.86 123.27,-152.86 123.27,-152.86 12,-152.86 12,-152.86 6,-152.86 0,-146.86 0,-140.86 0,-140.86 0,-91.9 0,-91.9 0,-85.9 6,-79.9 12,-79.9"/>
+<text xml:space="preserve" text-anchor="middle" x="32.93" y="-113.98" font-family="Inter" font-size="8.00">listing_documents</text>
+<polyline fill="none" stroke="#334155" points="65.86,-79.9 65.86,-152.86"/>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-142.78" font-family="Inter" font-size="8.00">listing_id</text>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-133.18" font-family="Inter" font-size="8.00">landlord_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-123.58" font-family="Inter" font-size="8.00">title</text>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-113.98" font-family="Inter" font-size="8.00">city</text>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-104.38" font-family="Inter" font-size="8.00">price_amount</text>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-94.78" font-family="Inter" font-size="8.00">rooms</text>
+<text xml:space="preserve" text-anchor="start" x="69.46" y="-85.18" font-family="Inter" font-size="8.00">status</text>
+</g>
+<!-- opensearch -->
+<g id="node3" class="node">
+<title>opensearch</title>
+<path fill="#f8fafc" stroke="#334155" d="M253.57,-86.11C253.57,-87.91 241.47,-89.38 226.57,-89.38 211.67,-89.38 199.57,-87.91 199.57,-86.11 199.57,-86.11 199.57,-56.65 199.57,-56.65 199.57,-54.85 211.67,-53.38 226.57,-53.38 241.47,-53.38 253.57,-54.85 253.57,-56.65 253.57,-56.65 253.57,-86.11 253.57,-86.11"/>
+<path fill="none" stroke="#334155" d="M253.57,-86.11C253.57,-84.3 241.47,-82.83 226.57,-82.83 211.67,-82.83 199.57,-84.3 199.57,-86.11"/>
+<text xml:space="preserve" text-anchor="middle" x="226.57" y="-73.78" font-family="Inter" font-size="8.00">OpenSearch</text>
+<text xml:space="preserve" text-anchor="middle" x="226.57" y="-64.18" font-family="Inter" font-size="8.00">index</text>
+</g>
+<!-- listing_documents&#45;&gt;opensearch -->
+<g id="edge1" class="edge">
+<title>listing_documents-&gt;opensearch</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M135.5,-84.39C135.5,-84.39 192.38,-84.39 192.38,-84.39"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="192.38,-86.32 197.88,-84.39 192.38,-82.47 192.38,-86.32"/>
+<text xml:space="preserve" text-anchor="middle" x="167.42" y="-118.48" font-family="Inter" font-size="7.00">stored in</text>
+</g>
+<!-- saved_searches -->
+<g id="node2" class="node">
+<title>saved_searches</title>
+<path fill="#f8fafc" stroke="#334155" d="M20.23,-0.5C20.23,-0.5 115.04,-0.5 115.04,-0.5 121.04,-0.5 127.04,-6.5 127.04,-12.5 127.04,-12.5 127.04,-42.26 127.04,-42.26 127.04,-48.26 121.04,-54.26 115.04,-54.26 115.04,-54.26 20.23,-54.26 20.23,-54.26 14.23,-54.26 8.23,-48.26 8.23,-42.26 8.23,-42.26 8.23,-12.5 8.23,-12.5 8.23,-6.5 14.23,-0.5 20.23,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="36.49" y="-24.98" font-family="Inter" font-size="8.00">saved_searches</text>
+<polyline fill="none" stroke="#334155" points="64.74,-0.5 64.74,-54.26"/>
+<text xml:space="preserve" text-anchor="start" x="68.34" y="-44.18" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="68.34" y="-34.58" font-family="Inter" font-size="8.00">tenant_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="68.34" y="-24.98" font-family="Inter" font-size="8.00">name</text>
+<text xml:space="preserve" text-anchor="start" x="68.34" y="-15.38" font-family="Inter" font-size="8.00">query</text>
+<text xml:space="preserve" text-anchor="start" x="68.34" y="-5.78" font-family="Inter" font-size="8.00">created_at</text>
+</g>
+<!-- saved_searches&#45;&gt;opensearch -->
+<g id="edge2" class="edge">
+<title>saved_searches-&gt;opensearch</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M127.27,-26.69C172.37,-26.69 226.57,-26.69 226.57,-26.69 226.57,-26.69 226.57,-46.08 226.57,-46.08"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="224.65,-46.08 226.57,-51.58 228.5,-46.08 224.65,-46.08"/>
+<text xml:space="preserve" text-anchor="middle" x="167.42" y="-29.48" font-family="Inter" font-size="7.00">optional</text>
+</g>
+</g>
+</svg>

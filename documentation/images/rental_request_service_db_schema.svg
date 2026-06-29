@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960pt" height="405pt" viewBox="0.00 0.00 960.00 405.00">
+<g id="graph0" class="graph" transform="scale(2.83543 2.83543) rotate(0) translate(4 138.76)">
+<title>RentalRequestServiceER</title>
+<!-- rental_requests -->
+<g id="node1" class="node">
+<title>rental_requests</title>
+<path fill="#f8fafc" stroke="#334155" d="M12,-16.7C12,-16.7 113.03,-16.7 113.03,-16.7 119.03,-16.7 125.03,-22.7 125.03,-28.7 125.03,-28.7 125.03,-68.06 125.03,-68.06 125.03,-74.06 119.03,-80.06 113.03,-80.06 113.03,-80.06 12,-80.06 12,-80.06 6,-80.06 0,-74.06 0,-68.06 0,-68.06 0,-28.7 0,-28.7 0,-22.7 6,-16.7 12,-16.7"/>
+<text xml:space="preserve" text-anchor="middle" x="27.81" y="-45.98" font-family="Inter" font-size="8.00">rental_requests</text>
+<polyline fill="none" stroke="#334155" points="55.63,-16.7 55.63,-80.06"/>
+<text xml:space="preserve" text-anchor="start" x="59.23" y="-69.98" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="59.23" y="-60.38" font-family="Inter" font-size="8.00">listing_id</text>
+<text xml:space="preserve" text-anchor="start" x="59.23" y="-50.78" font-family="Inter" font-size="8.00">tenant_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="59.23" y="-41.18" font-family="Inter" font-size="8.00">landlord_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="59.23" y="-31.58" font-family="Inter" font-size="8.00">status</text>
+<text xml:space="preserve" text-anchor="start" x="59.23" y="-21.98" font-family="Inter" font-size="8.00">message</text>
+</g>
+<!-- rental_messages -->
+<g id="node2" class="node">
+<title>rental_messages</title>
+<path fill="#f8fafc" stroke="#334155" d="M197.76,-80.5C197.76,-80.5 308.35,-80.5 308.35,-80.5 314.35,-80.5 320.35,-86.5 320.35,-92.5 320.35,-92.5 320.35,-122.26 320.35,-122.26 320.35,-128.26 314.35,-134.26 308.35,-134.26 308.35,-134.26 197.76,-134.26 197.76,-134.26 191.76,-134.26 185.76,-128.26 185.76,-122.26 185.76,-122.26 185.76,-92.5 185.76,-92.5 185.76,-86.5 191.76,-80.5 197.76,-80.5"/>
+<text xml:space="preserve" text-anchor="middle" x="215.57" y="-104.98" font-family="Inter" font-size="8.00">rental_messages</text>
+<polyline fill="none" stroke="#334155" points="245.39,-80.5 245.39,-134.26"/>
+<text xml:space="preserve" text-anchor="start" x="248.99" y="-124.18" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="248.99" y="-114.58" font-family="Inter" font-size="8.00">rental_request_id FK</text>
+<text xml:space="preserve" text-anchor="start" x="248.99" y="-104.98" font-family="Inter" font-size="8.00">sender_profile_id</text>
+<text xml:space="preserve" text-anchor="start" x="248.99" y="-95.38" font-family="Inter" font-size="8.00">body</text>
+<text xml:space="preserve" text-anchor="start" x="248.99" y="-85.78" font-family="Inter" font-size="8.00">created_at</text>
+</g>
+<!-- rental_requests&#45;&gt;rental_messages -->
+<g id="edge1" class="edge">
+<title>rental_requests-&gt;rental_messages</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M125.27,-67.38C180.63,-67.38 252.57,-67.38 252.57,-67.38 252.57,-67.38 252.57,-73.17 252.57,-73.17"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="250.65,-73.17 252.57,-78.67 254.5,-73.17 250.65,-73.17"/>
+<text xml:space="preserve" text-anchor="middle" x="150.28" y="-109.48" font-family="Inter" font-size="7.00">1:N</text>
+</g>
+<!-- viewing_appointments -->
+<g id="node3" class="node">
+<title>viewing_appointments</title>
+<path fill="#f8fafc" stroke="#334155" d="M187.53,-0.5C187.53,-0.5 318.57,-0.5 318.57,-0.5 324.57,-0.5 330.57,-6.5 330.57,-12.5 330.57,-12.5 330.57,-42.26 330.57,-42.26 330.57,-48.26 324.57,-54.26 318.57,-54.26 318.57,-54.26 187.53,-54.26 187.53,-54.26 181.53,-54.26 175.53,-48.26 175.53,-42.26 175.53,-42.26 175.53,-12.5 175.53,-12.5 175.53,-6.5 181.53,-0.5 187.53,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="215.57" y="-24.98" font-family="Inter" font-size="8.00">viewing_appointments</text>
+<polyline fill="none" stroke="#334155" points="255.61,-0.5 255.61,-54.26"/>
+<text xml:space="preserve" text-anchor="start" x="259.21" y="-44.18" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="259.21" y="-34.58" font-family="Inter" font-size="8.00">rental_request_id FK</text>
+<text xml:space="preserve" text-anchor="start" x="259.21" y="-24.98" font-family="Inter" font-size="8.00">scheduled_at</text>
+<text xml:space="preserve" text-anchor="start" x="259.21" y="-15.38" font-family="Inter" font-size="8.00">status</text>
+<text xml:space="preserve" text-anchor="start" x="259.21" y="-5.78" font-family="Inter" font-size="8.00">created_at</text>
+</g>
+<!-- rental_requests&#45;&gt;viewing_appointments -->
+<g id="edge2" class="edge">
+<title>rental_requests-&gt;viewing_appointments</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M125.43,-35.48C125.43,-35.48 168.38,-35.48 168.38,-35.48"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="168.38,-37.41 173.88,-35.48 168.38,-33.56 168.38,-37.41"/>
+<text xml:space="preserve" text-anchor="middle" x="150.28" y="-29.48" font-family="Inter" font-size="7.00">1:N</text>
+</g>
+</g>
+</svg>

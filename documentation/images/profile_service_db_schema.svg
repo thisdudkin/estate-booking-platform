@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960pt" height="344pt" viewBox="0.00 0.00 960.00 344.00">
+<g id="graph0" class="graph" transform="scale(2.25693 2.25693) rotate(0) translate(4 148.56)">
+<title>ProfileServiceER</title>
+<!-- profile_users -->
+<g id="node1" class="node">
+<title>profile_users</title>
+<path fill="#f8fafc" stroke="#334155" d="M12,-19.5C12,-19.5 68.16,-19.5 68.16,-19.5 74.16,-19.5 80.16,-25.5 80.16,-31.5 80.16,-31.5 80.16,-61.26 80.16,-61.26 80.16,-67.26 74.16,-73.26 68.16,-73.26 68.16,-73.26 12,-73.26 12,-73.26 6,-73.26 0,-67.26 0,-61.26 0,-61.26 0,-31.5 0,-31.5 0,-25.5 6,-19.5 12,-19.5"/>
+<text xml:space="preserve" text-anchor="middle" x="14.26" y="-43.98" font-family="Inter" font-size="8.00">profile</text>
+<polyline fill="none" stroke="#334155" points="28.52,-19.5 28.52,-73.26"/>
+<text xml:space="preserve" text-anchor="start" x="32.12" y="-63.18" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="32.12" y="-53.58" font-family="Inter" font-size="8.00">user_id UQ</text>
+<text xml:space="preserve" text-anchor="start" x="32.12" y="-43.98" font-family="Inter" font-size="8.00">display_name</text>
+<text xml:space="preserve" text-anchor="start" x="32.12" y="-34.38" font-family="Inter" font-size="8.00">phone</text>
+<text xml:space="preserve" text-anchor="start" x="32.12" y="-24.78" font-family="Inter" font-size="8.00">status</text>
+</g>
+<!-- tenant_profiles -->
+<g id="node2" class="node">
+<title>tenant_profiles</title>
+<path fill="#f8fafc" stroke="#334155" d="M157.88,-80.7C157.88,-80.7 214.48,-80.7 214.48,-80.7 220.48,-80.7 226.48,-86.7 226.48,-92.7 226.48,-92.7 226.48,-132.06 226.48,-132.06 226.48,-138.06 220.48,-144.06 214.48,-144.06 214.48,-144.06 157.88,-144.06 157.88,-144.06 151.88,-144.06 145.88,-138.06 145.88,-132.06 145.88,-132.06 145.88,-92.7 145.88,-92.7 145.88,-86.7 151.88,-80.7 157.88,-80.7"/>
+<text xml:space="preserve" text-anchor="middle" x="159.26" y="-109.98" font-family="Inter" font-size="8.00">tenant</text>
+<polyline fill="none" stroke="#334155" points="172.63,-80.7 172.63,-144.06"/>
+<text xml:space="preserve" text-anchor="start" x="176.23" y="-133.98" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="176.23" y="-124.38" font-family="Inter" font-size="8.00">user_id FK</text>
+<text xml:space="preserve" text-anchor="start" x="176.23" y="-114.78" font-family="Inter" font-size="8.00">preferred_city</text>
+<text xml:space="preserve" text-anchor="start" x="176.23" y="-105.18" font-family="Inter" font-size="8.00">contact_name</text>
+<text xml:space="preserve" text-anchor="start" x="176.23" y="-95.58" font-family="Inter" font-size="8.00">contact_phone</text>
+<text xml:space="preserve" text-anchor="start" x="176.23" y="-85.98" font-family="Inter" font-size="8.00">status</text>
+</g>
+<!-- profile_users&#45;&gt;tenant_profiles -->
+<g id="edge1" class="edge">
+<title>profile_users-&gt;tenant_profiles</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M80.44,-64.26C123.73,-64.26 186.36,-64.26 186.36,-64.26 186.36,-64.26 186.36,-73.42 186.36,-73.42"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="184.43,-73.42 186.36,-78.92 188.28,-73.42 184.43,-73.42"/>
+<text xml:space="preserve" text-anchor="middle" x="108.13" y="-90.48" font-family="Inter" font-size="7.00">1:0..1</text>
+</g>
+<!-- landlord_profiles -->
+<g id="node3" class="node">
+<title>landlord_profiles</title>
+<path fill="#f8fafc" stroke="#334155" d="M148.1,-0.5C148.1,-0.5 224.26,-0.5 224.26,-0.5 230.26,-0.5 236.26,-6.5 236.26,-12.5 236.26,-12.5 236.26,-42.26 236.26,-42.26 236.26,-48.26 230.26,-54.26 224.26,-54.26 224.26,-54.26 148.1,-54.26 148.1,-54.26 142.1,-54.26 136.1,-48.26 136.1,-42.26 136.1,-42.26 136.1,-12.5 136.1,-12.5 136.1,-6.5 142.1,-0.5 148.1,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="153.03" y="-24.98" font-family="Inter" font-size="8.00">landlord</text>
+<polyline fill="none" stroke="#334155" points="169.96,-0.5 169.96,-54.26"/>
+<text xml:space="preserve" text-anchor="start" x="173.56" y="-44.18" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="173.56" y="-34.58" font-family="Inter" font-size="8.00">user_id FK</text>
+<text xml:space="preserve" text-anchor="start" x="173.56" y="-24.98" font-family="Inter" font-size="8.00">public_name</text>
+<text xml:space="preserve" text-anchor="start" x="173.56" y="-15.38" font-family="Inter" font-size="8.00">contact_phone</text>
+<text xml:space="preserve" text-anchor="start" x="173.56" y="-5.78" font-family="Inter" font-size="8.00">verification_status</text>
+</g>
+<!-- profile_users&#45;&gt;landlord_profiles -->
+<g id="edge2" class="edge">
+<title>profile_users-&gt;landlord_profiles</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M80.39,-36.88C80.39,-36.88 128.97,-36.88 128.97,-36.88"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="128.97,-38.81 134.47,-36.88 128.97,-34.96 128.97,-38.81"/>
+<text xml:space="preserve" text-anchor="middle" x="108.13" y="-29.48" font-family="Inter" font-size="7.00">1:0..1</text>
+</g>
+<!-- favorite_listings -->
+<g id="node4" class="node">
+<title>favorite_listings</title>
+<path fill="#f8fafc" stroke="#334155" d="M298.76,-94.38C298.76,-94.38 405.36,-94.38 405.36,-94.38 411.36,-94.38 417.36,-100.38 417.36,-106.38 417.36,-106.38 417.36,-118.38 417.36,-118.38 417.36,-124.38 411.36,-130.38 405.36,-130.38 405.36,-130.38 298.76,-130.38 298.76,-130.38 292.76,-130.38 286.76,-124.38 286.76,-118.38 286.76,-118.38 286.76,-106.38 286.76,-106.38 286.76,-100.38 292.76,-94.38 298.76,-94.38"/>
+<text xml:space="preserve" text-anchor="middle" x="314.8" y="-110.2" font-family="Inter" font-size="8.00">favorite_listing</text>
+<polyline fill="none" stroke="#334155" points="342.84,-94.82 342.84,-130.38"/>
+<text xml:space="preserve" text-anchor="start" x="346.44" y="-119.8" font-family="Inter" font-size="8.00">id PK</text>
+<text xml:space="preserve" text-anchor="start" x="346.44" y="-110.2" font-family="Inter" font-size="8.00">tenant_profile_id FK</text>
+<text xml:space="preserve" text-anchor="start" x="346.44" y="-100.6" font-family="Inter" font-size="8.00">listing_id</text>
+</g>
+<!-- tenant_profiles&#45;&gt;favorite_listings -->
+<g id="edge3" class="edge">
+<title>tenant_profiles-&gt;favorite_listings</title>
+<path fill="none" stroke="#475569" stroke-width="0.9" d="M226.76,-112.38C226.76,-112.38 279.51,-112.38 279.51,-112.38"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="0.9" points="279.51,-114.31 285.01,-112.38 279.51,-110.46 279.51,-114.31"/>
+<text xml:space="preserve" text-anchor="middle" x="261.51" y="-114.48" font-family="Inter" font-size="7.00">1:N</text>
+</g>
+</g>
+</svg>

@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2534pt" height="1459pt" viewBox="0.00 0.00 2534.00 1459.00">
+<g id="graph0" class="graph" transform="scale(2.77778 2.77778) rotate(0) translate(4 521.1)">
+<title>EstateBookingPlatform</title>
+<!-- Client -->
+<g id="node1" class="node">
+<title>Client</title>
+<path fill="#eef2ff" stroke="#334155" stroke-width="1.2" d="M700.94,-517.1C700.94,-517.1 616,-517.1 616,-517.1 610,-517.1 604,-511.1 604,-505.1 604,-505.1 604,-491.18 604,-491.18 604,-485.18 610,-479.18 616,-479.18 616,-479.18 700.94,-479.18 700.94,-479.18 706.94,-479.18 712.94,-485.18 712.94,-491.18 712.94,-491.18 712.94,-505.1 712.94,-505.1 712.94,-511.1 706.94,-517.1 700.94,-517.1"/>
+<text xml:space="preserve" text-anchor="middle" x="658.47" y="-501.44" font-family="Inter" font-size="11.00">API Client</text>
+<text xml:space="preserve" text-anchor="middle" x="658.47" y="-488.24" font-family="Inter" font-size="11.00">Postman / curl / tests</text>
+</g>
+<!-- Gateway -->
+<g id="node2" class="node">
+<title>Gateway</title>
+<path fill="#ecfeff" stroke="#334155" stroke-width="1.2" d="M412.89,-405.42C412.89,-405.42 360.05,-405.42 360.05,-405.42 354.05,-405.42 348.05,-399.42 348.05,-393.42 348.05,-393.42 348.05,-381.42 348.05,-381.42 348.05,-375.42 354.05,-369.42 360.05,-369.42 360.05,-369.42 412.89,-369.42 412.89,-369.42 418.89,-369.42 424.89,-375.42 424.89,-381.42 424.89,-381.42 424.89,-393.42 424.89,-393.42 424.89,-399.42 418.89,-405.42 412.89,-405.42"/>
+<text xml:space="preserve" text-anchor="middle" x="386.47" y="-384.12" font-family="Inter" font-size="11.00">API Gateway</text>
+</g>
+<!-- Client&#45;&gt;Gateway -->
+<g id="edge3" class="edge">
+<title>Client-&gt;Gateway</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M603.43,-498C523.95,-498 386.47,-498 386.47,-498 386.47,-498 386.47,-414.84 386.47,-414.84"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="389.1,-414.84 386.47,-407.34 383.85,-414.84 389.1,-414.84"/>
+<text xml:space="preserve" text-anchor="middle" x="541.85" y="-440.08" font-family="Inter" font-size="9.00">business APIs</text>
+</g>
+<!-- Identity -->
+<g id="node10" class="node">
+<title>Identity</title>
+<path fill="#fdf2f8" stroke="#334155" stroke-width="1.2" d="M690.08,-406.38C690.08,-406.38 626.86,-406.38 626.86,-406.38 620.86,-406.38 614.86,-400.38 614.86,-394.38 614.86,-394.38 614.86,-380.46 614.86,-380.46 614.86,-374.46 620.86,-368.46 626.86,-368.46 626.86,-368.46 690.08,-368.46 690.08,-368.46 696.08,-368.46 702.08,-374.46 702.08,-380.46 702.08,-380.46 702.08,-394.38 702.08,-394.38 702.08,-400.38 696.08,-406.38 690.08,-406.38"/>
+<text xml:space="preserve" text-anchor="middle" x="658.47" y="-390.72" font-family="Inter" font-size="11.00">Identity Service</text>
+<text xml:space="preserve" text-anchor="middle" x="658.47" y="-377.52" font-family="Inter" font-size="11.00">BFF</text>
+</g>
+<!-- Client&#45;&gt;Identity -->
+<g id="edge1" class="edge">
+<title>Client-&gt;Identity</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M658.47,-478.6C658.47,-478.6 658.47,-415.93 658.47,-415.93"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="661.1,-415.93 658.47,-408.43 655.85,-415.93 661.1,-415.93"/>
+<text xml:space="preserve" text-anchor="middle" x="671.96" y="-440.08" font-family="Inter" font-size="9.00">register</text>
+</g>
+<!-- Keycloak -->
+<g id="node11" class="node">
+<title>Keycloak</title>
+<path fill="#fdf2f8" stroke="#334155" stroke-width="1.2" d="M892.21,-284.86C892.21,-284.86 798.73,-284.86 798.73,-284.86 792.73,-284.86 786.73,-278.86 786.73,-272.86 786.73,-272.86 786.73,-245.74 786.73,-245.74 786.73,-239.74 792.73,-233.74 798.73,-233.74 798.73,-233.74 892.21,-233.74 892.21,-233.74 898.21,-233.74 904.21,-239.74 904.21,-245.74 904.21,-245.74 904.21,-272.86 904.21,-272.86 904.21,-278.86 898.21,-284.86 892.21,-284.86"/>
+<text xml:space="preserve" text-anchor="middle" x="845.47" y="-269.2" font-family="Inter" font-size="11.00">Keycloak</text>
+<text xml:space="preserve" text-anchor="middle" x="845.47" y="-256" font-family="Inter" font-size="11.00">OAuth2 / OIDC</text>
+<text xml:space="preserve" text-anchor="middle" x="845.47" y="-242.8" font-family="Inter" font-size="11.00">Credentials and tokens</text>
+</g>
+<!-- Client&#45;&gt;Keycloak -->
+<g id="edge2" class="edge">
+<title>Client-&gt;Keycloak</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M713.29,-498C774.49,-498 865.05,-498 865.05,-498 865.05,-498 865.05,-294.46 865.05,-294.46"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="867.68,-294.46 865.05,-286.96 862.43,-294.46 867.68,-294.46"/>
+<text xml:space="preserve" text-anchor="middle" x="868.71" y="-384.72" font-family="Inter" font-size="9.00">login / refresh</text>
+</g>
+<!-- Profile -->
+<g id="node5" class="node">
+<title>Profile</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M445.58,-278.26C445.58,-278.26 327.36,-278.26 327.36,-278.26 321.36,-278.26 315.36,-272.26 315.36,-266.26 315.36,-266.26 315.36,-252.34 315.36,-252.34 315.36,-246.34 321.36,-240.34 327.36,-240.34 327.36,-240.34 445.58,-240.34 445.58,-240.34 451.58,-240.34 457.58,-246.34 457.58,-252.34 457.58,-252.34 457.58,-266.26 457.58,-266.26 457.58,-272.26 451.58,-278.26 445.58,-278.26"/>
+<text xml:space="preserve" text-anchor="middle" x="386.47" y="-262.6" font-family="Inter" font-size="11.00">Profile Service</text>
+<text xml:space="preserve" text-anchor="middle" x="386.47" y="-249.4" font-family="Inter" font-size="11.00">Tenant and landlord profiles</text>
+</g>
+<!-- Gateway&#45;&gt;Profile -->
+<g id="edge6" class="edge">
+<title>Gateway-&gt;Profile</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M373.66,-369.06C373.66,-369.06 373.66,-287.62 373.66,-287.62"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="376.29,-287.62 373.66,-280.12 371.04,-287.62 376.29,-287.62"/>
+</g>
+<!-- Listing -->
+<g id="node6" class="node">
+<title>Listing</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M727.56,-277.3C727.56,-277.3 667.38,-277.3 667.38,-277.3 661.38,-277.3 655.38,-271.3 655.38,-265.3 655.38,-265.3 655.38,-253.3 655.38,-253.3 655.38,-247.3 661.38,-241.3 667.38,-241.3 667.38,-241.3 727.56,-241.3 727.56,-241.3 733.56,-241.3 739.56,-247.3 739.56,-253.3 739.56,-253.3 739.56,-265.3 739.56,-265.3 739.56,-271.3 733.56,-277.3 727.56,-277.3"/>
+<text xml:space="preserve" text-anchor="middle" x="697.47" y="-256" font-family="Inter" font-size="11.00">Listing Service</text>
+</g>
+<!-- Gateway&#45;&gt;Listing -->
+<g id="edge7" class="edge">
+<title>Gateway-&gt;Listing</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M399.28,-368.96C399.28,-351.2 399.28,-327 399.28,-327 399.28,-327 678.73,-327 678.73,-327 678.73,-327 678.73,-286.96 678.73,-286.96"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="681.36,-286.96 678.73,-279.46 676.11,-286.96 681.36,-286.96"/>
+</g>
+<!-- Media -->
+<g id="node7" class="node">
+<title>Media</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M89.03,-277.3C89.03,-277.3 31.91,-277.3 31.91,-277.3 25.91,-277.3 19.91,-271.3 19.91,-265.3 19.91,-265.3 19.91,-253.3 19.91,-253.3 19.91,-247.3 25.91,-241.3 31.91,-241.3 31.91,-241.3 89.03,-241.3 89.03,-241.3 95.03,-241.3 101.03,-247.3 101.03,-253.3 101.03,-253.3 101.03,-265.3 101.03,-265.3 101.03,-271.3 95.03,-277.3 89.03,-277.3"/>
+<text xml:space="preserve" text-anchor="middle" x="60.47" y="-256" font-family="Inter" font-size="11.00">Media Service</text>
+</g>
+<!-- Gateway&#45;&gt;Media -->
+<g id="edge8" class="edge">
+<title>Gateway-&gt;Media</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M347.47,-387C260.94,-387 60.47,-387 60.47,-387 60.47,-387 60.47,-287.03 60.47,-287.03"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="63.1,-287.03 60.47,-279.53 57.85,-287.03 63.1,-287.03"/>
+</g>
+<!-- Rental -->
+<g id="node8" class="node">
+<title>Rental</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M256.43,-277.3C256.43,-277.3 160.51,-277.3 160.51,-277.3 154.51,-277.3 148.51,-271.3 148.51,-265.3 148.51,-265.3 148.51,-253.3 148.51,-253.3 148.51,-247.3 154.51,-241.3 160.51,-241.3 160.51,-241.3 256.43,-241.3 256.43,-241.3 262.43,-241.3 268.43,-247.3 268.43,-253.3 268.43,-253.3 268.43,-265.3 268.43,-265.3 268.43,-271.3 262.43,-277.3 256.43,-277.3"/>
+<text xml:space="preserve" text-anchor="middle" x="208.47" y="-256" font-family="Inter" font-size="11.00">Rental Request Service</text>
+</g>
+<!-- Gateway&#45;&gt;Rental -->
+<g id="edge9" class="edge">
+<title>Gateway-&gt;Rental</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M347.85,-378C295.5,-378 208.47,-378 208.47,-378 208.47,-378 208.47,-287.01 208.47,-287.01"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="211.1,-287.01 208.47,-279.51 205.85,-287.01 211.1,-287.01"/>
+</g>
+<!-- Moderation -->
+<g id="node9" class="node">
+<title>Moderation</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M596.64,-277.3C596.64,-277.3 516.3,-277.3 516.3,-277.3 510.3,-277.3 504.3,-271.3 504.3,-265.3 504.3,-265.3 504.3,-253.3 504.3,-253.3 504.3,-247.3 510.3,-241.3 516.3,-241.3 516.3,-241.3 596.64,-241.3 596.64,-241.3 602.64,-241.3 608.64,-247.3 608.64,-253.3 608.64,-253.3 608.64,-265.3 608.64,-265.3 608.64,-271.3 602.64,-277.3 596.64,-277.3"/>
+<text xml:space="preserve" text-anchor="middle" x="556.47" y="-256" font-family="Inter" font-size="11.00">Moderation Service</text>
+</g>
+<!-- Gateway&#45;&gt;Moderation -->
+<g id="edge10" class="edge">
+<title>Gateway-&gt;Moderation</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M425.36,-381C474.9,-381 554.15,-381 554.15,-381 554.15,-381 554.15,-286.95 554.15,-286.95"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="556.78,-286.95 554.15,-279.45 551.53,-286.95 556.78,-286.95"/>
+</g>
+<!-- Search -->
+<g id="node12" class="node">
+<title>Search</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M70.94,-36C70.94,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 70.94,0 70.94,0 76.94,0 82.94,-6 82.94,-12 82.94,-12 82.94,-24 82.94,-24 82.94,-30 76.94,-36 70.94,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="41.47" y="-14.7" font-family="Inter" font-size="11.00">Search Service</text>
+</g>
+<!-- Gateway&#45;&gt;Search -->
+<g id="edge11" class="edge">
+<title>Gateway-&gt;Search</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M347.55,-396C251.23,-396 9.5,-396 9.5,-396 9.5,-396 9.5,-45.65 9.5,-45.65"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="12.12,-45.65 9.5,-38.15 6.87,-45.65 12.12,-45.65"/>
+</g>
+<!-- Kafka -->
+<g id="node3" class="node">
+<title>Kafka</title>
+<path fill="#fff7ed" stroke="#334155" stroke-width="1.2" d="M339.47,-149.6C339.47,-151.4 327.37,-152.87 312.47,-152.87 297.57,-152.87 285.47,-151.4 285.47,-149.6 285.47,-149.6 285.47,-120.14 285.47,-120.14 285.47,-118.34 297.57,-116.87 312.47,-116.87 327.37,-116.87 339.47,-118.34 339.47,-120.14 339.47,-120.14 339.47,-149.6 339.47,-149.6"/>
+<path fill="none" stroke="#334155" stroke-width="1.2" d="M339.47,-149.6C339.47,-147.79 327.37,-146.32 312.47,-146.32 297.57,-146.32 285.47,-147.79 285.47,-149.6"/>
+<text xml:space="preserve" text-anchor="middle" x="312.47" y="-131.57" font-family="Inter" font-size="11.00">Kafka</text>
+</g>
+<!-- Kafka&#45;&gt;Search -->
+<g id="edge18" class="edge">
+<title>Kafka-&gt;Search</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M285.01,-126C239.32,-126 152.7,-126 152.7,-126 152.7,-126 152.7,-18 152.7,-18 152.7,-18 92.69,-18 92.69,-18"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="92.69,-15.38 85.19,-18 92.69,-20.63 92.69,-15.38"/>
+<text xml:space="preserve" text-anchor="middle" x="99.34" y="-69.7" font-family="Inter" font-size="9.00">projection events</text>
+</g>
+<!-- Notification -->
+<g id="node13" class="node">
+<title>Notification</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M393.55,-36C393.55,-36 311.39,-36 311.39,-36 305.39,-36 299.39,-30 299.39,-24 299.39,-24 299.39,-12 299.39,-12 299.39,-6 305.39,0 311.39,0 311.39,0 393.55,0 393.55,0 399.55,0 405.55,-6 405.55,-12 405.55,-12 405.55,-24 405.55,-24 405.55,-30 399.55,-36 393.55,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="352.47" y="-14.7" font-family="Inter" font-size="11.00">Notification Service</text>
+</g>
+<!-- Kafka&#45;&gt;Notification -->
+<g id="edge19" class="edge">
+<title>Kafka-&gt;Notification</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M319.43,-116.35C319.43,-116.35 319.43,-45.6 319.43,-45.6"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="322.05,-45.6 319.43,-38.1 316.8,-45.6 322.05,-45.6"/>
+<text xml:space="preserve" text-anchor="middle" x="393.84" y="-69.7" font-family="Inter" font-size="9.00">notification commands</text>
+</g>
+<!-- Analytics -->
+<g id="node14" class="node">
+<title>Analytics</title>
+<path fill="#f8fafc" stroke="#334155" stroke-width="1.2" d="M240.06,-36C240.06,-36 168.89,-36 168.89,-36 162.89,-36 156.89,-30 156.89,-24 156.89,-24 156.89,-12 156.89,-12 156.89,-6 162.89,0 168.89,0 168.89,0 240.06,0 240.06,0 246.06,0 252.06,-6 252.06,-12 252.06,-12 252.06,-24 252.06,-24 252.06,-30 246.06,-36 240.06,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="204.47" y="-14.7" font-family="Inter" font-size="11.00">Analytics Service</text>
+</g>
+<!-- Kafka&#45;&gt;Analytics -->
+<g id="edge20" class="edge">
+<title>Kafka-&gt;Analytics</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M292.43,-117.12C292.43,-84.43 292.43,-18 292.43,-18 292.43,-18 261.73,-18 261.73,-18"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="261.73,-15.38 254.23,-18 261.73,-20.63 261.73,-15.38"/>
+<text xml:space="preserve" text-anchor="middle" x="233.09" y="-69.7" font-family="Inter" font-size="9.00">analytics events</text>
+</g>
+<!-- ObjectStorage -->
+<g id="node4" class="node">
+<title>ObjectStorage</title>
+<path fill="#fff7ed" stroke="#334155" stroke-width="1.2" d="M101.95,-156.2C101.95,-158.82 83.36,-160.94 60.47,-160.94 37.58,-160.94 18.99,-158.82 18.99,-156.2 18.99,-156.2 18.99,-113.54 18.99,-113.54 18.99,-110.92 37.58,-108.8 60.47,-108.8 83.36,-108.8 101.95,-110.92 101.95,-113.54 101.95,-113.54 101.95,-156.2 101.95,-156.2"/>
+<path fill="none" stroke="#334155" stroke-width="1.2" d="M101.95,-156.2C101.95,-153.58 83.36,-151.46 60.47,-151.46 37.58,-151.46 18.99,-153.58 18.99,-156.2"/>
+<text xml:space="preserve" text-anchor="middle" x="60.47" y="-138.17" font-family="Inter" font-size="11.00">S3 / MinIO</text>
+<text xml:space="preserve" text-anchor="middle" x="60.47" y="-124.97" font-family="Inter" font-size="11.00">Object Storage</text>
+</g>
+<!-- Profile&#45;&gt;Kafka -->
+<g id="edge13" class="edge">
+<title>Profile-&gt;Kafka</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M327.42,-239.86C327.42,-239.86 327.42,-162.53 327.42,-162.53"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="330.04,-162.53 327.42,-155.03 324.79,-162.53 330.04,-162.53"/>
+<text xml:space="preserve" text-anchor="middle" x="403.09" y="-194.64" font-family="Inter" font-size="9.00">profile events</text>
+</g>
+<!-- Listing&#45;&gt;Kafka -->
+<g id="edge14" class="edge">
+<title>Listing-&gt;Kafka</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M697.47,-240.91C697.47,-204.99 697.47,-129 697.47,-129 697.47,-129 349.02,-129 349.02,-129"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="349.02,-126.38 341.52,-129 349.02,-131.63 349.02,-126.38"/>
+<text xml:space="preserve" text-anchor="middle" x="690.34" y="-194.64" font-family="Inter" font-size="9.00">listing events</text>
+</g>
+<!-- Media&#45;&gt;Kafka -->
+<g id="edge15" class="edge">
+<title>Media-&gt;Kafka</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M101.48,-259C114.34,-259 125.23,-259 125.23,-259 125.23,-259 125.23,-135 125.23,-135 125.23,-135 276.08,-135 276.08,-135"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="276.08,-137.63 283.58,-135 276.08,-132.38 276.08,-137.63"/>
+<text xml:space="preserve" text-anchor="middle" x="182.09" y="-194.64" font-family="Inter" font-size="9.00">media events</text>
+</g>
+<!-- Media&#45;&gt;ObjectStorage -->
+<g id="edge12" class="edge">
+<title>Media-&gt;ObjectStorage</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M60.47,-240.94C60.47,-240.94 60.47,-170.29 60.47,-170.29"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="63.1,-170.29 60.47,-162.79 57.85,-170.29 63.1,-170.29"/>
+<text xml:space="preserve" text-anchor="middle" x="68.22" y="-194.64" font-family="Inter" font-size="9.00">files</text>
+</g>
+<!-- Rental&#45;&gt;Kafka -->
+<g id="edge16" class="edge">
+<title>Rental-&gt;Kafka</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M260.24,-240.78C260.24,-208.18 260.24,-144 260.24,-144 260.24,-144 275.97,-144 275.97,-144"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="275.97,-146.63 283.47,-144 275.97,-141.38 275.97,-146.63"/>
+<text xml:space="preserve" text-anchor="middle" x="295.34" y="-194.64" font-family="Inter" font-size="9.00">rental events</text>
+</g>
+<!-- Moderation&#45;&gt;Kafka -->
+<g id="edge17" class="edge">
+<title>Moderation-&gt;Kafka</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M556.47,-240.82C556.47,-207.54 556.47,-141 556.47,-141 556.47,-141 349.15,-141 349.15,-141"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="349.15,-138.38 341.65,-141 349.15,-143.63 349.15,-138.38"/>
+<text xml:space="preserve" text-anchor="middle" x="550.59" y="-194.64" font-family="Inter" font-size="9.00">moderation events</text>
+</g>
+<!-- Identity&#45;&gt;Profile -->
+<g id="edge5" class="edge">
+<title>Identity-&gt;Profile</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M614.51,-393C551.03,-393 441.24,-393 441.24,-393 441.24,-393 441.24,-287.91 441.24,-287.91"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="443.86,-287.91 441.24,-280.41 438.61,-287.91 443.86,-287.91"/>
+<text xml:space="preserve" text-anchor="middle" x="652.83" y="-329.36" font-family="Inter" font-size="9.00">/internal/api</text>
+<text xml:space="preserve" text-anchor="middle" x="652.83" y="-318.56" font-family="Inter" font-size="9.00">create tenant / landlord</text>
+</g>
+<!-- Identity&#45;&gt;Keycloak -->
+<g id="edge4" class="edge">
+<title>Identity-&gt;Keycloak</title>
+<path fill="none" stroke="#475569" stroke-width="1.1" d="M702.46,-387C752.06,-387 825.89,-387 825.89,-387 825.89,-387 825.89,-294.62 825.89,-294.62"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="1.1" points="828.52,-294.62 825.89,-287.12 823.27,-294.62 828.52,-294.62"/>
+<text xml:space="preserve" text-anchor="middle" x="781.21" y="-329.36" font-family="Inter" font-size="9.00">Admin API</text>
+<text xml:space="preserve" text-anchor="middle" x="781.21" y="-318.56" font-family="Inter" font-size="9.00">client_credentials</text>
+</g>
+</g>
+</svg>
