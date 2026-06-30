@@ -33,7 +33,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
+      - name: Check Dockerfile
+        id: dockerfile
+        shell: bash
+        run: |
+          if [ -f "${{ matrix.image.dockerfile }}" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping ${{ matrix.image.name }} because ${{ matrix.image.dockerfile }} does not exist."
+          fi
+
       - name: Build image
+        if: steps.dockerfile.outputs.exists == 'true'
         uses: ./.github/actions/docker-build-publish
         with:
           image-name: ghcr.io/${{ github.repository }}/${{ matrix.image.name }}

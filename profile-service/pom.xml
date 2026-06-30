@@ -27,6 +27,7 @@
         <maven.surefire.plugin.version>3.5.6</maven.surefire.plugin.version>
         <maven.failsafe.plugin.version>3.5.6</maven.failsafe.plugin.version>
         <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
+        <openapi.generator.maven.plugin.version>7.23.0</openapi.generator.maven.plugin.version>
 
         <!-- Third Parties -->
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
@@ -316,5 +317,66 @@
 
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>openapi-generation</id>
+            <activation>
+                <file>
+                    <exists>${project.basedir}/openapi/profile-api.yaml</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+
+                    <!-- OpenAPI Generator Maven Plugin -->
+                    <plugin>
+                        <groupId>org.openapitools</groupId>
+                        <artifactId>openapi-generator-maven-plugin</artifactId>
+                        <version>${openapi.generator.maven.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>generate-profile-api</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <inputSpec>${project.basedir}/openapi/profile-api.yaml</inputSpec>
+                                    <generatorName>spring</generatorName>
+                                    <output>${project.build.directory}/generated-sources/openapi</output>
+                                    <apiPackage>io.petproject.estate.booking.platform.profile.presentation.rest.api</apiPackage>
+                                    <modelPackage>io.petproject.estate.booking.platform.profile.presentation.rest.dto</modelPackage>
+                                    <invokerPackage>io.petproject.estate.booking.platform.profile.presentation.rest</invokerPackage>
+                                    <generateApiDocumentation>false</generateApiDocumentation>
+                                    <generateApiTests>false</generateApiTests>
+                                    <generateModelDocumentation>false</generateModelDocumentation>
+                                    <generateModelTests>false</generateModelTests>
+                                    <configOptions>
+                                        <annotationLibrary>none</annotationLibrary>
+                                        <dateLibrary>java8</dateLibrary>
+                                        <documentationProvider>none</documentationProvider>
+                                        <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                        <interfaceOnly>true</interfaceOnly>
+                                        <library>spring-boot</library>
+                                        <openApiNullable>false</openApiNullable>
+                                        <requestMappingMode>api_interface</requestMappingMode>
+                                        <skipDefaultInterface>true</skipDefaultInterface>
+                                        <sourceFolder>src/main/java</sourceFolder>
+                                        <useBeanValidation>false</useBeanValidation>
+                                        <useJakartaEe>true</useJakartaEe>
+                                        <useRecords>true</useRecords>
+                                        <useSpringBoot4>true</useSpringBoot4>
+                                        <useSwaggerUI>false</useSwaggerUI>
+                                        <useTags>true</useTags>
+                                    </configOptions>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
