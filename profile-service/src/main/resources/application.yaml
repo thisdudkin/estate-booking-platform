@@ -26,9 +26,9 @@ spring:
       transaction-isolation: TRANSACTION_READ_COMMITTED
 
     # Connection Settings
-    url: jdbc:postgresql://localhost:5435/identity_db
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5433/profiles
+    username: profiles
+    password: profiles
 
   # Flyway Settings
   flyway:

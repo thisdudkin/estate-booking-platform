@@ -130,8 +130,26 @@ services:
       - kafka-2
       - kafka-3
 
+  profiles-db:
+    image: postgres:18.4
+    container_name: profiles-postgres
+    environment:
+      POSTGRES_USER: profiles
+      POSTGRES_PASSWORD: profiles
+      POSTGRES_DB: profiles
+    ports:
+      - "5433:5432"
+    volumes:
+      - profiles-db:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U profiles" ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
 volumes:
   keycloak-db:
   kafka-1-data:
   kafka-2-data:
   kafka-3-data:
+  profiles-db:
