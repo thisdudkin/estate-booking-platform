@@ -193,6 +193,27 @@ The registration request must not contain `TENANT`, `LANDLORD`, `ADMIN`, or `MOD
 assignments. Tenant is the default marketplace capability. Landlord is an additional business profile that a user may
 create later.
 
+### Login And Token Refresh Behavior
+
+![Login Sequence Diagram](documentation/images/login_sequence.svg)
+
+Identity Service may also act as the login BFF for public clients. In that mode, the public client starts login through
+Identity Service, Identity Service redirects the browser to Keycloak using OAuth2 Authorization Code flow, and Keycloak
+redirects back to Identity Service after successful authentication. Identity Service exchanges the authorization code
+with Keycloak as a confidential client and returns the application login result.
+
+![Refresh Token Sequence Diagram](documentation/images/refresh_token_sequence.svg)
+
+Refresh tokens must remain an edge concern. They should not be sent to business services, internal services, Kafka
+events, or logs. If Identity Service exposes refresh behavior, the client calls Identity Service, and Identity Service
+uses the stored or submitted refresh token to request a new access token from Keycloak. Business services continue to
+receive only access tokens and validate them locally through Keycloak JWKS.
+
+Identity Service therefore uses the same Keycloak client for two trusted backend capabilities: Authorization Code flow
+for user login and token refresh, and Client Credentials flow for service-to-service calls such as Profile Service
+provisioning. Keycloak remains the owner of credentials, sessions, token issuance, token revocation, and refresh-token
+rotation policy.
+
 ### Why Profile Service Is Required
 
 Using only Keycloak user attributes would look simpler at first, but it would couple marketplace data to the identity
@@ -299,6 +320,10 @@ Recommended public routes:
 | Method  | Route                                     | Service                |
 |---------|-------------------------------------------|------------------------|
 | `POST`  | `/api/identity/register`                  | Identity Service       |
+| `GET`   | `/api/identity/login`                     | Identity Service       |
+| `GET`   | `/api/identity/oauth2/callback`           | Identity Service       |
+| `POST`  | `/api/identity/token/refresh`             | Identity Service       |
+| `POST`  | `/api/identity/logout`                    | Identity Service       |
 | `POST`  | `/api/identity/me/landlord-profile`       | Identity Service       |
 | `GET`   | `/api/profiles/me`                        | Profile Service        |
 | `PATCH` | `/api/profiles/me`                        | Profile Service        |
