@@ -1,8 +1,10 @@
 CREATE TABLE IF NOT EXISTS favorite_listing
 (
-    id                uuid PRIMARY KEY DEFAULT uuidv7(),
-    tenant_profile_id uuid NOT NULL REFERENCES tenant,
-    listing_id        uuid NOT NULL
+    id                uuid PRIMARY KEY     DEFAULT uuidv7(),
+    tenant_profile_id uuid        NOT NULL REFERENCES tenant,
+    listing_id        uuid        NOT NULL,
+    created_at        timestamptz NOT NULL DEFAULT now(),
+    updated_at        timestamptz NOT NULL DEFAULT now()
 );
 
 ALTER TABLE favorite_listing
